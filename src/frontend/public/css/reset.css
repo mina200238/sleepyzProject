@@ -1,23 +1,4 @@
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 600;
-    font-style: bold;
-}
-
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 800;
-    font-style: extra-bold;
-}
+@import "./font.css";
 
 html,
 body,
@@ -124,10 +105,9 @@ section {
 body {
   min-height: 100vh;
   line-height: 1;
-  font-family: sans-serif;
+  font-family: Pretendard, sans-serif;
   position: relative;
-  /* padding-bottom: 210px; */
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 ol,
 ul {
