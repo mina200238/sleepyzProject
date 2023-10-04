@@ -4,23 +4,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link href="/dist/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="Admin-Products.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <div class="flex">
       <!-- Sidebar -->
-      <div class="w-52 bg-[#ECE1FF] h-screen text-black flex flex-col">
-        <a href="#" class="m-12 mb-28 text-lg">관리자 페이지</a>
-        <a href="#" class="mb-8 ml-12">상품관리</a>
-        <a href="#" class="mb-8 ml-12">카테고리관리</a>
-        <a href="#" class="mb-8 ml-12">주문관리</a>
+      <div
+        class="w-52 bg-[#ECE1FF] h-screen text-black flex flex-col justify-between"
+      >
+        <div class="flex flex-col">
+          <a href="#" class="m-12 mb-28 text-xl font-bold">관리자 페이지</a>
+          <a
+            href="#"
+            class="mb-4 ml-8 p-4 font-bold mr-20 bg-white rounded-full"
+            >상품관리</a
+          >
+          <a href="#" class="mb-8 ml-12">카테고리관리</a>
+          <a href="#" class="mb-8 ml-12">주문관리</a>
+        </div>
+        <div class="flex p-10 justify-around">
+          <a href="#" class="font-bold">Home</a>
+          <a href="#" class="font-bold">Logout</a>
+        </div>
       </div>
 
       <!-- Main Content -->
       <div class="flex-1 p-10">
-        <h1 class="text-2xl mb-4">메인 콘텐츠</h1>
-        <p>여기에 웹 페이지의 본문 내용을 작성하세요.</p>
+        <h1 class="text-3xl mb-56 font-bold">상품관리</h1>
+        <div class="grid grid-cols-7">
+          <!-- 테이블 요소 -->
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 1
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 2
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 3
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 4
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 5
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 6
+          </div>
+          <div
+            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
+          >
+            셀 7
+          </div>
+
+          <!-- 실제 테이블 데이터들 -->
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 8
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 9
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 10
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 11
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 12
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 13
+          </div>
+          <div class="col-span-1 p-4 border-solid border-2 border-black">
+            셀 14
+          </div>
+        </div>
       </div>
     </div>
   </body>
