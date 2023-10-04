@@ -3,96 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link href="/dist/output.css" rel="stylesheet" />
+    <title>관리자 페이지</title>
     <link rel="stylesheet" href="Admin-Products.css" />
   </head>
   <body>
-    <div class="flex">
-      <!-- Sidebar -->
-      <div
-        class="w-52 bg-[#ECE1FF] h-screen text-black flex flex-col justify-between"
-      >
-        <div class="flex flex-col">
-          <a href="#" class="m-12 mb-28 text-xl font-bold">관리자 페이지</a>
-          <a
-            href="#"
-            class="mb-4 ml-8 p-4 font-bold mr-20 bg-white rounded-full"
-            >상품관리</a
-          >
-          <a href="#" class="mb-8 ml-12">카테고리관리</a>
-          <a href="#" class="mb-8 ml-12">주문관리</a>
-        </div>
-        <div class="flex p-10 justify-around">
-          <a href="#" class="font-bold">Home</a>
-          <a href="#" class="font-bold">Logout</a>
-        </div>
+    <!-- 사이드네비바 -->
+    <div class="sidebar">
+      <div class="sidebarCategories">
+        <h2>관리자 페이지</h2>
+        <a href="#" class="current-page">상품관리</a>
+        <a href="#">카테고리관리</a>
+        <a href="#">주문관리</a>
       </div>
+      <div class="sidebarLinks">
+        <a href="#">Home</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
 
-      <!-- Main Content -->
-      <div class="flex-1 p-10">
-        <h1 class="text-3xl mb-56 font-bold">상품관리</h1>
-        <div class="grid grid-cols-7">
-          <!-- 테이블 요소 -->
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 1
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 2
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 3
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 4
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 5
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 6
-          </div>
-          <div
-            class="col-span-1 p-4 bg-black text-white border-solid border-2 border-black"
-          >
-            셀 7
-          </div>
-
-          <!-- 실제 테이블 데이터들 -->
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 8
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 9
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 10
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 11
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 12
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 13
-          </div>
-          <div class="col-span-1 p-4 border-solid border-2 border-black">
-            셀 14
-          </div>
-        </div>
+    <!-- 메인 상품관리 테이블 -->
+    <div class="content">
+      <h2>상품관리</h2>
+      <div class="tableButton">
+        <button>선택상품삭제</button>
+        <button>상품등록</button>
+      </div>
+      <table>
+        <tr>
+          <th>선택</th>
+          <th>번호</th>
+          <th>이미지</th>
+          <th>상품명</th>
+          <th>카테고리</th>
+          <th>가격</th>
+          <th>관리</th>
+        </tr>
+        <tr>
+          <td>행 1</td>
+          <td>행 2</td>
+          <td>행 3</td>
+          <td>행 4</td>
+          <td>행 5</td>
+          <td>행 6</td>
+          <td>행 7</td>
+        </tr>
+        <tr>
+          <td>행 8</td>
+          <td>행 9</td>
+          <td>행 10</td>
+          <td>행 11</td>
+          <td>행 12</td>
+          <td>행 13</td>
+          <td>행 14</td>
+        </tr>
+      </table>
+      <div class="pagination">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
       </div>
     </div>
   </body>
