@@ -1,0 +1,99 @@
+@import '../../public/css/reset.css';
+
+body {
+  display: flex;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  background-color: #ece1ff;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar a {
+  padding: 10px 15px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 25px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 32px;
+  margin: 50px 0 100px 0;
+}
+
+.sidebar .current-page {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.sidebar .sidebarLinks {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+.content h2 {
+  margin: 50px 0;
+  font-size: 40px;
+}
+
+.tableButton {
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #b89fe5;
+  color: white;
+  border: 1px solid #b89fe5;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
