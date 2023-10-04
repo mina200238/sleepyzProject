@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./Cart.css" />
+
+    <title>Sleepyz</title>
+  </head>
+  <body>
+    <!----------------------- header 영역 ------------------------->
+    <header class="flex justify-around w-auto h-20 bg-[#f0ecf8] items-center">
+      <h1 id="logo">
+        <a href="#">
+          <img
+            class="w-40"
+            src="../../public/assets/logo_sleepyz.png"
+            alt="logo-image"
+          />
+        </a>
+      </h1>
+      <nav class="category flex">
+        <ul class="flex justify-between gap-20 text-gray-950">
+          <li class=""><a href="">전체</a></li>
+          <li class=""><a href="">이불</a></li>
+          <li class=""><a href="">베개</a></li>
+          <li class=""><a href="">침대</a></li>
+          <li class=""><a href="">커버</a></li>
+        </ul>
+      </nav>
+      <ul class="utils flex gap-12">
+        <li>
+          <a class="relative" href=""
+            ><img class="w-6" src="../../public/assets/icon_cart.svg" alt="" />
+            <span
+              class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-3 dark:border-gray-900"
+            >
+              8
+            </span></a
+          >
+        </li>
+        <li class="flex items-center">
+          <!-- <a href="#"
+            ><img class="w-6" src="../../public/assets/icon_user.svg" alt=""
+          /></a> -->
+          <a href="#" class="">Login</a>
+        </li>
+      </ul>
+    </header>
+
+    <!---------------------- 장바구니 페이지 -------------------------->
+    <main class="container flex justify-center w-full min-w-max">
+      <section class="sc-cart pt-12 w-full px-72 flex justify-between">
+        <div class="w-2/3">
+          <h2 class="title text-xl font-bold mb-4">장바구니</h2>
+          <div class="flex justify-between mb-4">
+            <div class="options flex items-center border-b-4 border-indigo-500">
+              <input
+                id="selectAll"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="selectAll"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >전체 선택</label
+              >
+            </div>
+            <button class="text-sm">선택 삭제</button>
+          </div>
+          <ul class="cartList">
+            <li class="cartItem flex">
+              <input
+                id="selectEach"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 mr-3 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label for="selectEach"></label>
+              <div class="flex justify-between gap-10">
+                <a href="#">
+                  <img
+                    class="w-52"
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169200373284736398.jpg?gif=1&w=640&h=640&c=c&webp=1"
+                    alt=""
+                  />
+                </a>
+                <div>
+                  <span class="text-sm"
+                    >미드센추리 빈티지맨션 60수 고밀도순면 차렵이불세트
+                    5컬러</span
+                  >
+                  <span>65,900 원</span>
+                  <div class="inset-y-0 right-0 flex items-center">
+                    <label for="currency" class="sr-only">Currency</label>
+                    <select
+                      id="currency"
+                      name="currency"
+                      class="h-8 rounded-md border-2 border-gray-200 bg-transparent py-0 pl-2 pr-7 focus:ring-indigo-600 sm:text-sm"
+                    >
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="cartItem"></li>
+            <li class="cartItem"></li>
+          </ul>
+        </div>
+        <div class="justify-end">
+          <h3>주문 내역</h3>
+          <div>
+            <span>총 상품 금액</span>
+            <span>36,000원</span>
+          </div>
+          <div>
+            <span>배송비</span>
+            <span>2500원</span>
+          </div>
+          <div>
+            <span>결제 금액</span>
+            <span>38,500원</span>
+          </div>
+          <button>구매하기</button>
+        </div>
+      </section>
+    </main>
+    <!-- footer -->
+    <script src="./Cart.js"></script>
+  </body>
+</html>
