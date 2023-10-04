@@ -1,14 +1,14 @@
 {
-    "extends": ["plugin:prettier/recommended"],
-    "plugins": ["prettier"],
-    "rules": {
-      "prettier/prettier": "error"
-    },
-    "parserOptions": {
-        "ecmaVersion": "latest"
-    },
+  "extends": ["plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
 
-    "env": {
-        "es6": true
-    }
+  "env": {
+    "es6": true
+  }
 }

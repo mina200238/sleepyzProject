@@ -1,0 +1,80 @@
+@import '../../public/css/reset.css';
+
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #ece1ff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.top-menu nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.icons span {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.product-list h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  font-size: 50px;
+}
+
+/* <h2>신상품</h2> grid제외 */
+.product-list > *:first-child {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem 5%;
+}
+
+.product-card-blanket {
+  border: 1px solid #eaeaea;
+  padding: 1rem;
+  flex-basis: calc(25% - 1rem);
+  box-sizing: border-box;
+  text-align: center;
+  height: auto;
+  border: 3px solid #8f8e91;
+}
+
+.product-card-blanket > p {
+  text-align: left;
+  display: flex;
+  font-weight: bold;
+}
+
+.product-card-blanket > span {
+  display: block;
+  text-align: left;
+}
+
+.product-card img {
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+footer {
+  padding: 1rem 5%;
+  background-color: #ece1ff;
+  text-align: center;
+}
