@@ -26,6 +26,56 @@ const prodData = {
   updated_at: '2023-10-04T14:30:00Z',
   deleted_at: '2023-10-04T14:30:00Z',
 };
+// 페이지가 로드될 때 실행할 함수
+function onPageLoad() {
+  // IndexedDB 초기화 및 데이터베이스 생성
+  if (window.indexedDB) {
+    const dbName = 'shoppingCartDB';
+    const dbVersion = 1;
+    const request = indexedDB.open(dbName, dbVersion);
+
+    request.onerror = function (event) {
+      console.error('Database error:' + event.target.errorCode);
+    };
+
+    request.onupgradeneeded = function (event) {
+      const db = event.target.result;
+      db.createObjectStore('cart', {
+        keyPath: '_id',
+      });
+    };
+
+    // 요청 성공했을 때
+    request.onsuccess = function (event) {
+      const db = event.target.result;
+      const transaction = db.transaction(['cart'], 'readonly');
+      const store = transaction.objectStore('cart');
+
+      // 모든 상품을 가져와서 상품 개수 계산
+      const cartRequest = store.getAll();
+      cartRequest.onsuccess = function (event) {
+        const cartItems = event.target.result;
+        const itemCount = cartItems.reduce(function (total, item) {
+          return total + item.quantity;
+        }, 0);
+
+        // 장바구니 badge 업데이트
+        updateBadge(itemCount);
+      };
+    };
+  }
+}
+
+// 페이지가 로드될 때 실행
+window.addEventListener('load', onPageLoad);
+
+// 장바구니 아이콘 badge 숫자 업데이트
+function updateBadge(itemCount) {
+  const badgeElement = document.getElementById('cartBadge');
+  if (badgeElement) {
+    badgeElement.textContent = itemCount.toString();
+  }
+}
 
 // 상품 상세 장바구니 담기 버튼
 const addtoCartBtn = document.querySelector('.addtoCartBtn');
@@ -80,8 +130,6 @@ addtoCartBtn.addEventListener('click', function () {
         updateBadge(result ? result.quantity : 1);
       };
 
-      // 중복되지 않는 데이터만 'products' 저장소에 추가
-
       transaction.oncomplete = function (event) {
         console.log('트랜잭션이 완료되었습니다');
       };
@@ -104,15 +152,3 @@ addtoCartBtn.addEventListener('click', function () {
 // function getLocalStorageCart() {
 //   return JSON.parse(localStorage.getItem('cart')) || [];
 // }
-
-// 장바구니 아이콘 badge 숫자 업데이트
-function updateBadge(itemCount) {
-  const badgeElement = document.getElementById('cartBadge'); // badge 엘리먼트에 id를 추가해야 합니다.
-  if (badgeElement) {
-    badgeElement.textContent = itemCount.toString();
-  }
-}
-
-// 장바구니 아이템 총 수량 indexedDB에서 가져오기
-
-// 초기 페이지 로드 시 아이템 수 업데이트
