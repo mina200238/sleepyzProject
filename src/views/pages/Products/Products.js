@@ -1,6 +1,22 @@
+let currentPage = 1;
+// URI에 Page번호 표시
+function updateURI() {
+  const currentURL = window.location.href.split('?')[0];
+  const newURL = `${currentURL}?page=${currentPage}`;
+  window.history.pushState({ page: currentPage }, '', newURL);
+}
+
+function getPageFromURI() {
+  const params = new URLSearchParams(window.location.search);
+  const pageFromURI = parseInt(params.get('page'));
+  if (pageFromURI) {
+    currentPage = pageFromURI;
+  }
+}
+
+//페이지네이션 코드
 document.addEventListener('DOMContentLoaded', function () {
   const itemsPerPage = 9;
-  let currentPage = 1;
   const products = document.querySelectorAll('.product-card');
   const totalPage = Math.ceil(products.length / itemsPerPage);
 
@@ -28,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage < totalPage) currentPage++;
       }
       updateView();
+      updateURI();
     });
 
   updateView();
+  updateURI();
 });
