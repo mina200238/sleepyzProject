@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const mainRouter = require('./routers/mainRouter');
 const { Product } = require('./models');
+const { Order } = require('./models');
 const fakeData = require('./static/fakeData.json');
+const fakeOrder = require('./static/fakeOrder.json');
 require('dotenv').config();
-const allProductsRouter = require('./routers/allProductsRouter');
 const productRouter = require('./routers/productRouter');
-
+const orderRouter = require('./routers/orderRouter');
 
 const connectDB = async () => {
   try {
@@ -26,17 +26,25 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.json()); // body-parser
 
-app.use('/', mainRouter);
-app.use('/categories', allProductsRouter);
-app.use('/product', productRouter);
+app.get('/', productRouter); // 최신 상품 조회
+app.get('/categories', productRouter); // 전체 상품 조회
+app.use('/product', productRouter); // 단일 상품 조회
+
+app.use('/order', orderRouter); // 주문 작성, 주문 조회
+
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 
   const test = async (req, res) => {
-    const data = await Product.find({});
-    if (data.length === 0) {
-      await Product.create(fakeData.product);
+    const productData = await Product.count().exec();
+    if (!productData) {
+      await Product.insertMany(fakeData.product);
+      console.log('성공');
+    }
+    const orderData = await Order.count().exec();
+    if (!orderData) {
+      await Order.insertMany(fakeOrder.order);
       console.log('성공');
     }
 
