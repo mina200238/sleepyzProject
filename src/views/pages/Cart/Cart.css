@@ -11,10 +11,6 @@ input[type='checkbox'] {
   appearance: none; */
 }
 
-* {
-  color: #111;
-}
-
 /* header 영역 */
 
 header {
@@ -49,6 +45,10 @@ header h1 img {
 .category .categoryItem a {
   display: block;
   height: 100%;
+  transition: all 0.3s;
+}
+.category .categoryItem a:hover {
+  font-weight: bold;
 }
 .utils {
   display: flex;
@@ -59,7 +59,8 @@ header h1 img {
   width: 25px;
 }
 .utils img:hover {
-  color: #9261e8;
+  filter: invert(47%) sepia(27%) saturate(5852%) hue-rotate(234deg)
+    brightness(94%) contrast(92%);
 }
 
 /* main container 영역 */
@@ -70,7 +71,6 @@ main {
   margin-top: 120px;
 }
 .sc-cart {
-  margin-top: 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -84,6 +84,22 @@ main {
   justify-content: space-between;
   padding-bottom: 15px;
   border-bottom: 1px solid #ddd;
+}
+.cartOptions .deleteBtn {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 5px 7px;
+  /* transition: all 0.2s; */
+}
+
+.cartOptions .deleteBtn:hover {
+  font-weight: 500;
 }
 
 /* main container 장바구니 아이템 영역(좌) */
@@ -139,8 +155,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  position: fixed;
+  position: sticky;
   right: 200px;
+  top: 160px;
 }
 
 .orderSummary h3 {
@@ -163,9 +180,9 @@ main {
   justify-content: space-between;
 }
 .orderSummary .totalPayment {
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: bold;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
