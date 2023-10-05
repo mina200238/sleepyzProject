@@ -12,7 +12,6 @@ input[type='checkbox'] {
 }
 
 /* main container 영역 */
-
 .sc-cart {
   display: flex;
   justify-content: center;
