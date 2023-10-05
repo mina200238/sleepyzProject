@@ -1,6 +1,6 @@
 /* header 영역 */
 
-#headerWrap {
+#header {
   background-color: #fff;
   border-bottom: 1px solid #9261e8;
   display: flex;
@@ -11,11 +11,11 @@
   top: 0;
   width: 100%;
 }
-#headerWrap.logo {
+#header.logo {
   display: block;
   height: 100%;
 }
-#headerWrap h1 img {
+#header h1 img {
   width: 200px;
   height: auto;
 }
