@@ -4,6 +4,9 @@ const mainRouter = require('./routers/mainRouter');
 const { Product } = require('./models');
 const fakeData = require('./static/fakeData.json');
 require('dotenv').config();
+const allProductsRouter = require('./routers/allProductsRouter');
+const productRouter = require('./routers/productRouter');
+
 
 const connectDB = async () => {
   try {
@@ -23,7 +26,9 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.json()); // body-parser
 
-app.get('/', mainRouter);
+app.use('/', mainRouter);
+app.use('/categories', allProductsRouter);
+app.use('/product', productRouter);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
@@ -36,7 +41,7 @@ mongoose.connection.once('open', () => {
     }
 
     // 🤔: _id를 그냥 id로 사용 할 수 있을까요?
-    console.log(data[0]._id.toString()); // 651d24ced801f4471025046d
+    // console.log(data[0]._id.toString()); // 651d24ced801f4471025046d
   };
   test();
 

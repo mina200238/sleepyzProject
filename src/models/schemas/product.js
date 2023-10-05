@@ -26,6 +26,11 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-});
+
+
+},
+  {
+    timestamps: true,
+  });
 
 module.exports = ProductSchema;
