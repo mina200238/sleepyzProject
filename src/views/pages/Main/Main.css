@@ -1,6 +1,5 @@
 @import '../../public/css/reset.css';
 
-
 .top-menu {
   display: flex;
   justify-content: space-between;
@@ -47,7 +46,7 @@
   width: 90%;
   margin-bottom: 100px;
   margin-left: 100px;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 /* <h2>신상품</h2> grid제외 */
@@ -61,7 +60,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
   padding: 1rem 5%;
-  width:85%;
+  width: 85%;
   margin-left: 35px;
 }
 
