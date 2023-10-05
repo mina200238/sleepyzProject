@@ -9,32 +9,15 @@
     <script src="Products.js"></script>
   </head>
   <body>
-    <header class="top-menu">
-      <div id="logo">
-        <img src="../../public/assets/logo_sleepyz.png" />
-      </div>
-      <nav>
-        <!-- 상단 메뉴바 항목들 -->
-        <a href="#">전체</a>
-        <a href="#">이불</a>
-        <a href="#">베개</a>
-        <a href="#">침대</a>
-        <a href="#">커버</a>
-      </nav>
-      <div class="icons">
-        <span
-          ><img src="../../public/assets/icon_cart.svg" alt="장바구니"
-        /></span>
-        <span
-          ><img src="../../public/assets/icon_user.svg" alt="유저페이지"
-        /></span>
-      </div>
-    </header>
+    <!----------------------- header 영역 ------------------------->
+    <header id="header"></header>
+    <!------------------------------------------------------------>
     <section class="product-list">
       <h2>전체 상품</h2>
       <!-- 전체 상품 목록 20개-->
       <!-- id명은 처음순서부터 1,2,3...-->
-      <a href="#" class="product-link" id="product_1">
+      <!--------------------------이불 시작------------------------->
+      <a href="#" class="product-link" data-category="blanket" id="product_1">
         <div class="product-card">
           <img
             src="../../public/products/blanket/icon_blanket1.png"
@@ -45,7 +28,7 @@
         </div>
       </a>
       <a href="#" class="product-link">
-      <div class="product-card" id="product_2">
+      <div class="product-card" data-category="blanket" id="product_2">
         <img
           src="../../public/products//blanket/icon_blanket2.png"
           alt="Blanket Image"
@@ -55,7 +38,7 @@
       </div>
     </a>
     <a href="#" class="product-link">
-      <div class="product-card" id="product_3">
+      <div class="product-card" data-category="blanket" id="product_3">
         <img
           src="../../public/products/blanket/icon_blanket3.png"
           alt="Blanket Image"
@@ -64,7 +47,7 @@
         <span>28,900원</span>
       </div>
       </a>
-      <a href="#" class="product-link" id="product_4">
+      <a href="#" class="product-link" data-category="blanket" id="product_4">
       <div class="product-card">
         <img
           src="../../public/products//blanket/icon_blanket4.png"
@@ -74,7 +57,7 @@
         <span>29,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_5">
+    <a href="#" class="product-link" data-category="blanket" id="product_5">
       <div class="product-card">
         <img
           src="../../public/products//blanket/icon_blanck5.png"
@@ -84,7 +67,9 @@
         <span>35,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_6">
+    <!-------------------------------------------------------------------->
+    <!-------------------------------베개 시작------------------------------>
+    <a href="#" class="product-link" data-category="pillow" id="product_6">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow1.png"
@@ -94,36 +79,36 @@
         <span>11,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_7">
+    <a href="#" class="product-link" data-category="pillow" id="product_7">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow2.png"
-          alt="Blanket Image"
+          alt="pillow Image"
         />
         <p>부드럽고 푹신한 베개</p>
         <span>22,900원</span>
       </div>
-      <a href="#" class="product-link" id="product_8">
+      <a href="#" class="product-link" data-category="pillow" id="product_8">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow3.png"
-          alt="Blanket Image"
+          alt="pillow Image"
         />
         <p>느낌있는 베개</p>
         <span>19,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_9">
+    <a href="#" class="product-link" data-category="pillow" id="product_9">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Blanket Image"
+          alt="pillow Image"
         />
         <p>너무 화려한 베개</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_10">
+    <a href="#" class="product-link" data-category="pillow" id="product_10">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
@@ -133,107 +118,111 @@
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_11">
+    <!------------------------------------------------------------------->
+    <!---------------------------침대 시작---------------------------------->
+    <a href="#" class="product-link" data-category="bed" id="product_11">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Bed Image"
         />
         <p>11</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_12">
+    <a href="#" class="product-link" data-category="bed" id="product_12">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Bed Image"
         />
         <p>12</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_13">
+    <a href="#" class="product-link" data-category="bed" id="product_13">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Bed Image"
         />
         <p>13</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_14">
+    <a href="#" class="product-link" data-category="bed" id="product_14">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Bed Image"
         />
         <p>14</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_15">
+    <a href="#" class="product-link" data-category="bed" id="product_15">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Bed Image"
         />
         <p>15</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_16">
+    <!---------------------------------------------------------------------->
+    <!-----------------------------커버 시작----------------------------------->
+    <a href="#" class="product-link" data-category="cover" id="product_16">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Cover Image"
         />
         <p>16</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_17">
+    <a href="#" class="product-link" data-category="cover" id="product_17">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Cover Image"
         />
         <p>17</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_18">
+    <a href="#" class="product-link" data-category="cover" id="product_18">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Cover Image"
         />
         <p>18</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_19">
+    <a href="#" class="product-link" data-category="cover" id="product_19">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Cover Image"
         />
         <p>19</p>
         <span>24,900원</span>
       </div>
     </a>
-    <a href="#" class="product-link" id="product_20">
+    <a href="#" class="product-link" data-category="cover" id="product_20">
       <div class="product-card">
         <img
           src="../../public/products/pillow/icon_pillow4.png"
-          alt="Pillow Image"
+          alt="Cover Image"
         />
         <p>20</p>
         <span>24,900원</span>
       </div>
     </a>
-
+    <!---------------------------------------------------------------------->
       <!--페이지네이션 버튼-->
       <div class="pagination-bar">
         <button class="prev-btn">이전</button>
@@ -243,10 +232,8 @@
         <button class="next-btn">다음</button>
       </div>
     </section>
+    
 
-    <footer>
-      <!-- 하단 정보들 -->
-      <p>COPYRIGHTⓒ슬리피즈 ALL RIGHTS RESERVED.</p>
-    </footer>
+    <footer id="footer"></footer>
   </body>
 </html>
