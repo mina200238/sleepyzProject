@@ -50,3 +50,21 @@
   filter: invert(47%) sepia(27%) saturate(5852%) hue-rotate(234deg)
     brightness(94%) contrast(92%);
 }
+.utils .linkCart {
+  position: relative;
+}
+.utils .linkCart .badge {
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  background-color: #9261e8;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
