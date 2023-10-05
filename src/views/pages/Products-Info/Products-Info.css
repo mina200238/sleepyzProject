@@ -1,1 +1,110 @@
 @import '../../public/css/reset.css';
+
+/* 상품 정보 상단 영역 */
+.productInfoArea {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 80px;
+  position: relative;
+}
+.productInfoArea::after {
+  content: '';
+  height: 0.5px;
+  background-color: #ccc;
+  width: 800px;
+  position: absolute;
+  bottom: 0;
+}
+.productInfoArea .imgBox {
+  width: 350px;
+}
+.productInfoArea img {
+  width: 100%;
+  border-radius: 20px;
+  vertical-align: bottom;
+}
+
+.productInfoArea .infoBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.productInfoArea .txtGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.productInfoArea .prodName {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.productInfoArea .price {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.productInfoArea .infoDetails span {
+  display: flex;
+  font-size: 14px;
+  font-weight: 200;
+  margin-top: 10px;
+}
+
+.productInfoArea .infoDetails i {
+  margin-left: 20px;
+}
+
+.btnGroup {
+  margin-top: 120px;
+  display: flex;
+}
+
+.btnGroup button {
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Pretendard';
+  color: #fff;
+  font-size: 16px;
+  background-color: #b89fe5;
+  transition: all 0.3s;
+}
+.btnGroup button:hover {
+  background-color: #9261e8;
+}
+.btnGroup .purchaseBtn {
+  width: 60%;
+  margin-right: 10px;
+}
+.btnGroup .addtoCartBtn {
+  width: 40%;
+}
+
+/* 상품 정보 하단 영역 */
+
+#sc-prodDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#sc-prodDetails h1 {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#sc-prodDetails .detailInfo {
+  width: 800px;
+  margin-bottom: 50px;
+  font-size: 16px;
+  line-height: 2;
+}

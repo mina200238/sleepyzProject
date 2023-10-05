@@ -1,4 +1,28 @@
 #footer {
-  height: 70px;
   background-color: #ece1ff;
+  width: 100%;
+  padding: 30px 0;
+}
+#footer .footerInfo {
+  width: 1920px;
+}
+
+#footer .infoList {
+  font-size: 14px;
+  color: #000;
+  font-weight: 200;
+  margin-left: 200px;
+}
+
+#footer .infoItem {
+  margin-bottom: 5px;
+}
+#footer .infoItem:last-child {
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+#footer .infoItem span {
+  font-weight: bold;
+  /* margin-right: 20px; */
+  margin-right: 5px;
 }
