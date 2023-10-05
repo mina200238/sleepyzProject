@@ -1,3 +1,16 @@
+fetch('../../public/Header/Header.html')
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById('header').innerHTML = data;
+  });
+
+// footer 모듈 가져오기
+fetch('../../public/Footer/Footer.html')
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById('footer').innerHTML = data;
+  });
+
 let currentPage = 1;
 // URI에 Page번호 표시
 function updateURI() {
