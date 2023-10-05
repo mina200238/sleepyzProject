@@ -1,0 +1,68 @@
+@import '../../public/css/reset.css';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 14px;
+}
+
+.container {
+  width: 400px;
+}
+
+.logo,
+.signin,
+.signup {
+  text-align: center;
+}
+
+.signin {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 70px;
+}
+
+img {
+  max-width: 300px;
+  margin-bottom: 70px;
+}
+
+.login-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #edf2f7;
+}
+
+.loginBtn {
+  width: 100%;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+.loginBtn a {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.loginBtn:hover {
+  background-color: #9261e8;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
