@@ -12,17 +12,12 @@ input[type='checkbox'] {
 }
 
 /* main container 영역 */
-
-main {
-  width: 1024px;
-  margin: 0 auto;
-  margin-top: 120px;
-}
 .sc-cart {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 100px;
 }
-.sc-cart h2 {
+.sc-cart h1 {
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 20px;
@@ -104,11 +99,10 @@ main {
   flex-direction: column;
   gap: 20px;
   position: sticky;
-  right: 200px;
   top: 160px;
 }
 
-.orderSummary h3 {
+.orderSummary h2 {
   font-size: 18px;
   font-weight: bold;
 }
