@@ -1,0 +1,114 @@
+@import '../../public/css/reset.css';
+
+/* 배송 정보 영역 */
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+  font-size: 14px;
+  gap: 100px;
+}
+
+.shipping-info {
+  margin-top: 50px;
+  margin-bottom: 150px;
+  width: 500px;
+}
+
+.orderPayment {
+  font-size: 20px;
+  margin-bottom: 100px;
+  font-weight: bold;
+}
+
+.orderer h2,
+.deliveryAddress h2 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  font-weight: 500;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+textarea,
+input {
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+label {
+  display: inline-block;
+  width: 80px;
+}
+
+.formGroupAddress * {
+  vertical-align: middle;
+}
+/* 배송 정보 영역 */
+
+/* 결제 정보 영역 */
+.orderSummary {
+  background-color: #f8f8f8;
+  width: 350px;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 160px;
+}
+
+.orderSummary h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.orderSummary .totalPrice {
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+.orderSummary .shippingFee {
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+.orderSummary .totalPayment {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderSummary .purchaseBtn {
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+}
+.orderSummary .purchaseBtn a {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.orderSummary .purchaseBtn:hover {
+  background-color: #9261e8;
+}
+/* 결제 정보 영역 */

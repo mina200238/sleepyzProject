@@ -1,0 +1,70 @@
+/* header 영역 */
+
+#header {
+  background-color: #fff;
+  border-bottom: 1px solid #9261e8;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+#header.logo {
+  display: block;
+  height: 100%;
+}
+#header h1 img {
+  width: 200px;
+  height: auto;
+}
+
+.category .categoryList {
+  display: flex;
+  justify-content: start;
+  gap: 80px;
+}
+.category .categoryItem {
+  height: 80px;
+  line-height: 80px;
+}
+.category .categoryItem a {
+  display: block;
+  height: 100%;
+  transition: all 0.3s;
+}
+.category .categoryItem a:hover {
+  font-weight: bold;
+}
+.utils {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.utils img {
+  width: 25px;
+}
+.utils img:hover {
+  filter: invert(47%) sepia(27%) saturate(5852%) hue-rotate(234deg)
+    brightness(94%) contrast(92%);
+}
+.utils .linkCart {
+  position: relative;
+}
+.utils .linkCart .badge {
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  background-color: #9261e8;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}

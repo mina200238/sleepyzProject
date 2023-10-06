@@ -5,41 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
+    <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="Main.css" />
-    <script src="Main.js"></script>
+    <link rel="stylesheet" href="/src/views/public/Header/Header.css">
+    <link rel="stylesheet" href="/src/views/public/Footer/Footer.css">
   </head>
-  <body>
-    <!doctype html>
-    <html lang="ko">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Web Page</title>
-        <link rel="stylesheet" href="styles.css" />
-      </head>
       <body>
-        <header class="top-menu">
-          <div id="logo">
-            <img src="../../public/assets/logo_sleepyz.png" />
-          </div>
-          <nav>
-            <!-- 상단 메뉴바 항목들 -->
-            <a href="#">전체</a>
-            <a href="#">이불</a>
-            <a href="#">베개</a>
-            <a href="#">침대</a>
-            <a href="#">커버</a>
-          </nav>
-          <div class="icons">
-            <span
-              ><img src="../../public/assets/icon_cart.svg" alt="장바구니"
-            /></span>
-            <span
-              ><img src="../../public/assets/icon_user.svg" alt="유저페이지"
-            /></span>
-          </div>
-        </header>
-
+       <!----------------------- header 영역 ------------------------->
+   <header id="header"></header>
         <section class="main-banner">
           <img
             src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/166070287757262487.jpg?w=720"
@@ -49,15 +23,18 @@
 
         <section class="product-list">
           <h2>신상품</h2>
-          <div class="product-card-blanket">
-            <img
-              src="../../public/products/blanket/icon_blanket1.png"
-              alt="Blanket Image"
-            />
-            <p>저렴한데 따뜻한 이불</p>
-            <span>19,900원</span>
-          </div>
-          <div class="product-card-blanket">
+          <a href="#" class="product-link" id="product_1">
+            <div class="product-card">
+              <img
+                src="../../public/products/blanket/icon_blanket1.png"
+                alt="Blanket Image"
+              />
+              <p>저렴한데 따뜻한 이불</p>
+              <span>19,900원</span>
+            </div>
+          </a>
+          <a href="#" class="product-link">
+          <div class="product-card" id="product_2">
             <img
               src="../../public/products//blanket/icon_blanket2.png"
               alt="Blanket Image"
@@ -65,7 +42,9 @@
             <p>5성급 호텔에 온 듯한 기분이 드는 이불</p>
             <span>42,900원</span>
           </div>
-          <div class="product-card-blanket">
+        </a>
+        <a href="#" class="product-link">
+          <div class="product-card" id="product_3">
             <img
               src="../../public/products/blanket/icon_blanket3.png"
               alt="Blanket Image"
@@ -73,7 +52,9 @@
             <p>혼자 자면 더 좋은 이불</p>
             <span>28,900원</span>
           </div>
-          <div class="product-card-blanket">
+          </a>
+          <a href="#" class="product-link" id="product_4">
+          <div class="product-card">
             <img
               src="../../public/products//blanket/icon_blanket4.png"
               alt="Blanket Image"
@@ -81,7 +62,9 @@
             <p>둘이 자면 한명은 추운 이불</p>
             <span>29,900원</span>
           </div>
-          <div class="product-card-blanket">
+        </a>
+        <a href="#" class="product-link" id="product_5">
+          <div class="product-card">
             <img
               src="../../public/products//blanket/icon_blanck5.png"
               alt="Blanket Image"
@@ -89,7 +72,9 @@
             <p>둘이서도 따뜻해요 이불</p>
             <span>35,900원</span>
           </div>
-          <div class="product-card-blanket">
+        </a>
+        <a href="#" class="product-link" id="product_6">
+          <div class="product-card">
             <img
               src="../../public/products/pillow/icon_pillow1.png"
               alt="Pillow Image"
@@ -97,7 +82,9 @@
             <p>눕자마자 코고는 베개</p>
             <span>11,900원</span>
           </div>
-          <div class="product-card-blanket">
+        </a>
+        <a href="#" class="product-link" id="product_7">
+          <div class="product-card">
             <img
               src="../../public/products/pillow/icon_pillow2.png"
               alt="Blanket Image"
@@ -105,7 +92,8 @@
             <p>부드럽고 푹신한 베개</p>
             <span>22,900원</span>
           </div>
-          <div class="product-card-blanket">
+          <a href="#" class="product-link" id="product_8">
+          <div class="product-card">
             <img
               src="../../public/products/pillow/icon_pillow3.png"
               alt="Blanket Image"
@@ -113,7 +101,9 @@
             <p>느낌있는 베개</p>
             <span>19,900원</span>
           </div>
-          <div class="product-card-blanket">
+        </a>
+        <a href="#" class="product-link" id="product_9">
+          <div class="product-card">
             <img
               src="../../public/products/pillow/icon_pillow4.png"
               alt="Blanket Image"
@@ -121,12 +111,12 @@
             <p>너무 화려한 베개</p>
             <span>24,900원</span>
           </div>
+        </a>
         </section>
 
-        <footer>
-          <!-- 하단 정보들 -->
-          <p>COPYRIGHTⓒ슬리피즈 ALL RIGHTS RESERVED.</p>
-        </footer>
+        <footer id="footer"></footer>
+        <script type="module" src="/src/views/public/Header/Header.js"></script>
+        <script type="module" src="/src/views/public/Footer/Footer.js"></script>
       </body>
     </html>
   </body>
