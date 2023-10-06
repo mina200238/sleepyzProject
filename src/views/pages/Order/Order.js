@@ -1,13 +1,23 @@
-// header 모듈 가져오기
-fetch('../../public/Header/Header.html')
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById('header').innerHTML = data;
-  });
+const purchaseBtn = document.querySelector('.purchaseBtn');
 
-// footer 모듈 가져오기
-fetch('../../public/Footer/Footer.html')
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById('footer').innerHTML = data;
+purchaseBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone_number = document.getElementById('phone_number').value;
+  const receiver_name = document.getElementById('receiver_name').value;
+  const receiver_phone_number = document.getElementById(
+    'receiver_phone_number',
+  ).value;
+  const address = document.getElementById('address').value;
+
+  console.log({
+    name: name,
+    email: email,
+    phone_number: phone_number,
+    receiver_name: receiver_name,
+    receiver_phone_number: receiver_phone_number,
+    address: address,
   });
+});
