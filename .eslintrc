@@ -5,8 +5,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto", "useTabs": "false" }]
   },
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    "ecmaVersion": "latest"
   },
 
   "env": {
