@@ -4,9 +4,11 @@ const { Product } = require('./models');
 const { Order } = require('./models');
 const fakeData = require('./static/fakeData.json');
 const fakeOrder = require('./static/fakeOrder.json');
-require('dotenv').config();
 const productRouter = require('./routers/productRouter');
 const orderRouter = require('./routers/orderRouter');
+require('dotenv').config();
+require('express-async-errors');
+const errorHandler = require('./middlewares/errorHandler')
 
 const connectDB = async () => {
   try {
@@ -26,12 +28,11 @@ const PORT = process.env.PORT || 5001;
 
 app.use(express.json()); // body-parser
 
-app.get('/', productRouter); // 최신 상품 조회
-app.get('/categories', productRouter); // 전체 상품 조회
-app.use('/product', productRouter); // 단일 상품 조회
+app.use('/products', productRouter); // 단일 상품 조회
 
-app.use('/order', orderRouter); // 주문 작성, 주문 조회
+app.use('/orders', orderRouter); // 주문 작성, 주문 조회
 
+app.use(errorHandler)
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
