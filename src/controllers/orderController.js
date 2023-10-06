@@ -1,4 +1,3 @@
-const asyncHandler = require('express-async-handler');
 const { Order } = require('../models');
 
 const makeOrder = async (req, res, next) => {
@@ -6,12 +5,10 @@ const makeOrder = async (req, res, next) => {
   try {
     const data = req.body;
     const createdData = await Order.create(data);
-    res
-      .status(200)
-      .json({
-        data: { order_id: createdData._id },
-        message: '주문이 성공적으로 완료되었습니다.',
-      });
+    res.status(200).json({
+      data: { order_id: createdData._id },
+      message: '주문이 성공적으로 완료되었습니다.',
+    });
   } catch (err) {
     next(err);
   }

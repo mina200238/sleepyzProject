@@ -2,13 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { Product } = require('./models');
 const { Order } = require('./models');
+const { User } = require('./models');
 const fakeData = require('./static/fakeData.json');
 const fakeOrder = require('./static/fakeOrder.json');
+const fakeUser = require('./static/fakeUser.json');
 const productRouter = require('./routers/productRouter');
 const orderRouter = require('./routers/orderRouter');
+const userRouter = require('./routers/userRouter');
 require('dotenv').config();
 require('express-async-errors');
-const errorHandler = require('./middlewares/errorHandler')
+const errorHandler = require('./middlewares/errorHandler');
 
 const connectDB = async () => {
   try {
@@ -31,8 +34,9 @@ app.use(express.json()); // body-parser
 app.use('/products', productRouter); // 단일 상품 조회
 
 app.use('/orders', orderRouter); // 주문 작성, 주문 조회
+app.use('/users', userRouter);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
@@ -46,6 +50,12 @@ mongoose.connection.once('open', () => {
     const orderData = await Order.count().exec();
     if (!orderData) {
       await Order.insertMany(fakeOrder.order);
+      console.log('성공');
+    }
+
+    const userData = await User.count().exec();
+    if (!userData) {
+      await User.insertMany(fakeUser.user);
       console.log('성공');
     }
 

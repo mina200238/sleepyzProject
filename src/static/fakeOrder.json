@@ -2,7 +2,10 @@
   "order": [
     {
       "user_id": "651e69649585d36a1c743e02",
-      "products_id": [1, 6, 3],
+      "products_id": {
+        "651e69649585d36a1c743e4g": 2,
+        "651e69649585d36a1c743e7d": 1
+      },
       "name": "홍길동",
       "email": "elice@hong.com",
       "phone_number": "010-4444-5678",
@@ -13,7 +16,10 @@
     },
     {
       "user_id": "651e69649585d36a1c743e04",
-      "products_id": [2, 5, 7],
+      "products_id": {
+        "651e69649585d36a1c743e4g": 2,
+        "651e69649585d36a1c743e7d": 1
+      },
       "name": "김철수",
       "email": "kim@hong.com",
       "phone_number": "010-2222-5678",
@@ -24,7 +30,10 @@
     },
     {
       "user_id": "651e69649585d36a1c743e0a",
-      "products_id": [2, 6, 9],
+      "products_id": {
+        "651e69649585d36a1c743e4g": 2,
+        "651e69649585d36a1c743e7d": 1
+      },
       "name": "이미나",
       "email": "lee@hong.com",
       "phone_number": "010-3334-5678",
