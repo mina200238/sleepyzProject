@@ -7,11 +7,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 150px;
+  margin-top: 80px;
 }
 
 .main-banner img {
-  width: 95%;
-  height: 700px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
