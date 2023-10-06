@@ -117,14 +117,26 @@ addtoCartBtn.addEventListener('click', function () {
           if (window.confirm(confirmMsg)) {
             result.quantity++;
             store.put(result);
-            alert('장바구니에 상품이 추가되었습니다');
+            if (
+              window.confirm(
+                '장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?',
+              )
+            ) {
+              window.location.href = '/src/views/pages/Cart/Cart.html';
+            }
           } else {
             alert('취소되었습니다');
           }
         } else {
           data.quantity = 1;
           store.add(data);
-          alert('장바구니에 상품이 추가되었습니다');
+          if (
+            window.confirm(
+              '장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?',
+            )
+          ) {
+            window.location.href = '/src/views/pages/Cart/Cart.html';
+          }
         }
         // 장바구니 bage 업데이트
         updateBadge(result ? result.quantity : 1);
