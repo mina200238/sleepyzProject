@@ -28,6 +28,7 @@
 .productInfoArea .infoBox {
   display: flex;
   flex-direction: column;
+  width: 440px;
   justify-content: space-between;
 }
 .productInfoArea .txtGroup {
@@ -38,6 +39,7 @@
 .productInfoArea .prodName {
   font-size: 20px;
   font-weight: 200;
+  line-height: 1.2;
 }
 
 .productInfoArea .price {
@@ -79,11 +81,11 @@
   background-color: #9261e8;
 }
 .btnGroup .purchaseBtn {
-  width: 220px;
+  width: 250px;
   margin-right: 10px;
 }
 .btnGroup .addtoCartBtn {
-  width: 150px;
+  width: 180px;
 }
 
 /* 상품 정보 하단 영역 */
