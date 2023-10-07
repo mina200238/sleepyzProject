@@ -1,3 +1,5 @@
+import updateBadge from '../../public/utils/updateBadge.js';
+
 const prodData = {
   _id: '651e69649585d36a1c743e3h',
   name: '상품2',
@@ -10,14 +12,6 @@ const prodData = {
   updated_at: '2023-10-04T14:30:00Z',
   deleted_at: '2023-10-04T14:30:00Z',
 };
-
-// 장바구니 아이콘 badge 숫자 업데이트
-function updateBadge(itemCount) {
-  const badgeElement = document.getElementById('cartBadge');
-  if (badgeElement) {
-    badgeElement.textContent = itemCount.toString();
-  }
-}
 
 // 상품 상세 장바구니 담기 버튼
 const addtoCartBtn = document.querySelector('.addtoCartBtn');
