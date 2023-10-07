@@ -1,20 +1,3 @@
-//const mockData = require(../../../static/fakeData.json);
-
-//const products = mockData.products;
-
-fetch('../../public/Header/Header.html')
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById('header').innerHTML = data;
-  });
-
-// footer 모듈 가져오기
-fetch('../../public/Footer/Footer.html')
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById('footer').innerHTML = data;
-  });
-
 //배너 슬라이드 기능
 let currentSlide = 0;
 const slides = document.querySelectorAll('.main-banner .slides img');
