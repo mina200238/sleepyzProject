@@ -12,92 +12,108 @@
     <!-- 상단네비바 영역 -->
     <div id="header"></div>
     <!-- 상단네비바 영역 -->
-
     <main>
-      <!-- 배송 정보 영역 -->
-      <div class="shipping-info">
-        <p class="orderPayment">주문/결제</p>
-        <div class="orderer">
-          <h2>주문자</h2>
-          <form>
+      <form id="orderForm">
+        <!-- 배송 정보 영역 -->
+        <div class="shipping-info">
+          <p class="orderPayment">주문/결제</p>
+          <div class="orderer">
+            <h2>주문자</h2>
             <div class="formGroup">
               <label for="name">이름</label>
-              <input type="text" id="name" name="name" required />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                required
+              />
             </div>
             <div class="formGroup">
               <label for="email">이메일</label>
-              <input type="email" id="email" name="email" required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                required
+              />
             </div>
             <div class="formGroup">
-              <label for="phone">전화번호</label>
+              <label for="phone_number">전화번호</label>
               <input
                 type="tel"
                 id="phone_number"
                 name="phone_number"
+                autocomplete="tel"
                 required
               />
             </div>
-          </form>
-        </div>
-        <div class="deliveryAddress">
-          <h2>배송지</h2>
-          <form>
+          </div>
+          <div class="deliveryAddress">
+            <h2>배송지</h2>
             <div class="formGroup">
-              <label for="receiver">받는사람</label>
+              <label for="receiver_name">받는사람</label>
               <input
                 type="text"
                 id="receiver_name"
                 name="receiver_name"
+                autocomplete="name"
                 required
               />
             </div>
             <div class="formGroup">
-              <label for="phone">전화번호</label>
+              <label for="receiver_phone_number">전화번호</label>
               <input
                 type="tel"
                 id="receiver_phone_number"
                 name="receiver_phone_number"
+                autocomplete="tel"
                 required
               />
             </div>
             <div class="formGroupAddress">
               <label for="address">주소</label>
-              <textarea id="address" name="address" required></textarea>
-              <!-- <input type="text" id="address" name="address" required></input> -->
+              <input
+                type="text"
+                id="address"
+                name="address"
+                autocomplete="address"
+                required
+              />
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <!-- 배송 정보 영역 -->
-
-      <!-- 결제 정보 영역 -->
-      <div class="orderSummary">
-        <h2>주문 내역</h2>
-        <div class="totalPrice">
-          <span>총 상품 금액</span>
-          <span>36,000원</span>
+        <!-- 배송 정보 영역 -->
+        <!-- 결제 정보 영역 -->
+        <div class="orderSummary">
+          <h2>주문 내역</h2>
+          <div class="totalPrice">
+            <span>총 상품 금액</span>
+            <span>36,000원</span>
+          </div>
+          <div class="shippingFee">
+            <span>배송비</span>
+            <span>2500원</span>
+          </div>
+          <div class="totalPayment">
+            <span>결제 금액</span>
+            <span>38,500원</span>
+          </div>
+          <button type="submit" class="purchaseBtn">
+            <a href="">구매하기</a>
+          </button>
         </div>
-        <div class="shippingFee">
-          <span>배송비</span>
-          <span>2500원</span>
-        </div>
-        <div class="totalPayment">
-          <span>결제 금액</span>
-          <span>38,500원</span>
-        </div>
-        <button type="submit" class="purchaseBtn">
-          <a href="">구매하기</a>
-        </button>
-      </div>
-      <!-- 결제 정보 영역 -->
+        <!-- 결제 정보 영역 -->
+      </form>
     </main>
 
     <!-- 쇼핑몰 하단 정보 영역 -->
     <div id="footer"></div>
     <!-- 쇼핑몰 하단 정보 영역 -->
 
-    <script type="module" src="../../public/Header/Header.js"></script>
-    <script type="module" src="../../public/Footer/Footer.js"></script>
-    <script src="./Order.js"></script>
+    <script type="module" src="/src/views/public/Header/Header.js"></script>
+    <script type="module" src="/src/views/public/Footer/Footer.js"></script>
+    <script type="module" src="/src/views/pages/Order/Order.js"></script>
   </body>
 </html>
