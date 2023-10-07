@@ -1,5 +1,6 @@
 import updateBadge from '../../public/utils/updateBadge.js';
 
+// 테스트용 데이터
 const prodMockData = '/src/static/fakeData.json';
 
 // data 가져오는 코드
@@ -12,8 +13,11 @@ const getProductInfo = async function () {
   try {
     // const response = await axios.get(`/products/${PROD_ID}`);
     // const productInfo = response.data.data;
+
+    // ------ mockData 테스트용 코드
     const response = await axios.get(prodMockData);
     const productInfo = response.data.product[0];
+    // 테스트용 코드 ------
 
     console.log('상품 상세:', productInfo);
 
@@ -23,50 +27,16 @@ const getProductInfo = async function () {
     const prodName = infoBox.querySelector('.prodName');
     const prodPrice = infoBox.querySelector('.prodPrice .price');
     const detailInfo = document.querySelector('.detailInfo');
+    const formattedPrice = productInfo.price.toLocaleString();
 
     prodName.textContent = productInfo.name;
-    prodPrice.textContent = productInfo.price;
+    prodPrice.textContent = formattedPrice;
     detailInfo.textContent = productInfo.description;
 
     const productImg = document.createElement('img');
     productImg.src = productInfo.image_id;
     productImg.alt = `${productInfo.name}-image`;
     imgBox.appendChild(productImg);
-
-    // const productEl = `
-    //   <div class="productInfoArea">
-    //     <div class="imgBox">
-    //       <img
-    //         src="${productInfo.image_id}"
-    //         alt="${productInfo.name}-image"
-    //       />
-    //     </div>
-    //     <div class="infoBox">
-    //       <div class="txtGroup">
-    //         <h1 class="prodName">${productInfo.name}</h1>
-    //         <span class="prodPrice"><i class="price">${productInfo.price}</i>원</span>
-    //         <p class="infoDetails">
-    //           <span class="country">제조국 <i>대한민국</i></span>
-    //           <span class="shippingFee">배송비 <i>2500원</i></span>
-    //         </p>
-    //       </div>
-    //       <div class="btnGroup">
-    //         <button class="purchaseBtn">구매하기</button>
-    //         <button class="addtoCartBtn">장바구니 담기</button>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <!-- 상품 상세 정보 -->
-    //   <section id="sc-prodDetails">
-    //     <h1>상품 정보</h1>
-    //     <div class="detailInfo">
-    //       ${productInfo.description}
-    //     </div>
-    //   </section>
-    //   `;
-
-    // const productContainer = document.querySelector('#container');
-    // productContainer.innerHTML = productEl;
   } catch (error) {
     console.error('데이터를 로드할 수 없습니다', error);
   }
