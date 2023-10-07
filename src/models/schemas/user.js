@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       type: Array,
       required: true,
     },
-    is_admin: {
+    admin_role: {
       type: Number,
       required: true,
     },

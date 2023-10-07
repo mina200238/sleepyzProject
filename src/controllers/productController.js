@@ -1,16 +1,15 @@
-const { Product } = require('../models');
+const ProductService = require('../services/productService');
 
 const getProduct = async (req, res, next) => {
   // 상품 하나를 전달
   try {
     const { product_id } = req.params;
-    const id = String(product_id);
-    const product = await Product.find({
-      _id: id,
-    });
+    const productService = new ProductService();
+    const product = await productService.getProduct(product_id);
     if (product.length === 0) {
-      res.status(404);
-      throw new Error('상품이 없습니다!');
+      const error = new Error('상품이 없습니다!!@@');
+      error.statusCode = 404;
+      throw error;
     }
     res
       .status(200)
@@ -20,34 +19,37 @@ const getProduct = async (req, res, next) => {
   }
 };
 
-const latestProducts = async (req, res, next) => {
+const getRecentProducts = async (req, res, next) => {
   // 최신 상품을 전달
   try {
-    const latestProduct = await Product.find({})
-      .sort({ createdAt: -1 })
-      .limit(6);
-    if (latestProduct.length === 0) {
-      res.status(404);
-      throw new Error('상품이 없습니다!');
+    const { number } = req.query;
+    const productService = new ProductService();
+    const recentProducts = await productService.getRecentProducts(number);
+    if (recentProducts.length === 0) {
+      const error = new Error('상품이 없습니다!!@@');
+      error.statusCode = 404;
+      throw error;
     }
-    res.status(200).json({ data: latestProduct, message: '최신 상품입니다' });
+    res.status(200).json({ data: recentProducts, message: '최신 상품입니다' });
   } catch (err) {
     next(err);
   }
 };
 
-const getProducts = async (req, res, next) => {
+const getAllProducts = async (req, res, next) => {
   // 전체 상품을 전달
   try {
-    const products = await Product.find({});
-    if (products.length === 0) {
-      res.status(404);
-      throw new Error('상품이 없습니다!');
+    const productService = new ProductService();
+    const allProducts = await productService.getAllProducts();
+    if (allProducts.length === 0) {
+      const error = new Error('상품이 없습니다!!@@');
+      error.statusCode = 404;
+      throw error;
     }
-    res.status(200).json({ data: products, message: '전체 상품입니다' });
+    res.status(200).json({ data: allProducts, message: '전체 상품입니다' });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { getProduct, getProducts, latestProducts };
+module.exports = { getProduct, getAllProducts, getRecentProducts };
