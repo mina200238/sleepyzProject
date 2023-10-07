@@ -79,11 +79,11 @@
   background-color: #9261e8;
 }
 .btnGroup .purchaseBtn {
-  width: 60%;
+  width: 220px;
   margin-right: 10px;
 }
 .btnGroup .addtoCartBtn {
-  width: 40%;
+  width: 150px;
 }
 
 /* 상품 정보 하단 영역 */
