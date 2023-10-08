@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
     <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/src/views/pages/Main/Main.css" />
+    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
+    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/src/views/pages/Main/Main.js" defer></script>
     
   </head>
       <body>
@@ -25,7 +28,7 @@
           <button class="prevSlide">&#10094;</button>
           <button class="nextSlide">&#10095;</button>
         </section>
-
+        <main id="container">
         <section class="product-list">
           <h2>신상품</h2>
           <a href="#" class="product-link" id="product_1">
@@ -144,11 +147,8 @@
          
         </a>
         </section>
-
+      </main>
         <footer id="footer"></footer>
-        <script type="module" src="/src/views/public/Header/Header.js"></script>
-        <script type="module" src="/src/views/public/Footer/Footer.js"></script>
-        <script type="module" src="/src/views/pages/Main/Main.js"></script>
       </body>
     </html>
   </body>
