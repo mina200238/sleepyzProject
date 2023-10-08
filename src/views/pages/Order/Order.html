@@ -3,45 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleepyz</title>
+    <title>Order</title>
     <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
     <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
-    <link rel="stylesheet" href="Order.css" />
+    <link rel="stylesheet" href="/src/views/pages/Order/Order.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
+    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/src/views/pages/Order/Order.js" defer></script>
   </head>
   <body>
     <!-- 상단네비바 영역 -->
-    <div id="header"></div>
-    <!-- 상단네비바 영역 -->
-    <main>
-      <form id="orderForm">
+    <header id="header"></header>
+    <main id="container">
+      <form id="order-form">
         <!-- 배송 정보 영역 -->
         <div class="shipping-info">
-          <p class="orderPayment">주문/결제</p>
+          <p class="order-payment">주문/결제</p>
           <div class="orderer">
-            <h2>주문자</h2>
-            <div class="formGroup">
-              <label for="name">이름</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                autocomplete="name"
-                required
-              />
+            <h2 class="order-info">주문자</h2>
+            <div>
+              <label class="order-label" for="name">이름</label>
+              <input class="order-info-group" type="text" id="name" name="name" autocomplete="name" required />
             </div>
-            <div class="formGroup">
-              <label for="email">이메일</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                autocomplete="email"
-                required
-              />
+            <div>
+              <label class="order-label" for="email">이메일</label>
+              <input class="order-info-group" type="email" id="email" name="email" autocomplete="email" required />
             </div>
-            <div class="formGroup">
-              <label for="phone_number">전화번호</label>
+            <div>
+              <label class="order-label" for="phone_number">전화번호</label>
               <input
+                class="order-info-group"
                 type="tel"
                 id="phone_number"
                 name="phone_number"
@@ -51,10 +44,11 @@
             </div>
           </div>
           <div class="deliveryAddress">
-            <h2>배송지</h2>
-            <div class="formGroup">
-              <label for="receiver_name">받는사람</label>
+            <h2 class="order-info">배송지</h2>
+            <div>
+              <label class="order-label" for="receiver_name">받는사람</label>
               <input
+                class="order-info-group"
                 type="text"
                 id="receiver_name"
                 name="receiver_name"
@@ -62,9 +56,10 @@
                 required
               />
             </div>
-            <div class="formGroup">
-              <label for="receiver_phone_number">전화번호</label>
+            <div>
+              <label class="order-label" for="receiver_phone_number">전화번호</label>
               <input
+                class="order-info-group"
                 type="tel"
                 id="receiver_phone_number"
                 name="receiver_phone_number"
@@ -72,48 +67,34 @@
                 required
               />
             </div>
-            <div class="formGroupAddress">
-              <label for="address">주소</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                autocomplete="address"
-                required
-              />
+            <div>
+              <label class="order-label" for="address">주소</label>
+              <input class="order-info-group" type="text" id="address" name="address" autocomplete="address" required />
             </div>
           </div>
         </div>
-        <!-- 배송 정보 영역 -->
         <!-- 결제 정보 영역 -->
-        <div class="orderSummary">
-          <h2>주문 내역</h2>
-          <div class="totalPrice">
+        <div class="order-summary">
+          <h2 class="order-history">주문 내역</h2>
+          <div class="total-price">
             <span>총 상품 금액</span>
             <span>36,000원</span>
           </div>
-          <div class="shippingFee">
+          <div class="shipping-fee">
             <span>배송비</span>
             <span>2500원</span>
           </div>
-          <div class="totalPayment">
+          <div class="total-payment">
             <span>결제 금액</span>
             <span>38,500원</span>
           </div>
-          <button type="submit" class="purchaseBtn">
-            <a href="">구매하기</a>
+          <button type="submit" class="purchase-btn">
+            <a class="purchase-link" href="">구매하기</a>
           </button>
         </div>
-        <!-- 결제 정보 영역 -->
       </form>
     </main>
-
     <!-- 쇼핑몰 하단 정보 영역 -->
-    <div id="footer"></div>
-    <!-- 쇼핑몰 하단 정보 영역 -->
-
-    <script type="module" src="/src/views/public/Header/Header.js"></script>
-    <script type="module" src="/src/views/public/Footer/Footer.js"></script>
-    <script type="module" src="/src/views/pages/Order/Order.js"></script>
+    <footer id="footer"></footer>
   </body>
 </html>
