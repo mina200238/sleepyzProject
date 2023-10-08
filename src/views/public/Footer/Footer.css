@@ -7,9 +7,9 @@
 #footer .footer-info {
   max-width: 1256px;
   margin: 0 auto;
-  padding: 0 7vw;
+  /* padding: 0 110px; */
   display: flex;
-  justify-content: start;
+  justify-content: center;
 }
 
 #footer .info-list {
