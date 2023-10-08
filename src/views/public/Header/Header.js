@@ -1,4 +1,4 @@
-import { onPageLoad } from '../utils/onPageLoad.js';
+import { onPageLoad } from '/src/views/public/utils/onPageLoad.js';
 
 // header 모듈 가져오기
 fetch('../../public/Header/Header.html')

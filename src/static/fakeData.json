@@ -1,25 +1,29 @@
 {
   "product": [
     {
-      "name": "베개",
-      "description": "베개 입니다",
+      "name": "국내산 빨아쓰는 호텔식 마이크로화이바 항균 레귤러 베개솜 2size",
+      "description": [
+        "국내산 마이크로화이바 항균 레귤러 베개솜은 호텔식 품질을 자랑하는 제품입니다. 이 제품은 미세한 마이크로화이바 섬유로 만들어져 피부에 부드럽고 쾌적한 터치감을 제공합니다. 뿐만 아니라 항균 처리가 되어 있어 침구물을 청결하게 유지하며 알레르기를 예방합니다.",
+        "두 가지 사이즈로 제공되어, 다양한 베개 크기와 호환됩니다. 레귤러 사이즈와 킹 사이즈 중 선택할 수 있어 사용자의 개별적인 선호에 맞게 선택할 수 있습니다.",
+        "내구성이 뛰어나고 세탁 후에도 모양을 유지하기 때문에 오랜 기간 사용 가능합니다. 이 호텔식 마이크로화이바 항균 레귤러 베개솜은 편안한 잠자리를 제공하고, 깨끗한 환경을 유지하는 데 탁월한 선택입니다. 국내에서 생산되어 품질과 신뢰성을 보장하며, 호텔처럼 편안한 잠자리를 원하는 분들에게 적합한 제품입니다."
+      ],
       "price": 30000,
       "category": 2,
-      "image_id": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3137&q=80"
+      "image_id": "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162796521468065950.jpg?gif=1&w=850&h=850&c=c&webp=1"
     },
     {
       "name": "제주 이불",
       "description": "이불 입니다",
       "price": 50000,
       "category": 1,
-      "image_id": "https://unsplash.com/ko/사진/dw7paFI1jnM"
+      "image_id": "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169111168112710946.jpg?gif=1&w=850&h=850&c=c&webp=1"
     },
     {
       "name": "튀르키에 베개",
       "description": "베개 입니다",
       "price": 100000,
       "category": 2,
-      "image_id": "https://unsplash.com/ko/사진/Ktx7bgjTTDY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+      "image_id": "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/165968681052681231.jpg?gif=1&w=850&h=850&c=c&webp=1"
     },
     {
       "name": "미국 고급 이불",
