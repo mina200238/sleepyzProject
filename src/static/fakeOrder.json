@@ -9,9 +9,10 @@
       "name": "홍길동",
       "email": "elice@hong.com",
       "phone_number": "010-4444-5678",
-      "address": ["직장", "서울시 종로구 423", "101동 1101호"],
+      "address": "서울시 종로구 423 101동 1101호",
       "receiver_name": "홍길동",
       "receiver_phone_number": "010-1234-5678",
+      "receiver_address": "서울시 종로구 423 101동 1101호",
       "delivery_status": "준비중"
     },
     {
@@ -23,9 +24,10 @@
       "name": "김철수",
       "email": "kim@hong.com",
       "phone_number": "010-2222-5678",
-      "address": ["직장", "부산시 해운대구 423", "201동 1101호"],
+      "address": "부산시 해운대구 423 201동 1101호",
       "receiver_name": "김철수",
       "receiver_phone_number": "010-5423-5678",
+      "receiver_address": "부산시 해운대구 423 201동 1101호",
       "delivery_status": "준비중"
     },
     {
@@ -37,9 +39,10 @@
       "name": "이미나",
       "email": "lee@hong.com",
       "phone_number": "010-3334-5678",
-      "address": ["직장", "서울시 강남구 423", "301동 1101호"],
+      "address": "서울시 강남구 423 301동 1101호",
       "receiver_name": "이미나",
       "receiver_phone_number": "010-8888-5678",
+      "receiver_address": "부산시 해운대구 423 201동 1101호",
       "delivery_status": "준비중"
     }
   ]

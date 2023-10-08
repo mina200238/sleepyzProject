@@ -1,5 +1,11 @@
 const { Router } = require('express');
-const { signUp, signOut, login } = require('../controllers/userController');
+const {
+  signUp,
+  signOut,
+  login,
+  getUserInfo,
+  updateUserInfo,
+} = require('../controllers/userController');
 const validateToken = require('../middlewares/validateTokenHandler');
 
 const router = Router();
@@ -9,5 +15,9 @@ router.post('/signup', signUp); // 회원 가입
 router.post('/signout', validateToken, signOut); // 회원 탈퇴
 
 router.post('/login', login); // 로그인
+
+router.get('/userInfo', validateToken, getUserInfo); // 사용자 정보 조회
+
+router.put('/userInfo', updateUserInfo); // 사용자 정보 수정
 
 module.exports = router;

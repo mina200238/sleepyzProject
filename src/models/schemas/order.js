@@ -24,7 +24,7 @@ const OrderSchema = new Schema(
       required: true,
     },
     address: {
-      type: Array,
+      type: String,
       required: true,
     },
     receiver_name: {
@@ -32,6 +32,10 @@ const OrderSchema = new Schema(
       required: true,
     },
     receiver_phone_number: {
+      type: String,
+      required: true,
+    },
+    receiver_address: {
       type: String,
       required: true,
     },

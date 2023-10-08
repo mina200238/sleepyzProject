@@ -7,11 +7,11 @@ const ImageSchema = new Schema({
     required: true,
   },
   thumbnail_url: {
-    type: String,
+    type: Array,
     required: true,
   },
   detail_url: {
-    type: String,
+    type: Array,
     required: true,
   },
   deleted_at: {

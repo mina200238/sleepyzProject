@@ -6,8 +6,8 @@ class UserService {
   // 회원 등록 확인
   async checkRegistration(email) {
     const isRegistered = await User.find({ email: email });
-
-    if (isRegistered[0].deleted_at) {
+    console.log(isRegistered);
+    if (isRegistered.length !== 0 && isRegistered[0].deleted_at) {
       return undefined;
     }
 
@@ -15,14 +15,14 @@ class UserService {
   }
 
   // 회원 등록
-  async signUp(name, email, password) {
+  async signUp(name, email, password, phone_number, address) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
       name,
       email,
       password: hashedPassword,
-      address: [],
-      phone_number: [],
+      address,
+      phone_number,
       admin_role: 0,
     };
     const user = await User.create(newUser);
@@ -56,6 +56,15 @@ class UserService {
       { deleted_at: new Date() },
     );
     return deletedUser;
+  }
+
+  // 회원 정보 수정
+  async updateUserInfo(email, name, phone_number, address) {
+    const updatedUserInfo = await User.updateMany(
+      { email: email },
+      { name, phone_number, address },
+    );
+    return updatedUserInfo;
   }
 }
 

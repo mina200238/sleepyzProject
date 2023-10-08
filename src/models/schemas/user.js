@@ -15,11 +15,11 @@ const UserSchema = new Schema(
       required: true,
     },
     address: {
-      type: Array,
+      type: String,
       required: true,
     },
     phone_number: {
-      type: Array,
+      type: String,
       required: true,
     },
     admin_role: {

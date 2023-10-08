@@ -5,11 +5,8 @@
       "name": "홍길동",
       "email": "gildong@hong.com",
       "password": "1234qwer",
-      "address": [
-        "부산시 해운대구 423 201동 1101호",
-        "서울시 강남구 강남대로 101동 202호"
-      ],
-      "phone_number": ["010-5423-5678", "010-5423-1234"],
+      "address": "부산시 해운대구 423 201동 1101호",
+      "phone_number": "010-5423-5678",
       "admin_role": 0,
       "deleted_at": "2023-10-07T12:17:51.697+00:00"
     },
@@ -18,8 +15,8 @@
       "name": "장그래",
       "email": "jang@hong.com",
       "password": "12345678",
-      "address": ["서울시 해운대구 423 201동 1101호", "광주시 101동 202호"],
-      "phone_number": ["010-1111-5678", "010-2222-1234"],
+      "address": "서울시 해운대구 423 201동 1101호",
+      "phone_number": "010-1111-5678",
       "admin_role": 1
     },
     {
@@ -27,8 +24,8 @@
       "name": "엘리스",
       "email": "elice@elice.com",
       "password": "qwerasdf",
-      "address": ["제주 해운대구 423 201동 1101호", "제주 32번지"],
-      "phone_number": ["010-1234-5678", "010-8888-1234"],
+      "address": "제주 해운대구 423 201동 1101호",
+      "phone_number": "010-1234-5678",
       "admin_role": 0
     }
   ]

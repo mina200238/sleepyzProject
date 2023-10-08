@@ -5,8 +5,8 @@ const UserService = require('../services/userService');
 
 const signUp = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { name, email, password, phone_number, address } = req.body;
+    if (!name || !email || !password || !phone_number || !address) {
       const error = new Error('모든 정보가 필요합니다!');
       error.statusCode = 400;
       throw error;
@@ -20,7 +20,13 @@ const signUp = async (req, res, next) => {
       error.statusCode = 409;
       throw error;
     }
-    const user = await userService.signUp(name, email, password);
+    const user = await userService.signUp(
+      name,
+      email,
+      password,
+      phone_number,
+      address,
+    );
     if (!user) {
       const error = new Error('서버 오류 입니다.');
       throw error;
@@ -71,4 +77,42 @@ const signOut = async (req, res, next) => {
     next(err);
   }
 };
-module.exports = { signUp, signOut, login };
+
+const getUserInfo = async (req, res, next) => {
+  try {
+    const decoded = req.decoded;
+    const findEmail = decoded.user.email;
+    const userService = new UserService();
+    const userInfo = await userService.checkRegistration(findEmail);
+    const { email, name, phone_number, address } = userInfo[0];
+    res.status(200).json({
+      data: { email, name, phone_number, address },
+      message: '유저 정보입니다.',
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateUserInfo = async (req, res, next) => {
+  try {
+    const { email, name, phone_number, address } = req.body;
+
+    const userService = new UserService();
+    const updatedUserInfo = await userService.updateUserInfo(
+      email,
+      name,
+      phone_number,
+      address,
+    );
+
+    res.status(200).json({
+      data: null,
+      message: '회원 정보가 변경되었습니다.',
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { signUp, signOut, login, getUserInfo, updateUserInfo };
