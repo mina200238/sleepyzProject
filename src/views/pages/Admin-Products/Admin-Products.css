@@ -1,7 +1,8 @@
 @import '../../public/css/reset.css';
 
-body {
+#container {
   display: flex;
+  margin-top: 0;
 }
 
 .sidebar {
@@ -54,8 +55,9 @@ body {
   font-size: 40px;
 }
 
-.tableButton {
-}
+/* .tableButton {
+
+} */
 
 table {
   border-collapse: collapse;
