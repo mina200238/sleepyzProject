@@ -22,10 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function updateView() {
     products.forEach((product, index) => {
-      if (
-        index < currentPage * itemsPerPage &&
-        index >= (currentPage - 1) * itemsPerPage
-      ) {
+      if (index < currentPage * itemsPerPage && index >= (currentPage - 1) * itemsPerPage) {
         product.style.display = 'block';
       } else {
         product.style.display = 'none';
@@ -33,19 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  document
-    .querySelector('.pagination-bar')
-    .addEventListener('click', function (e) {
-      if (e.target.classList.contains('link')) {
-        currentPage = parseInt(e.target.value);
-      } else if (e.target.classList.contains('prev-btn')) {
-        if (currentPage > 1) currentPage--;
-      } else if (e.target.classList.contains('next-btn')) {
-        if (currentPage < totalPage) currentPage++;
-      }
-      updateView();
-      updateURI();
-    });
+  document.querySelector('.pagination-bar').addEventListener('click', function (e) {
+    if (e.target.classList.contains('link')) {
+      currentPage = parseInt(e.target.value);
+    } else if (e.target.classList.contains('prev-btn')) {
+      if (currentPage > 1) currentPage--;
+    } else if (e.target.classList.contains('next-btn')) {
+      if (currentPage < totalPage) currentPage++;
+    }
+    updateView();
+    updateURI();
+  });
 
   updateView();
   updateURI();
