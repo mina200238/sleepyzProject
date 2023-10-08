@@ -3,39 +3,42 @@
 #header {
   background-color: #fff;
   border-bottom: 1px solid #9261e8;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   height: 80px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 9999;
 }
+
+#header .header-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 #header.logo {
   display: block;
   height: 100%;
 }
-#header h1 img {
+#header .logo .logo-image {
   width: 200px;
   height: auto;
 }
 
-.category .categoryList {
+.category .category-list {
   display: flex;
   justify-content: start;
   gap: 80px;
 }
-.category .categoryItem {
+.category .category-item {
   height: 80px;
   line-height: 80px;
 }
-.category .categoryItem a {
+.category .category-item a {
   display: block;
   height: 100%;
   transition: all 0.3s;
 }
-.category .categoryItem a:hover {
+.category .category-item a:hover {
   font-weight: bold;
 }
 .utils {
@@ -47,13 +50,12 @@
   width: 25px;
 }
 .utils img:hover {
-  filter: invert(47%) sepia(27%) saturate(5852%) hue-rotate(234deg)
-    brightness(94%) contrast(92%);
+  filter: invert(47%) sepia(27%) saturate(5852%) hue-rotate(234deg) brightness(94%) contrast(92%);
 }
-.utils .linkCart {
+.utils .link-cart {
   position: relative;
 }
-.utils .linkCart .badge {
+.utils .link-cart .badge {
   display: block;
   position: absolute;
   top: -7px;
