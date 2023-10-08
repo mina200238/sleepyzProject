@@ -3,11 +3,18 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 class UserService {
+  // 회원 등록 확인
   async checkRegistration(email) {
     const isRegistered = await User.find({ email: email });
+
+    if (isRegistered[0].deleted_at) {
+      return undefined;
+    }
+
     return isRegistered;
   }
 
+  // 회원 등록
   async signUp(name, email, password) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
@@ -22,6 +29,7 @@ class UserService {
     return user;
   }
 
+  // 로그인
   async login(email, password) {
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -40,12 +48,14 @@ class UserService {
     } else return undefined;
   }
 
-  async signOut(user_id) {
-    // 주문 조회
-    const findData = await Order.find({
-      user_id: user_id,
-    });
-    return findData;
+  // 회원 탈퇴
+  async signOut(decoded) {
+    const { id } = decoded.user;
+    const deletedUser = await User.findOneAndUpdate(
+      { _id: id },
+      { deleted_at: new Date() },
+    );
+    return deletedUser;
   }
 }
 

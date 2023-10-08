@@ -26,6 +26,9 @@ const UserSchema = new Schema(
       type: Number,
       required: true,
     },
+    deleted_at: {
+      type: Date,
+    },
   },
   {
     timestamps: true,

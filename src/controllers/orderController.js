@@ -18,7 +18,7 @@ const makeOrder = async (req, res, next) => {
 const getUserOrders = async (req, res, next) => {
   // 주문 조회
   try {
-    const { user_id } = req.body;
+    const { user_id } = req.params;
     const orderService = new OrderService();
     const findData = await orderService.getUserOrders(user_id);
     if (findData.length === 0) {

@@ -39,6 +39,9 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
+    deleted_at: {
+      type: Date,
+    },
   },
   {
     timestamps: true,

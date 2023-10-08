@@ -1,28 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const connectDB = require('./config/dbConnection');
 const { Product } = require('./models');
 const { Order } = require('./models');
 const { User } = require('./models');
+const { Image } = require('./models');
 const fakeData = require('./static/fakeData.json');
 const fakeOrder = require('./static/fakeOrder.json');
 const fakeUser = require('./static/fakeUser.json');
+const fakeImage = require('./static/fakeImage.json');
 const productRouter = require('./routers/productRouter');
 const orderRouter = require('./routers/orderRouter');
 const userRouter = require('./routers/userRouter');
 require('dotenv').config();
 require('express-async-errors');
 const errorHandler = require('./middlewares/errorHandler');
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.DATABASE_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 connectDB();
 
@@ -45,22 +37,25 @@ mongoose.connection.once('open', () => {
     const productData = await Product.count().exec();
     if (!productData) {
       await Product.insertMany(fakeData.product);
-      console.log('성공');
+      console.log('상품 데이터 성공');
     }
     const orderData = await Order.count().exec();
     if (!orderData) {
       await Order.insertMany(fakeOrder.order);
-      console.log('성공');
+      console.log('주문 데이터 성공');
     }
 
     const userData = await User.count().exec();
     if (!userData) {
       await User.insertMany(fakeUser.user);
-      console.log('성공');
+      console.log('유저 데이터 성공');
     }
 
-    // 🤔: _id를 그냥 id로 사용 할 수 있을까요?
-    // console.log(data[0]._id.toString()); // 651d24ced801f4471025046d
+    const imageData = await Image.count().exec();
+    if (!imageData) {
+      await Image.insertMany(fakeImage.image);
+      console.log('이미지 데이터 성공');
+    }
   };
   test();
 

@@ -2,10 +2,6 @@
 const { Schema } = require('mongoose');
 
 const ImageSchema = new Schema({
-  id: {
-    type: BigInt,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -17,6 +13,9 @@ const ImageSchema = new Schema({
   detail_url: {
     type: String,
     required: true,
+  },
+  deleted_at: {
+    type: Date,
   },
 });
 

@@ -1,0 +1,29 @@
+{
+  "image": [
+    {
+      "name": "베개",
+      "thumbnail_url": "https://unsplash.com/ko/사진/zukdSYdFB_A",
+      "detail_url": "https://images.unsplash.com/photo-1598535746036-87d13382f6a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "name": "이불",
+      "thumbnail_url": "https://images.unsplash.com/photo-1593533482434-d8443c6c5649?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTV8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      "detail_url": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3137&q=80"
+    },
+    {
+      "name": "베개피",
+      "thumbnail_url": "https://unsplash.com/ko/사진/iX10zeJA8po",
+      "detail_url": "https://images.unsplash.com/photo-1589361558560-58fd95e47b3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "name": "침구류",
+      "thumbnail_url": "https://images.unsplash.com/photo-1618111415065-c20b4e1afd41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      "detail_url": "https://images.unsplash.com/photo-1597308451192-d17c89701ef5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "name": "소파",
+      "thumbnail_url": "https://images.unsplash.com/photo-1611489704434-2612dc89c992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      "detail_url": "https://images.unsplash.com/photo-1573679740278-a2eeb1b549a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fCVFQiVCMiVBMCVFQSVCMCU5Q3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    }
+  ]
+}
