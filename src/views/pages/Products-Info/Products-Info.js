@@ -1,4 +1,4 @@
-import updateBadge from '../../public/utils/updateBadge.js';
+import updateBadge from '/src/views/public/utils/updateBadge.js';
 
 // 테스트용 데이터
 const prodMockData = '/src/static/fakeData.json';
@@ -21,12 +21,12 @@ const getProductInfo = async function () {
 
     console.log('상품 상세:', productInfo);
 
-    const productInfoArea = document.querySelector('.productInfoArea');
-    const imgBox = productInfoArea.querySelector('.imgBox');
-    const infoBox = productInfoArea.querySelector('.infoBox');
-    const prodName = infoBox.querySelector('.prodName');
-    const prodPrice = infoBox.querySelector('.prodPrice .price');
-    const detailInfo = document.querySelector('.detailInfo');
+    const productInfoArea = document.querySelector('.products-info');
+    const imgBox = productInfoArea.querySelector('.img-box');
+    const infoBox = productInfoArea.querySelector('.info-box');
+    const prodName = infoBox.querySelector('.prod-name');
+    const prodPrice = infoBox.querySelector('.prod-price .price');
+    const detailInfo = document.querySelector('.detail-info');
     const formattedPrice = productInfo.price.toLocaleString();
 
     prodName.textContent = productInfo.name;
@@ -58,7 +58,7 @@ const prodData = {
 };
 
 // 상품 상세 장바구니 담기 버튼
-const addtoCartBtn = document.querySelector('.addtoCartBtn');
+const addtoCartBtn = document.querySelector('.addtocart-btn');
 // 장바구니 담기 누르면 indexedDB에 데이터 추가
 addtoCartBtn.addEventListener('click', function () {
   // IndexedDB 초기화 및 데이터베이스 생성
