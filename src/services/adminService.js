@@ -1,65 +1,30 @@
-const { User } = require('../models');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const { Product, Image } = require('../models');
 
-class UserService {
-  // 회원 등록 확인
-  async checkRegistration(email) {
-    const isRegistered = await User.find({ email: email });
-    console.log(isRegistered);
-    if (isRegistered.length !== 0 && isRegistered[0].deleted_at) {
-      return undefined;
-    }
-
-    return isRegistered;
+class AdminService {
+  // 상품 추가
+  async addProduct(name, description, price, category, image_id) {
+    const detail_url = [];
+    const addImage = await Image.create({ name, image_id, detail_url });
+    console.log(addImage._id);
+    const addedImage_id = addImage._id;
+    const addedProduct = await Product.create({ name, description, price, category, image_id: addedImage_id });
+    return addedProduct;
   }
 
-  // 회원 등록
-  async signUp(name, email, password, phone_number, address) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = {
-      name,
-      email,
-      password: hashedPassword,
-      address,
-      phone_number,
-      admin_role: 0,
-    };
-    const user = await User.create(newUser);
-    return user;
+  // 상품 업데이트
+  async updateProduct(product_id, name, description, price, category, image_id) {
+    const updatedProduct = await Product.updateMany({ _id: product_id }, { name, description, price, category });
+    const findImage = await Product.findOne({ _id: product_id });
+    await Image.findOneAndUpdate({ _id: findImage.image_id }, { thumbnail_url: image_id });
+    return updatedProduct;
   }
 
-  // 로그인
-  async login(email, password) {
-    const user = await User.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const accessToken = jwt.sign(
-        {
-          user: {
-            username: user.name,
-            email: user.email,
-            id: user._id,
-          },
-        },
-        process.env.ACCESS_TOKEN_SECERT,
-        { expiresIn: '50m' },
-      );
-      return accessToken;
-    } else return undefined;
-  }
-
-  // 회원 탈퇴
+  // 상품 삭제
   async signOut(decoded) {
     const { id } = decoded.user;
     const deletedUser = await User.findOneAndUpdate({ _id: id }, { deleted_at: new Date() });
     return deletedUser;
   }
-
-  // 회원 정보 수정
-  async updateUserInfo(email, name, phone_number, address) {
-    const updatedUserInfo = await User.updateMany({ email: email }, { name, phone_number, address });
-    return updatedUserInfo;
-  }
 }
 
-module.exports = UserService;
+module.exports = AdminService;

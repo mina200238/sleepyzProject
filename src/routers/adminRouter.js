@@ -1,12 +1,13 @@
 const { Router } = require('express');
 const { getAllProducts } = require('../controllers/productController');
+const { addProduct, updateProduct, deleteProduct } = require('../controllers/adminController');
 
 const router = Router();
 
 router.get('/products', getAllProducts); // 상품 정보 받아오기
-router.post('/products'); // 상품 추가
-router.put('/products'); // 상품 수정
-router.delete('/products'); // 상품 삭제
+router.post('/products', addProduct); // 상품 추가
+router.put('/products', updateProduct); // 상품 수정
+router.delete('/products', deleteProduct); // 상품 삭제
 
 router.get('/category'); // 카테고리 정보 받아오기
 router.post('/category'); // 카테고리 추가
