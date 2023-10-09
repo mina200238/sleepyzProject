@@ -52,4 +52,24 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { getProduct, getAllProducts, getRecentProducts };
+
+const getCategoryProducts = async (req, res, next) => {
+  // 카를 전달
+  try {
+    const { category_name } = req.body;
+    const productService = new ProductService();
+    const categoryProducts = await productService.getCategoryProducts(category_name);
+    if (categoryProducts.length === 0) {
+      const error = new Error('상품이 없습니다!!@@');
+      error.statusCode = 404;
+      throw error;
+    }
+    res
+      .status(200)
+      .json({ data: categoryProducts, message: `${category_name} 상품입니다` });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { getProduct, getAllProducts, getRecentProducts, getCategoryProducts };

@@ -2,7 +2,8 @@ const fakeData = require('../static/fakeData.json');
 const fakeOrder = require('../static/fakeOrder.json');
 const fakeUser = require('../static/fakeUser.json');
 const fakeImage = require('../static/fakeImage.json');
-const { Product, Order, User, Image } = require('../models');
+const { Product, Order, User, Image, Category } = require('../models');
+const fakeCategory = require('../static/fakeCategory.json');
 
 const dbFill = async (req, res) => {
   const productData = await Product.count().exec();
@@ -26,6 +27,12 @@ const dbFill = async (req, res) => {
   if (!imageData) {
     await Image.insertMany(fakeImage.image);
     console.log('이미지 데이터 성공');
+  }
+
+  const categoryData = await Category.count().exec();
+  if (!categoryData) {
+    await Category.insertMany(fakeCategory.category);
+    console.log('카테고리 데이터 성공');
   }
 };
 

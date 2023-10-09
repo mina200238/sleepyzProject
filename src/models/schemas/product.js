@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 const { Schema } = require('mongoose');
 const Image = require('./image');
+const Category = require('./category');
 
 const ProductSchema = new Schema(
   {
@@ -17,7 +18,8 @@ const ProductSchema = new Schema(
       required: true,
     },
     category: {
-      type: Number,
+      type: Schema.Types.ObjectId,
+      ref: 'Category',
       required: true,
     },
     image_id: {
