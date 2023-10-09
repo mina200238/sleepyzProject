@@ -23,12 +23,12 @@
   margin-right: 80px;
 }
 
-.imageWrapper {
+.image-wrapper {
   margin-bottom: 10px;
   overflow: hidden;
 }
 
-.imageWrapper:hover {
+.image-wrapper:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
   z-index: 1;
