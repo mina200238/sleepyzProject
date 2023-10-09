@@ -1,4 +1,5 @@
 const OrderService = require('../services/orderService');
+const { NotFoundError } = require('../config/validateError');
 
 const makeOrder = async (req, res, next) => {
   // 주문 작성
@@ -22,9 +23,7 @@ const getUserOrders = async (req, res, next) => {
     const orderService = new OrderService();
     const findData = await orderService.getUserOrders(user_id);
     if (findData.length === 0) {
-      const error = new Error('주문을 찾을 수 없습니다.');
-      error.statusCode = 404;
-      throw error;
+      throw new NotFoundError('주문을 찾을 수 없습니다.');
     }
     res.status(200).json({ data: findData, message: '주문 조회 성공' });
   } catch (err) {

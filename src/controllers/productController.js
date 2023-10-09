@@ -1,4 +1,5 @@
 const ProductService = require('../services/productService');
+const { NotFoundError } = require('../config/validateError');
 
 const getProduct = async (req, res, next) => {
   // 상품 하나를 전달
@@ -7,9 +8,7 @@ const getProduct = async (req, res, next) => {
     const productService = new ProductService();
     const product = await productService.getProduct(product_id);
     if (product.length === 0) {
-      const error = new Error('상품이 없습니다!!@@');
-      error.statusCode = 404;
-      throw error;
+      throw new NotFoundError('상품이 없습니다!!@@');
     }
     res.status(200).json({ data: product, message: `${product[0].name}입니다` });
   } catch (err) {
@@ -24,9 +23,7 @@ const getRecentProducts = async (req, res, next) => {
     const productService = new ProductService();
     const recentProducts = await productService.getRecentProducts(limit);
     if (recentProducts.length === 0) {
-      const error = new Error('상품이 없습니다!!@@');
-      error.statusCode = 404;
-      throw error;
+      throw new NotFoundError('상품이 없습니다!!@@');
     }
     res.status(200).json({ data: recentProducts, message: '최신 상품입니다' });
   } catch (err) {
@@ -39,10 +36,9 @@ const getAllProducts = async (req, res, next) => {
   try {
     const productService = new ProductService();
     const allProducts = await productService.getAllProducts();
+
     if (allProducts.length === 0) {
-      const error = new Error('상품이 없습니다!!@@');
-      error.statusCode = 404;
-      throw error;
+      throw new NotFoundError('상품이 없습니다!!@@');
     }
     res.status(200).json({ data: allProducts, message: '전체 상품입니다' });
   } catch (err) {
