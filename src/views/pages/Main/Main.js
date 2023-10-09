@@ -24,41 +24,50 @@ let slideInterval = setInterval(function () {
   updateSlide();
 }, 6000);
 
-productsToShow.forEach((product) => {
-  // 새로운 상품 링크 요소를 생성
-  const productLink = document.createElement('a');
-  productLink.href = `/Products-Info.html?id=${product._id}`;
-  productLink.classList.add('product-link');
+// 상품 데이터를 가져와서 화면에 출력하는 부분
+const BASE_URL = 'http://localhost:5001';
+const productContainer = document.querySelector('.products-wrap');
 
-  // 상품 카드 요소를 생성
-  const productCard = document.createElement('div');
-  productCard.classList.add('product-card');
+function showMainProducts(products) {
+  const productsToShow = products.slice(0, 9);
 
-  // 이미지 래퍼 요소 생성
-  const imageWrapper = document.createElement('div');
-  imageWrapper.classList.add('image-wrapper');
+  productsToShow.forEach((product) => {
+    const productLink = document.createElement('a');
+    productLink.href = `/Products-Info.html?id=${product._id}`;
+    productLink.classList.add('product-link');
 
-  // 이미지 요소 생성
-  const productImage = document.createElement('img');
-  productImage.src = product.image_id.thumbnail_url[0];
-  productImage.alt = `${product.name} Image`;
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
 
-  // 상품 정보를 표시하는 요소들 생성 및 설정
-  const productName = document.createElement('p');
-  productName.textContent = product.name;
+    const imageWrapper = document.createElement('div');
+    imageWrapper.classList.add('image-wrapper');
 
-  const productPrice = document.createElement('span');
-  productPrice.textContent = `${product.price}원`;
+    const productImage = document.createElement('img');
+    productImage.src = product.image_id.thumbnail_url[0];
+    productImage.alt = `${product.name} Image`;
 
-  // 상품 카드에 이미지 및 정보 요소 추가
-  productCard.appendChild(imageWrapper);
-  imageWrapper.appendChild(productImage);
-  productCard.appendChild(productName);
-  productCard.appendChild(productPrice);
+    const productName = document.createElement('p');
+    productName.textContent = product.name;
 
-  // 상품 링크에 상품 카드 추가
-  productLink.appendChild(productCard);
+    const productPrice = document.createElement('span');
+    productPrice.textContent = `${product.price}원`;
 
-  // 부모 요소에 상품 링크 추가
-  productContainer.appendChild(productLink);
-});
+    productCard.appendChild(imageWrapper);
+    imageWrapper.appendChild(productImage);
+    productCard.appendChild(productName);
+    productCard.appendChild(productPrice);
+
+    productLink.appendChild(productCard);
+    productContainer.appendChild(productLink);
+  });
+}
+
+axios
+  .get(`${BASE_URL}/products`)
+  .then((response) => {
+    const products = response.data.data;
+    showMainProducts(products);
+  })
+  .catch((error) => {
+    console.error('데이터를 불러올 수 없습니다:', error);
+  });
