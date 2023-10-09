@@ -127,6 +127,45 @@ addtoCartBtn.addEventListener('click', function () {
   }
 });
 
+//-------상품 클리시 상품 상세페이지로 이동시 데이터 가져오는 코드--
+// document.addEventListener('DOMContentLoaded', function () {
+//   const BASE_URL = 'http://localhost:5001'; // 서버의 BASE URL입니다.
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const productId = urlParams.get('id');
+//   const productContainer = document.getElementById('product-detail-container'); // 상품 상세 정보를 표시할 컨테이너 요소의 ID를 가정합니다.
+
+//   if (productId) {
+//     axios
+//       .get(`${BASE_URL}/products/${productId}`)
+//       .then((response) => {
+//         const product = response.data;
+
+//         // 가져온 상품 상세 정보로 페이지를 동적으로 구성합니다.
+//         const productImage = document.createElement('img');
+//         productImage.src = product.image_id.thumbnail_url[0];
+//         productImage.alt = `${product.name} Image`;
+
+//         const productName = document.createElement('h2');
+//         productName.textContent = product.name;
+
+//         const productDescription = document.createElement('p');
+//         productDescription.textContent = product.description;
+
+//         const productPrice = document.createElement('span');
+//         productPrice.textContent = `${product.price}원`;
+
+//         productContainer.appendChild(productImage);
+//         productContainer.appendChild(productName);
+//         productContainer.appendChild(productDescription);
+//         productContainer.appendChild(productPrice);
+//       })
+//       .catch((error) => {
+//         console.error('상품 상세 정보를 가져오는 중 오류 발생:', error);
+//       });
+//   }
+// });
+//-----------------여기까지 데이터가져오는 코드
+
 // // 비회원일 때
 // function addToLocalStorageCart(product) {
 //   const localStorageCart = JSON.parse(localStorage.getItem('cart')) || [];
