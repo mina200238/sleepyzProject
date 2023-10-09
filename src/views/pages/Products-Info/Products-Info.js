@@ -1,26 +1,15 @@
-import updateBadge from '/src/views/public/utils/updateBadge.js';
-
-// 테스트용 데이터
-const prodMockData = '/src/static/fakeData.json';
-
-let productInfo;
+import IndexedDB from '/src/views/public/utils/IndexedDB.js';
+const BASE_URL = 'http://localhost:5000';
 
 // data 가져오는 코드
 const getProductInfo = async function () {
   // 실제 서버 데이터 가져오는 코드
-  // const CUR_URL = window.location.href;
-
-  // const URL_PARAMS = new URLSearchParams(CUR_URL.split('?')[1]);
-  // const PROD_ID = URL_PARAMS.get('product_id');
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('product_id');
 
   try {
-    // const response = await axios.get(`/products/${PROD_ID}`);
-    // const productInfo = response.data.data;
-
-    // ------ mockData 테스트용 코드
-    const response = await axios.get(prodMockData);
-    productInfo = response.data.product[0];
-    // 테스트용 코드 ------
+    const response = await axios.get(`${BASE_URL}/products/${productId}`);
+    const productInfo = response.data.data[0];
 
     console.log('상품 상세:', productInfo);
 
@@ -37,7 +26,7 @@ const getProductInfo = async function () {
     detailInfo.textContent = productInfo.description;
 
     const productImg = document.createElement('img');
-    productImg.src = productInfo.image_id;
+    productImg.src = productInfo.image_id.thumbnail_url[0];
     productImg.alt = `${productInfo.name}-image`;
     imgBox.appendChild(productImg);
   } catch (error) {
@@ -47,124 +36,64 @@ const getProductInfo = async function () {
 
 window.addEventListener('DOMContentLoaded', getProductInfo);
 
-// const prodData = {
-//   _id: '651e69649585d36a1c743e3h',
-//   name: '상품2',
-//   description: '상품 정보',
-//   price: 1000,
-//   quantity: 0,
-//   category: 2,
-//   image_id: 143,
-//   created_at: '2023-10-04T14:30:00Z',
-//   updated_at: '2023-10-04T14:30:00Z',
-//   deleted_at: '2023-10-04T14:30:00Z',
-// };
+async function getProductData(productId) {
+  const BASE_URL = 'http://localhost:5000';
+
+  try {
+    const response = await axios.get(`${BASE_URL}/products/${productId}`);
+    const productInfo = response.data.data[0];
+    return productInfo;
+  } catch (error) {
+    console.error('오류로 인해 상품 데이터를 가져오지 못했습니다', error);
+    throw error;
+  }
+}
 
 // 상품 상세 장바구니 담기 버튼
 const addtoCartBtn = document.querySelector('.addtocart-btn');
 // 장바구니 담기 누르면 indexedDB에 데이터 추가
-addtoCartBtn.addEventListener('click', function () {
-  // IndexedDB 초기화 및 데이터베이스 생성
-
-  if (window.indexedDB) {
-    const dbName = 'shoppingCartDB';
-    const dbVersion = 1;
-    const data = productInfo;
-    const request = indexedDB.open(dbName, dbVersion);
-
-    request.onerror = function (event) {
-      console.error('Database error:' + event.target.errorCode);
-    };
-
-    request.onupgradeneeded = function (event) {
-      const db = event.target.result;
-      const store = db.createObjectStore('cart', {
-        keyPath: '_id',
-      });
-    };
-
-    // 요청 성공했을 때
-    request.onsuccess = function (event) {
-      const db = event.target.result;
-      const transaction = db.transaction(['cart'], 'readwrite');
-      const store = transaction.objectStore('cart');
-
-      // 이미 있는 데이터인지 검사
-      const isExist = store.get(data._id);
-
-      isExist.onsuccess = function (event) {
-        const result = event.target.result;
-        if (result) {
-          const confirmMsg = '이미 장바구니에 있는 상품입니다. 추가하시겠습니까?';
-          if (window.confirm(confirmMsg)) {
-            result.quantity++;
-            store.put(result);
-            if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-              window.location.href = '/src/views/pages/Cart/Cart.html';
-            }
-          } else {
-            alert('취소되었습니다');
-          }
-        } else {
-          data.quantity = 1;
-          store.add(data);
-          if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-            window.location.href = '/src/views/pages/Cart/Cart.html';
-          }
-        }
-        // 장바구니 bage 업데이트
-        updateBadge(result ? result.quantity : 1);
-      };
-
-      transaction.oncomplete = function (event) {
-        console.log('트랜잭션이 완료되었습니다');
-      };
-
-      transaction.onerror = function (event) {
-        console.log('트랜잭션 도중 에러가 발생하였습니다.');
-      };
-    };
+addtoCartBtn.addEventListener('click', async function () {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product_id');
+    const product = await getProductData(productId);
+    console.log(product);
+    saveProductToIndexedDB(product);
+  } catch (error) {
+    console.error('장바구니 담기 동작 중 오류 발생', error);
   }
 });
 
-//-------상품 클리시 상품 상세페이지로 이동시 데이터 가져오는 코드--
-// document.addEventListener('DOMContentLoaded', function () {
-//   const BASE_URL = 'http://localhost:5001'; // 서버의 BASE URL입니다.
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const productId = urlParams.get('id');
-//   const productContainer = document.getElementById('product-detail-container'); // 상품 상세 정보를 표시할 컨테이너 요소의 ID를 가정합니다.
-
-//   if (productId) {
-//     axios
-//       .get(`${BASE_URL}/products/${productId}`)
-//       .then((response) => {
-//         const product = response.data;
-
-//         // 가져온 상품 상세 정보로 페이지를 동적으로 구성합니다.
-//         const productImage = document.createElement('img');
-//         productImage.src = product.image_id.thumbnail_url[0];
-//         productImage.alt = `${product.name} Image`;
-
-//         const productName = document.createElement('h2');
-//         productName.textContent = product.name;
-
-//         const productDescription = document.createElement('p');
-//         productDescription.textContent = product.description;
-
-//         const productPrice = document.createElement('span');
-//         productPrice.textContent = `${product.price}원`;
-
-//         productContainer.appendChild(productImage);
-//         productContainer.appendChild(productName);
-//         productContainer.appendChild(productDescription);
-//         productContainer.appendChild(productPrice);
-//       })
-//       .catch((error) => {
-//         console.error('상품 상세 정보를 가져오는 중 오류 발생:', error);
-//       });
-//   }
-// });
-//-----------------여기까지 데이터가져오는 코드
+// 데이터를 IndexedDB에 저장하는 함수
+async function saveProductToIndexedDB(productData) {
+  try {
+    // 이미 있는 데이터인지 검사
+    const isExist = await IndexedDB.checkIsExist(productData._id);
+    console.log(productData._id);
+    if (isExist) {
+      // 이미 장바구니에 있는 경우 업데이트
+      const confirmMsg = '이미 장바구니에 있는 상품입니다. 추가하시겠습니까?';
+      if (window.confirm(confirmMsg)) {
+        isExist.quantity++;
+        await IndexedDB.updateOrAddProduct(isExist);
+        if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
+          window.location.href = '/src/views/pages/Cart/Cart.html';
+        }
+      } else {
+        alert('취소되었습니다');
+      }
+    } else {
+      // 새로운 상품 추가
+      productData.quantity = 1;
+      await IndexedDB.updateOrAddProduct(productData);
+      if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
+        window.location.href = '/src/views/pages/Cart/Cart.html';
+      }
+    }
+  } catch (error) {
+    console.error('IndexedDB에 데이터를 저장하는 중 오류 발생:', error);
+  }
+}
 
 // // 비회원일 때
 // function addToLocalStorageCart(product) {
@@ -176,51 +105,4 @@ addtoCartBtn.addEventListener('click', function () {
 // // 비회원 장바구니에서 상품 가져오기
 // function getLocalStorageCart() {
 //   return JSON.parse(localStorage.getItem('cart')) || [];
-// }
-
-// 모듈화
-// function createIndexedDB(dbName, dbVersion, objectStore, cb) {
-//   if (window.indexedDB) {
-//     const request = indexedDB.open(dbName, version);
-
-//     request.onupgradeneeded = function () {
-//       request.result.createObjectStore(objectStore, { keyPath: '_id' });
-//     };
-//     request.onsuccess = function () {
-//       cb();
-//     };
-//   }
-// }
-
-// function insertIndexedDB(dbName, dbVersion, objectStore, data, cb) {
-//   if (window.indexedDB) {
-//     const request = indexedDB.open(dbName, version);
-
-//     request.onsuccess = function () {
-//       const store = request.result.transaction(objectStore, 'readwrite').objectStore(objectStore);
-
-//       store.add(data).onsuccess = function () {
-//         cb();
-//       };
-//     };
-//   }
-// }
-
-// function getAllIndexedDB(dbName, dbVersion, objectStore, cb) {
-//   if (window.indexedDB) {
-//     const request = indexedDB.open(dbName, version);
-
-//     request.onsuccess = function () {
-//       const store = request.result.transaction(objectStore, 'readwrite').objectStore(objectStore);
-
-//       store.getAll().onsuccess = function (e) {
-//         cb(e.target.result);
-//       };
-//     };
-//   }
-// }
-
-// function main() {
-//   const addtoCartBtn = document.querySelector('.addtoCartBtn');
-//   addtoCartBtn.addEventListener('click');
 // }
