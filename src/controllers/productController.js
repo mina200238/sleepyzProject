@@ -20,9 +20,9 @@ const getProduct = async (req, res, next) => {
 const getRecentProducts = async (req, res, next) => {
   // 최신 상품을 전달
   try {
-    const { number } = req.query;
+    const { limit } = req.query;
     const productService = new ProductService();
-    const recentProducts = await productService.getRecentProducts(number);
+    const recentProducts = await productService.getRecentProducts(limit);
     if (recentProducts.length === 0) {
       const error = new Error('상품이 없습니다!!@@');
       error.statusCode = 404;

@@ -11,12 +11,12 @@ class ProductService {
     return product;
   }
 
-  async getRecentProducts(number) {
+  async getRecentProducts(limit) {
     // 최신 상품 전달
     const skipProduct = await Product.count();
     const recentPoducts = await Product.find()
       .populate('image_id')
-      .skip(skipProduct - number);
+      .skip(skipProduct - limit);
     return recentPoducts;
   }
 
