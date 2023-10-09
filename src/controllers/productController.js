@@ -11,9 +11,7 @@ const getProduct = async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
-    res
-      .status(200)
-      .json({ data: product, message: `${product[0].name}입니다` });
+    res.status(200).json({ data: product, message: `${product[0].name}입니다` });
   } catch (err) {
     next(err);
   }
@@ -52,21 +50,13 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-
 const getCategoryProducts = async (req, res, next) => {
-  // 카를 전달
+  // 카테고리 상품 전달
   try {
     const { category_name } = req.body;
     const productService = new ProductService();
     const categoryProducts = await productService.getCategoryProducts(category_name);
-    if (categoryProducts.length === 0) {
-      const error = new Error('상품이 없습니다!!@@');
-      error.statusCode = 404;
-      throw error;
-    }
-    res
-      .status(200)
-      .json({ data: categoryProducts, message: `${category_name} 상품입니다` });
+    res.status(200).json({ data: categoryProducts, message: `${category_name} 상품입니다` });
   } catch (err) {
     next(err);
   }

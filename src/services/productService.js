@@ -1,5 +1,4 @@
 const { Product, Category } = require('../models');
-const CategorySchema = require('../models/schemas/category');
 
 class ProductService {
   async getProduct(product_id) {
@@ -29,18 +28,12 @@ class ProductService {
 
   async getCategoryProducts(category_name) {
     // 카테고리별 상품 전달
-    console.log("여기2", category_name)
-    // const category = await Category.findOne({ category_name: category_name })
-    // console.log("여기", category);
-    // const categoryProducts = await Product.find({
-    //   category: category._id
-    // })
-    // return categoryProducts;
+    const category = await Category.findOne({ category_name });
+    const categoryProducts = await Product.find({
+      category: category._id,
+    });
+    return categoryProducts;
   }
-
 }
-
-
-
 
 module.exports = ProductService;
