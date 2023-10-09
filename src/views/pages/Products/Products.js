@@ -1,7 +1,7 @@
 let currentPage = 1; // 현재 페이지
 const itemsPerPage = 9; // 페이지 당 상품 개수
 const productContainer = document.querySelector('.products-wrap');
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = 'http://localhost:5000';
 
 function showProductsByPage(pageNumber, products) {
   const startIdx = (pageNumber - 1) * itemsPerPage;
@@ -9,11 +9,44 @@ function showProductsByPage(pageNumber, products) {
   const productsToShow = products.slice(startIdx, endIdx);
   productContainer.innerHTML = ''; // 이전 상품 삭제
 
-  productsToShow.forEach((product) => {
+  // 각 상품 데이터를 순회하면서 HTML 요소를 동적으로 생성하고 추가
+  products.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/Products-Info.html?id=${product._id}`;
+    productLink.href = `/products/${product._id}`;
     productLink.classList.add('product-link');
+
+    productLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      // 클릭된 상품의 ID를 얻습니다.
+      const clickedProductId = product._id;
+      window.location.href = `/src/views/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+
+      // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('product_id');
+      console.log(productId);
+
+      try {
+        // 상세 정보를 가져올 때는 async/await를 사용합니다.
+        const response = await axios.get(`${BASE_URL}/products/${clickedProductId}`);
+        const productDetails = response.data.data; // 상세 정보를 가져온다고 가정
+        console.log(productDetails);
+
+        // 가져온 상세 정보를 HTML에 표시합니다.
+        const productNameElement = document.querySelector('.prod-name');
+        const productPriceElement = document.querySelector('.price');
+        const productCountryElement = document.querySelector('.country');
+        const productShippingFeeElement = document.querySelector('.shipping-fee');
+
+        productNameElement.textContent = productDetails.name;
+        productPriceElement.textContent = `${productDetails.price}원`;
+
+        // 필요한 정보를 가져와서 표시한 후에 원하는 동작을 수행할 수 있습니다.
+      } catch (error) {
+        console.error('상세 정보를 가져올 수 없습니다:', error);
+      }
+    });
 
     // 상품 카드 요소를 생성
     const productCard = document.createElement('div');
