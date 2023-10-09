@@ -7,7 +7,7 @@ const addProduct = async (req, res, next) => {
   try {
     const { name, description, price, category, image_id } = req.body;
     if (!name || !description || !price || !category || !image_id) {
-      throw new BadRequestError('모든 정보가 필요합니다');
+      throw new BadRequestError('모든 정보가 필요합니다,');
     }
 
     const adminService = new AdminService();
@@ -43,11 +43,17 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   // 상품 삭제
   try {
-    const decoded = req.decoded;
-    const userService = new UserService();
-    await userService.signOut(decoded);
-
-    res.status(200).json({ data: null, message: '회원 탈퇴가 되었습니다.' });
+    const { product_id } = req.body;
+    if (!product_id) {
+      throw new BadRequestError('잘못된 요청입니다.');
+    }
+    const adminService = new AdminService();
+    const deletedProduct = await adminService.deleteProduct(product_id);
+    if (deletedProduct.deletedCount !== 0) {
+      res.status(200).json({ data: null, message: '상품이 삭제 되었습니다.' });
+    } else {
+      throw new NotFoundError('해당 상품이 없습니다.');
+    }
   } catch (err) {
     next(err);
   }

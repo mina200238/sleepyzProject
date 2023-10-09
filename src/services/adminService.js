@@ -5,7 +5,6 @@ class AdminService {
   async addProduct(name, description, price, category, image_id) {
     const detail_url = [];
     const addImage = await Image.create({ name, image_id, detail_url });
-    console.log(addImage._id);
     const addedImage_id = addImage._id;
     const addedProduct = await Product.create({ name, description, price, category, image_id: addedImage_id });
     return addedProduct;
@@ -20,10 +19,9 @@ class AdminService {
   }
 
   // 상품 삭제
-  async signOut(decoded) {
-    const { id } = decoded.user;
-    const deletedUser = await User.findOneAndUpdate({ _id: id }, { deleted_at: new Date() });
-    return deletedUser;
+  async deleteProduct(product_id) {
+    const deletedProduct = await Product.deleteOne({ _id: product_id });
+    return deletedProduct;
   }
 }
 
