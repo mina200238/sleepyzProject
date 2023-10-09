@@ -3,8 +3,11 @@ import updateBadge from '/src/views/public/utils/updateBadge.js';
 // 테스트용 데이터
 const prodMockData = '/src/static/fakeData.json';
 
+let productInfo;
+
 // data 가져오는 코드
 const getProductInfo = async function () {
+  // 실제 서버 데이터 가져오는 코드
   // const CUR_URL = window.location.href;
 
   // const URL_PARAMS = new URLSearchParams(CUR_URL.split('?')[1]);
@@ -16,7 +19,7 @@ const getProductInfo = async function () {
 
     // ------ mockData 테스트용 코드
     const response = await axios.get(prodMockData);
-    const productInfo = response.data.product[0];
+    productInfo = response.data.product[0];
     // 테스트용 코드 ------
 
     console.log('상품 상세:', productInfo);
@@ -44,18 +47,18 @@ const getProductInfo = async function () {
 
 window.addEventListener('DOMContentLoaded', getProductInfo);
 
-const prodData = {
-  _id: '651e69649585d36a1c743e3h',
-  name: '상품2',
-  description: '상품 정보',
-  price: 1000,
-  quantity: 0,
-  category: 2,
-  image_id: 143,
-  created_at: '2023-10-04T14:30:00Z',
-  updated_at: '2023-10-04T14:30:00Z',
-  deleted_at: '2023-10-04T14:30:00Z',
-};
+// const prodData = {
+//   _id: '651e69649585d36a1c743e3h',
+//   name: '상품2',
+//   description: '상품 정보',
+//   price: 1000,
+//   quantity: 0,
+//   category: 2,
+//   image_id: 143,
+//   created_at: '2023-10-04T14:30:00Z',
+//   updated_at: '2023-10-04T14:30:00Z',
+//   deleted_at: '2023-10-04T14:30:00Z',
+// };
 
 // 상품 상세 장바구니 담기 버튼
 const addtoCartBtn = document.querySelector('.addtocart-btn');
@@ -66,7 +69,7 @@ addtoCartBtn.addEventListener('click', function () {
   if (window.indexedDB) {
     const dbName = 'shoppingCartDB';
     const dbVersion = 1;
-    const data = prodData;
+    const data = productInfo;
     const request = indexedDB.open(dbName, dbVersion);
 
     request.onerror = function (event) {
