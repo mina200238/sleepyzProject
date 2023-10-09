@@ -3,6 +3,7 @@
 #container {
   display: flex;
   margin-top: 0;
+  width: 100%;
 }
 
 .sidebar {

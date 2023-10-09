@@ -1,0 +1,25 @@
+@import '/src/views/public/css/reset.css';
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.message {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.button-container .btn-group {
+  padding: 10px 20px;
+  font-size: 16px;
+}
