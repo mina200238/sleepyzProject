@@ -1,14 +1,11 @@
 @import '/src/views/public/css/reset.css';
 
-#body {
+#container {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-}
-
-#container {
   margin-top: 0;
+  font-size: 14px;
 }
 
 .container-login {

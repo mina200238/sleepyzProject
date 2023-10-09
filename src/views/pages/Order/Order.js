@@ -25,6 +25,8 @@ purchaseBtn.addEventListener('click', async function (e) {
 
   const jsonData = JSON.stringify(jsonObject);
 
+  console.log(jsonData);
+
   orderForm.reset();
   // axios로 생성한 데이터를 서버로 post 요청을 보냄
   try {
