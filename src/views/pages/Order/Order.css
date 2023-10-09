@@ -1,10 +1,9 @@
-@import '../../public/css/reset.css';
+@import '/src/views/public/css/reset.css';
 
 /* 배송 정보 영역 */
-main {
+#order-form {
   display: flex;
   justify-content: center;
-  margin-top: 120px;
   font-size: 14px;
   gap: 100px;
 }
@@ -15,44 +14,40 @@ main {
   width: 500px;
 }
 
-.orderPayment {
+.order-payment {
   font-size: 20px;
   margin-bottom: 100px;
   font-weight: bold;
 }
 
-.orderer h2,
-.deliveryAddress h2 {
+.order-info {
   font-size: 16px;
   margin-bottom: 20px;
   margin-top: 100px;
+  padding-bottom: 10px;
   font-weight: 500;
+  border-bottom: 1px solid rgb(215, 215, 215);
 }
 
-form {
-  display: grid;
-  gap: 10px;
-}
-
-textarea,
-input {
+.order-info-group {
   padding: 5px;
   font-size: 16px;
   margin: 5px 0;
+  margin-bottom: 10px;
+  width: 250px;
 }
 
-label {
+#address {
+  width: 400px;
+}
+
+.order-label {
   display: inline-block;
   width: 80px;
 }
 
-.formGroupAddress * {
-  vertical-align: middle;
-}
-/* 배송 정보 영역 */
-
 /* 결제 정보 영역 */
-.orderSummary {
+.order-summary {
   background-color: #f8f8f8;
   width: 350px;
   height: fit-content;
@@ -66,26 +61,26 @@ label {
   top: 160px;
 }
 
-.orderSummary h2 {
+.order-summary .order-history {
   font-size: 18px;
   font-weight: bold;
 }
 
-.orderSummary .totalPrice {
+.order-summary .total-price {
   font-size: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
-.orderSummary .shippingFee {
+.order-summary .shipping-fee {
   font-size: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
-.orderSummary .totalPayment {
+.order-summary .total-payment {
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 10px;
@@ -93,7 +88,7 @@ label {
   justify-content: space-between;
 }
 
-.orderSummary .purchaseBtn {
+.order-summary .purchase-btn {
   background-color: #b89fe5;
   outline: none;
   border: none;
@@ -103,12 +98,11 @@ label {
   line-height: 40px;
   font-size: 16px;
 }
-.orderSummary .purchaseBtn a {
+.order-summary .purchase-btn .purchase-link {
   display: block;
   height: 100%;
   color: #fff;
 }
-.orderSummary .purchaseBtn:hover {
+.order-summary .purchase-btn:hover {
   background-color: #9261e8;
 }
-/* 결제 정보 영역 */

@@ -1,14 +1,14 @@
-@import '../../public/css/reset.css';
+@import '/src/views/public/css/reset.css';
 
-body {
+#container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 0;
   font-size: 14px;
 }
 
-.container {
+.container-login {
   width: 400px;
 }
 
@@ -24,12 +24,12 @@ body {
   margin-bottom: 70px;
 }
 
-img {
+.logo-img {
   max-width: 300px;
   margin-bottom: 70px;
 }
 
-.login-form input {
+.login-form .login-info {
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -40,7 +40,7 @@ img {
   background-color: #edf2f7;
 }
 
-.loginBtn {
+.login-btn {
   width: 100%;
   background-color: #b89fe5;
   outline: none;
@@ -52,16 +52,16 @@ img {
   font-size: 16px;
   margin-bottom: 50px;
 }
-.loginBtn a {
+.login-btn .login-link {
   display: block;
   height: 100%;
   color: #fff;
 }
-.loginBtn:hover {
+.login-btn:hover {
   background-color: #9261e8;
 }
 
-a {
+.signup-link {
   text-decoration: none;
   color: black;
   font-weight: 700;

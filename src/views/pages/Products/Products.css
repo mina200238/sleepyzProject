@@ -1,15 +1,13 @@
-@import '../../public/css/reset.css';
+@import '/src/views/public/css/reset.css';
 
 .product-list h2 {
   text-align: center;
-  width: 90%;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  margin-left: 100px;
+  width: 100%;
+  margin-bottom: 16px;
+  margin-left: 20px;
   font-size: 40px;
 }
 
-/* <h2>신상품</h2> grid제외 */
 .product-list > *:first-child {
   grid-column: 1 / -1;
   text-align: center;
@@ -18,22 +16,32 @@
 .product-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding: 1rem 5%;
-  width: 85%;
-  width: 85%;
-  margin-left: 35px;
+  gap: 70px;
+  padding: 16px 80px;
+  width: 80%;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.image-wrapper {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.image-wrapper:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+  z-index: 1;
 }
 
 .product-card {
-  border: 1px solid #eaeaea;
-  padding: 1rem;
-  flex-basis: calc(25% - 1rem);
+  flex-basis: calc(25% - 16px);
   box-sizing: border-box;
   text-align: center;
   height: auto;
-  border: 3px solid #8f8e91;
   width: 100%;
+  border-radius: 20px 20px 0px 0px;
+  margin-bottom: 50px;
 }
 
 .product-card > p {
@@ -49,7 +57,8 @@
 
 .product-card img {
   max-width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  border-radius: 15px;
 }
 
 .pagination-bar {

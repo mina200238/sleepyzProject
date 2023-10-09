@@ -1,4 +1,4 @@
-@import '../../public/css/reset.css';
+@import '/src/views/public/css/reset.css';
 
 /* 공통 스타일 영역 */
 input[type='checkbox'] {
@@ -6,9 +6,6 @@ input[type='checkbox'] {
   height: 15px;
   cursor: pointer;
   vertical-align: text-top;
-  /* 
-  -webkit-appearance: none;
-  appearance: none; */
 }
 
 /* main container 영역 */
@@ -17,18 +14,18 @@ input[type='checkbox'] {
   justify-content: center;
   gap: 100px;
 }
-.sc-cart h1 {
+.sc-cart .title {
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 20px;
 }
-.cartOptions {
+.cart-options {
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
   border-bottom: 1px solid #ddd;
 }
-.cartOptions .deleteBtn {
+.cart-options .delete-btn {
   font-family: 'Pretendard';
   font-weight: 200;
   background-color: #fff;
@@ -41,46 +38,48 @@ input[type='checkbox'] {
   /* transition: all 0.2s; */
 }
 
-.cartOptions .deleteBtn:hover {
+.cart-options .delete-btn:hover {
   font-weight: 500;
 }
 
 /* main container 장바구니 아이템 영역(좌) */
 
-.cartList {
+.cart-list {
   margin-top: 20px;
+  width: 580px;
+  min-height: 800px;
 }
-.cartItem {
+.cart-item {
   display: flex;
 }
-.cartItem .item {
+.cart-item .item {
   display: flex;
   margin-bottom: 20px;
 }
-.cartItem .item .imgBox {
+.cart-item .item .img-box {
   width: 180px;
 }
 
-.cartItem .item img {
+.cart-item .item img {
   width: 100%;
 }
 
-.cartItemInfo {
+.cartitems-info {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px 0 0 50px;
 }
 
-.itemName {
+.item-name {
   font-size: 14px;
   font-weight: 200;
 }
-.itemPrice {
+.item-price {
   font-size: 16px;
   font-weight: 500;
 }
-.amountOpt {
+.amount-opt {
   padding-top: 50px;
   font-size: 14px;
   font-weight: 300;
@@ -88,7 +87,7 @@ input[type='checkbox'] {
 
 /* main container 장바구니 결제 요약 영역(우) */
 
-.orderSummary {
+.order-summary {
   background-color: #f8f8f8;
   width: 350px;
   height: fit-content;
@@ -102,26 +101,26 @@ input[type='checkbox'] {
   top: 160px;
 }
 
-.orderSummary h2 {
+.order-summary .title {
   font-size: 18px;
   font-weight: bold;
 }
 
-.orderSummary .totalPrice {
+.order-summary .total-price {
   font-size: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
-.orderSummary .shippingFee {
+.order-summary .shipping-fee {
   font-size: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
-.orderSummary .totalPayment {
+.order-summary .total-payment {
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 10px;
@@ -129,7 +128,7 @@ input[type='checkbox'] {
   justify-content: space-between;
 }
 
-.orderSummary .purchaseBtn {
+.order-summary .purchase-btn {
   background-color: #b89fe5;
   outline: none;
   border: none;
@@ -139,11 +138,11 @@ input[type='checkbox'] {
   line-height: 40px;
   font-size: 16px;
 }
-.orderSummary .purchaseBtn a {
+.order-summary .purchase-btn a {
   display: block;
   height: 100%;
   color: #fff;
 }
-.orderSummary .purchaseBtn:hover {
+.order-summary .purchase-btn:hover {
   background-color: #9261e8;
 }

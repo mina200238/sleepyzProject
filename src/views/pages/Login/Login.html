@@ -3,29 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>로그인 페이지</title>
-    <link rel="stylesheet" href="Login.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/src/views/pages/Login/Login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/src/views/pages/Login/Login.js" defer></script>
   </head>
-  <body>
-    <div class="container">
-      <div class="logo">
-        <img src="../../public/assets/logo_sleepyz.png" alt="로고" />
+  <body id="body">
+    <main id="container">
+      <div class="container-login">
+        <div class="logo">
+          <img class="logo-img" src="/src/views/public/assets/logo_sleepyz.png" alt="로고" />
+        </div>
+        <p class="signin">로그인</p>
+        <form class="login-form">
+          <label for="email">이메일</label>
+          <input
+            class="login-info"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="이메일을 입력해 주세요"
+            required
+          />
+          <label for="password">비밀번호</label>
+          <input
+            class="login-info"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="비밀번호를 입력해 주세요"
+            required
+          />
+          <button class="login-btn"><a class="login-link" href="">로그인하기</a></button>
+        </form>
+        <p class="signup">계정이 없으신가요? <a class="signup-link" href="">회원가입</a></p>
       </div>
-      <p class="signin">로그인</p>
-      <form class="login-form">
-        <p>이메일</p>
-        <input type="email" placeholder="이메일을 입력해 주세요" required />
-        <p>비밀번호</p>
-        <input
-          type="password"
-          placeholder="비밀번호를 입력해 주세요"
-          required
-        />
-        <button class="loginBtn"><a href="">로그인하기</a></button>
-      </form>
-      <p class="signup">
-        계정이 없으신가요? <a href="signup.html">회원가입</a>
-      </p>
-    </div>
+    </main>
   </body>
 </html>

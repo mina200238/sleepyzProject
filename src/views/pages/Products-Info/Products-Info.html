@@ -7,65 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
     <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="/src/views/pages/Products-Info/Products-Info.css"
-    />
+    <link rel="stylesheet" type="text/css" media="screen" href="/src/views/pages/Products-Info/Products-Info.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
+    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/src/views/pages/Products-Info/Products-Info.js" defer></script>
   </head>
   <body>
     <!----------------------- header 영역 ------------------------->
-    <div id="header"></div>
-
+    <header id="header"></header>
     <!-- 상품 정보 영역 -->
     <main id="container">
-      <div class="productInfoArea">
-        <div class="imgBox">
-          <img
-            src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169214638219694234.jpg?gif=1&w=850&h=850&c=c&webp=1"
-            alt=""
-          />
-        </div>
-        <div class="infoBox">
-          <div class="txtGroup">
-            <h1 class="prodName">
-              먼지없는 알러지케어 M2 세이브 차렵이불세트 12색상
-            </h1>
-            <span class="prodPrice"><i class="price">36,900</i>원</span>
-            <p class="infoDetails">
+      <div class="products-info">
+        <div class="img-box"></div>
+        <div class="info-box">
+          <div class="txt-group">
+            <h1 class="prod-name"></h1>
+            <span class="prod-price"><i class="price">36,900</i>원</span>
+            <p class="info-details">
               <span class="country">제조국 <i>대한민국</i></span>
-              <span class="shippingFee">배송비 <i>2500원</i></span>
+              <span class="shipping-fee">배송비 <i>2500원</i></span>
             </p>
           </div>
-          <div class="btnGroup">
-            <button class="purchaseBtn">구매하기</button>
-            <button class="addtoCartBtn">장바구니 담기</button>
+          <div class="btn-group">
+            <button class="purchase-btn">구매하기</button>
+            <button class="addtocart-btn">장바구니 담기</button>
           </div>
         </div>
       </div>
       <!-- 상품 상세 정보 -->
-      <section id="sc-prodDetails">
-        <h1>상품 정보</h1>
-        <div class="detailInfo">
-          <p>
-            "먼지없는 알러지케어 M2 세이브 차렵이불세트"는 알러지를 유발할 수
-            있는 미세한 먼지나 진드기 등을 방지하고, 편안한 수면 환경을 제공하는
-            고품질의 이불세트입니다. 이 이불은 특별히 처리된 M2 섬유로
-            만들어져서 미립자나 미생물의 침입을 막아주며, 알레르기 반응을
-            최소화합니다. 고품질 면 소재로 제작되었으며, 부드럽고 쾌적한
-            촉감으로 피부에 자극 없이 사용할 수 있습니다. 착용감과 내구성을
-            강화하기 위해 견고하게 솔기 처리되었습니다. 12가지 다양한 컬러
-            옵션으로 제공되어 개인의 취향과 인테리어 스타일에 맞게 선택할 수
-            있습니다
-          </p>
-        </div>
+      <section id="sc-details">
+        <h1 class="title">상품 정보</h1>
+        <div class="detail-info"></div>
       </section>
     </main>
     <!----------------------- footer 영역 ------------------------->
-    <div id="footer"></div>
-    <script type="module" src="/src/views/public/Header/Header.js"></script>
-    <script type="module" src="/src/views/public/Footer/Footer.js"></script>
-    <script src="/src/views/pages/Products-Info/Products-Info.js"></script>
+    <footer id="footer"></footer>
   </body>
 </html>
