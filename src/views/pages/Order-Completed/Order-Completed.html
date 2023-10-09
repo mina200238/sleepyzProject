@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/views/pages/Order-Completed/Order-Completed.css" />
+    <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
+    <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
+    <script src="/src/views/pages/Order-Completed/Order-Completed.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
+    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <title>Order-Completed</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main id="container">
+      <div class="message" id="message">결제가 완료되었습니다.</div>
+      <div class="button-container">
+        <button class="btn-group" onclick="checkOrder()">주문내역 확인</button>
+        <button class="btn-group" onclick="continueShopping()">쇼핑 계속하기</button>
+      </div>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>
