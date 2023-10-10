@@ -24,7 +24,7 @@ const createCategory = async (req, res, next) => {
 
     const adminService = new AdminService();
     const checkCategory = await adminService.checkCategory(category_name);
-    console.log(checkCategory);
+
     if (!checkCategory) {
       throw new ConflictError('중복된 카테고리입니다');
     }
@@ -46,7 +46,7 @@ const updateCategory = async (req, res, next) => {
 
     const adminService = new AdminService();
     const updatedCategory = await adminService.updateCategory(category_id, category_name);
-    console.log(updatedCategory);
+
     res.status(200).json({
       category_data: { category_name: updatedCategory.category_name },
       message: '카테고리를 성공적으로 수정하였습니다',
@@ -156,7 +156,7 @@ const updateOrders = async (req, res, next) => {
     const { order_id, delivery_status } = req.body;
     const adminService = new AdminService();
     const updatedOrderInfo = await adminService.UpdateOrderInfo(order_id, delivery_status);
-    console.log(updatedOrderInfo);
+
     if (updatedOrderInfo) {
       res.status(200).json({
         data: null,

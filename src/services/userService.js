@@ -40,6 +40,7 @@ class UserService {
   async login(email, password) {
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
+      // access 토큰
       const accessToken = jwt.sign(
         {
           user: {
@@ -49,9 +50,23 @@ class UserService {
           },
         },
         process.env.ACCESS_TOKEN_SECERT,
-        { expiresIn: '50m' },
+        { expiresIn: '30m' },
       );
-      return accessToken;
+
+      // refresh 토큰
+      const refreshToken = jwt.sign(
+        {
+          user: {
+            username: user.name,
+            email: user.email,
+            id: user._id,
+          },
+        },
+        process.env.ACCESS_TOKEN_SECERT,
+        { expiresIn: '1d' },
+      );
+
+      return [accessToken, refreshToken];
     } else return undefined;
   }
 
