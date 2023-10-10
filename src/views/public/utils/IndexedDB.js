@@ -1,4 +1,4 @@
-import updateBadge from '/src/views/public/utils/UpdateBadge.js';
+import updateBadge from '/public/utils/UpdateBadge.js';
 
 const IndexedDB = {
   dbName: 'shoppingCartDB',
@@ -70,7 +70,7 @@ const IndexedDB = {
         isExist.quantity++;
         store.put(isExist);
         if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-          window.location.href = '/src/views/pages/Cart/Cart.html';
+          window.location.href = '/pages/Cart/Cart.html';
         }
       } else {
         alert('취소되었습니다');
@@ -78,16 +78,21 @@ const IndexedDB = {
     } else {
       productInfo.quantity = 1;
       store.add(productInfo);
-      if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-        window.location.href = '/src/views/pages/Cart/Cart.html';
-      }
     }
 
     transaction.oncomplete = function (event) {
       // 장바구니 bage 업데이트
       updateBadge(isExist ? isExist.quantity : 1);
       console.log('트랜잭션이 완료되었습니다');
+
+      // 트랜잭션 완료 후, 리다이렉션
+      if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
+        window.location.href = '/pages/Cart/Cart.html';
+      }
     };
+
+    // 트랜잭션 커밋
+    transaction.complete();
 
     transaction.onerror = function (event) {
       console.log('트랜잭션 도중 에러가 발생하였습니다.');
