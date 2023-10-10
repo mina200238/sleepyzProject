@@ -15,10 +15,18 @@
   <body>
     <header id="header"></header>
     <main id="container">
-      <div>
-        <p class="message" id="message">결제가 완료되었습니다.</p>
-        <p>Thank you for your order!</p>
-        <p>Order number is:</p>
+      <div class="order-completed-message">
+        <div>
+          <img src="/src/views/public/assets/icon_order_completed.png" alt="주문완료페이지 아이콘" />
+        </div>
+        <div class="message">
+          <p>결제가 완료되었습니다.</p>
+          <p class="message-thank-you">Thank you for your order!</p>
+          <div>
+            <span>Order number is:</span>
+            <span id="order_id"></span>
+          </div>
+        </div>
       </div>
       <div class="button-container">
         <button class="btn-group" onclick="checkOrder()">주문내역 확인</button>
