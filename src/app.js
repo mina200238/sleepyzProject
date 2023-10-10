@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConnection');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 require('express-async-errors');
 const dbFill = require('./config/dbFill');
@@ -16,6 +17,8 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
+app.use(express.static(path.join(__dirname, '/views'))); // 정적 파일 서빙
 
 app.use(cors()); // cors 허용
 app.use(express.json()); // body-parser
