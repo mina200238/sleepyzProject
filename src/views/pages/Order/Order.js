@@ -75,7 +75,7 @@ purchaseBtn.addEventListener('click', async function (e) {
       },
     });
     //post 요청의 res로 받은 order_id를 다음 페이지인 주문완료페이지로 전달하기(url 사용)
-    window.location.href = `/src/views/pages/Order-Completed/Order-Completed.html?order_id=${res.data.data.order_id}`;
+    window.location.href = `/pages/Order-Completed/Order-Completed.html?order_id=${res.data.data.order_id}`;
     console.log('응답 받음:', res.data);
   } catch (err) {
     console.log('에러 발생:', err);
