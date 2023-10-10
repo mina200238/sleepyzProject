@@ -1,4 +1,4 @@
-@import '/src/views/public/css/reset.css';
+@import '/public/css/reset.css';
 
 #container {
   display: flex;
@@ -33,4 +33,23 @@
   display: flex;
   justify-content: space-around;
   width: 300px;
+}
+
+.purchase-btn {
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  height: fit-content;
+}
+.purchase-btn .purchase-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.purchase-btn:hover {
+  background-color: #9261e8;
 }
