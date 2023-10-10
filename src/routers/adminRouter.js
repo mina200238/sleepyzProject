@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { getAllProducts } = require('../controllers/productController');
+const { getCategories, createCategory, updateCategory, deleteCategory } = require('../controllers/adminController');
 
 const router = Router();
 
@@ -8,10 +9,10 @@ router.post('/products'); // 상품 추가
 router.put('/products'); // 상품 수정
 router.delete('/products'); // 상품 삭제
 
-router.get('/category'); // 카테고리 정보 받아오기
-router.post('/category'); // 카테고리 추가
-router.put('/category'); // 카테고리 수정
-router.delete('/category'); // 카테고리 삭제
+router.get('/categories', getCategories); // 카테고리 정보 받아오기
+router.post('/categories', createCategory); // 카테고리 추가
+router.put('/categories/:category_id', updateCategory); // 카테고리 수정
+router.delete('/categories/:category_id', deleteCategory); // 카테고리 삭제
 
 router.get('/orders'); // 주문 정보 받아오기
 router.post('/orders'); // 주문 추가
