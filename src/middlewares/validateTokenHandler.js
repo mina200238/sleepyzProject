@@ -7,7 +7,7 @@ const validateToken = async (req, res, next) => {
   if (authorization) {
     jwt.verify(authorization, process.env.ACCESS_TOKEN_SECERT, (err, decoded) => {
       if (err) {
-        UnauthorizedError('User is not authorized');
+        throw new UnauthorizedError('User is not authorized');
       } else {
         req.decoded = decoded;
         next();
