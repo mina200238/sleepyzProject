@@ -4,7 +4,7 @@ const { Schema } = require('mongoose');
 const OrderSchema = new Schema(
   {
     user_id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
     },
     products_id: {
