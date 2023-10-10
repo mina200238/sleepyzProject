@@ -94,4 +94,22 @@ const updateUserInfo = async (req, res, next) => {
   }
 };
 
-module.exports = { signUp, signOut, login, getUserInfo, updateUserInfo };
+const changePassword = async (req, res, next) => {
+  try {
+    const decoded = req.decoded;
+    const findEmail = decoded.user.email;
+    const { new_password } = req.body;
+
+    const userService = new UserService();
+    await userService.changePassword(findEmail, new_password);
+
+    res.status(200).json({
+      data: null,
+      message: '회원 정보가 변경되었습니다.',
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { signUp, signOut, login, getUserInfo, updateUserInfo, changePassword };

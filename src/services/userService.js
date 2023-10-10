@@ -29,6 +29,13 @@ class UserService {
     return user;
   }
 
+  //비밀번호 변경
+  async changePassword(findEmail, new_password) {
+    const hashedPassword = await bcrypt.hash(new_password, 10);
+    const changedPasswordUser = await User.findOneAndUpdate({ email: findEmail }, { password: hashedPassword });
+    return changedPasswordUser;
+  }
+
   // 로그인
   async login(email, password) {
     const user = await User.findOne({ email });
@@ -51,19 +58,13 @@ class UserService {
   // 회원 탈퇴
   async signOut(decoded) {
     const { id } = decoded.user;
-    const deletedUser = await User.findOneAndUpdate(
-      { _id: id },
-      { deleted_at: new Date() },
-    );
+    const deletedUser = await User.findOneAndUpdate({ _id: id }, { deleted_at: new Date() });
     return deletedUser;
   }
 
   // 회원 정보 수정
   async updateUserInfo(email, name, phone_number, address) {
-    const updatedUserInfo = await User.updateMany(
-      { email: email },
-      { name, phone_number, address },
-    );
+    const updatedUserInfo = await User.updateMany({ email: email }, { name, phone_number, address });
     return updatedUserInfo;
   }
 }
