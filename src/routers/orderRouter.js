@@ -5,8 +5,8 @@ const validateToken = require('../middlewares/validateTokenHandler');
 
 const router = Router();
 
-router.get('/', validateToken, getUserInfo); // 주문페이지 유저 정보 가져오기
 router.post('/', makeOrder); // 주문 작성
 router.get('/:user_id', getUserOrders); // 주문 조회
+router.get('/', validateToken, getUserInfo); // 주문 작성시 유저 정보 불러오기
 
 module.exports = router;

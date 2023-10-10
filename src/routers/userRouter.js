@@ -5,6 +5,7 @@ const {
   login,
   getUserInfo,
   updateUserInfo,
+  changePassword,
 } = require('../controllers/userController');
 const validateToken = require('../middlewares/validateTokenHandler');
 
@@ -19,5 +20,7 @@ router.post('/login', login); // 로그인
 router.get('/userInfo', validateToken, getUserInfo); // 사용자 정보 조회
 
 router.put('/userInfo', updateUserInfo); // 사용자 정보 수정
+
+router.put('/password', validateToken, changePassword); // 패스워드 변경
 
 module.exports = router;
