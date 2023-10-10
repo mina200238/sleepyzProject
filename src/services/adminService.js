@@ -1,65 +1,33 @@
-const { User } = require('../models');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const { Order } = require('../models');
+const { Types } = require('mongoose');
 
-class UserService {
-  // 회원 등록 확인
-  async checkRegistration(email) {
-    const isRegistered = await User.find({ email: email });
-    console.log(isRegistered);
-    if (isRegistered.length !== 0 && isRegistered[0].deleted_at) {
-      return undefined;
-    }
+class adminService {
 
-    return isRegistered;
+  async getAllUserOrders() {
+    // 모든 사용자의 주문 조회
+    const findOrders = await Order.find({}).populate('user_id');
+    return findOrders;
   }
 
-  // 회원 등록
-  async signUp(name, email, password, phone_number, address) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = {
-      name,
-      email,
-      password: hashedPassword,
-      address,
-      phone_number,
-      admin_role: 0,
-    };
-    const user = await User.create(newUser);
-    return user;
+  //주문 배송 상태 수정
+  async UpdateOrderInfo(order_id, delivery_status) {
+    const UpdatedOrderInfo = await Order.findOneAndUpdate(
+      { _id: new Types.ObjectId(order_id) },
+      { $set: { delivery_status: delivery_status } },
+      { new: true }
+      //{ delivery_status: delivery_status }
+    )
+    return UpdatedOrderInfo;
   }
 
-  // 로그인
-  async login(email, password) {
-    const user = await User.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const accessToken = jwt.sign(
-        {
-          user: {
-            username: user.name,
-            email: user.email,
-            id: user._id,
-          },
-        },
-        process.env.ACCESS_TOKEN_SECERT,
-        { expiresIn: '50m' },
-      );
-      return accessToken;
-    } else return undefined;
-  }
-
-  // 회원 탈퇴
-  async signOut(decoded) {
-    const { id } = decoded.user;
-    const deletedUser = await User.findOneAndUpdate({ _id: id }, { deleted_at: new Date() });
-    return deletedUser;
-  }
-
-  // 회원 정보 수정
-  async updateUserInfo(email, name, phone_number, address) {
-    const updatedUserInfo = await User.updateMany({ email: email }, { name, phone_number, address });
-    return updatedUserInfo;
+  //주문 내역 삭제
+  async deleteOrders(order_id) {
+    const deletedOrder = await Order.findOneAndUpdate(
+      { _id: new Types.ObjectId(order_id) },
+      { deleted_at: new Date() },
+    );
+    return deletedOrder;
   }
 }
 
-module.exports = UserService;
+module.exports = adminService;
