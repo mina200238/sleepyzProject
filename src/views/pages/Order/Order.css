@@ -21,6 +21,8 @@
 }
 
 .order-info {
+  display: flex;
+  justify-content: space-between;
   font-size: 16px;
   margin-bottom: 20px;
   margin-top: 100px;
@@ -38,6 +40,10 @@
 }
 
 #address {
+  width: 400px;
+}
+
+#receiver_address {
   width: 400px;
 }
 
