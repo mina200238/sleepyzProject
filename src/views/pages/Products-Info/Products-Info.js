@@ -1,5 +1,5 @@
 import IndexedDB from '/src/views/public/utils/IndexedDB.js';
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000' || 'http://localhost:5001';
 
 // data 가져오는 코드
 const getProductInfo = async function () {
@@ -69,7 +69,7 @@ async function saveProductToIndexedDB(productData) {
   try {
     // 이미 있는 데이터인지 검사
     const isExist = await IndexedDB.checkIsExist(productData._id);
-    console.log(productData._id);
+    console.log(isExist);
     if (isExist) {
       // 이미 장바구니에 있는 경우 업데이트
       const confirmMsg = '이미 장바구니에 있는 상품입니다. 추가하시겠습니까?';
