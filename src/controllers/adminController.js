@@ -3,6 +3,7 @@ const AdminService = require('../services/adminService');
 const { NotFoundError, BadRequestError, ConflictError } = require('../config/validateError');
 
 const getCategories = async (req, res, next) => {
+  // 카테고리 목록 정보 가져오기
   try {
     const adminService = new AdminService();
     const categories = await adminService.getCategories();
