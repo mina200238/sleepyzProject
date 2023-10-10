@@ -1,5 +1,6 @@
 const { User, Category, Product, Image, Order } = require('../models');
 const mongoose = require('mongoose');
+const { Types } = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 class AdminService {
@@ -71,7 +72,7 @@ class AdminService {
   // 카테고리 추가
   async createCategory(category_name) {
     const countCategories = await Category.count();
-    const newCategory = await Category.create({ category_number: countCategories + 1, category_name });
+    const newCategory = await Category.create({ category_name });
     return newCategory;
   }
 
@@ -83,27 +84,32 @@ class AdminService {
 
   async getAllUserOrders() {
     // 모든 사용자의 주문 조회
-    const findOrders = await Order.find({}).populate('user_id');
+    const findOrders = await Order.find({
+      deleted_at: {
+        $exists: false,
+      },
+    });
     return findOrders;
   }
 
   //주문 배송 상태 수정
   async UpdateOrderInfo(order_id, delivery_status) {
     const UpdatedOrderInfo = await Order.findOneAndUpdate(
-      { _id: new Types.ObjectId(order_id) },
-      { $set: { delivery_status: delivery_status } },
+      {
+        _id: order_id,
+        deleted_at: {
+          $exists: false,
+        },
+      },
+      { delivery_status: delivery_status },
       { new: true },
-      //{ delivery_status: delivery_status }
     );
     return UpdatedOrderInfo;
   }
 
   //주문 내역 삭제
   async deleteOrders(order_id) {
-    const deletedOrder = await Order.findOneAndUpdate(
-      { _id: new Types.ObjectId(order_id) },
-      { deleted_at: new Date() },
-    );
+    const deletedOrder = await Order.findOneAndUpdate({ _id: order_id }, { deleted_at: new Date() });
     return deletedOrder;
   }
 
@@ -116,7 +122,11 @@ class AdminService {
     }
     return isExisted;
   }
-
+  async checkObjectId(object_id) {
+    const isObjectId = ObjectId.isValid(object_id);
+    if (!isObjectId) return undefined;
+    return isObjectId;
+  }
   // 카테고리 id가 유효한 지, 확인
   async checkCategoryId(category_id) {
     const isExsisted = await Category.findById({ _id: category_id });
@@ -125,13 +135,6 @@ class AdminService {
       return undefined;
     }
     return isExsisted;
-  }
-
-  // 🤔: _id 서버 500 에러 발생하는 것 방지 -> 필요할까요?
-  // id가 ObjectId 형식에 맞는 지, 확인
-  async checkObjectId(object_id) {
-    if (ObjectId.isValid(object_id)) return false;
-    else true;
   }
 
   // 카테고리 조회
@@ -143,7 +146,7 @@ class AdminService {
   // 카테고리 추가
   async createCategory(category_name) {
     const countCategories = await Category.count();
-    const newCategory = await Category.create({ category_number: countCategories + 1, category_name });
+    const newCategory = await Category.create({ category_name });
     return newCategory;
   }
 
@@ -152,8 +155,6 @@ class AdminService {
     const updatedCategory = await Category.findByIdAndUpdate(
       category_id,
       {
-        // category_name만 선택해서, 업데이트한다.
-        // category_number는 그대로 유지
         category_name: category_name,
       },
       { new: true },

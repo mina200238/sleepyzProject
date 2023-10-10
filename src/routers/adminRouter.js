@@ -23,11 +23,11 @@ router.delete('/products', deleteProduct); // 상품 삭제
 
 router.get('/categories', getCategories); // 카테고리 정보 받아오기
 router.post('/categories', createCategory); // 카테고리 추가
-router.put('/categories/:category_id', updateCategory); // 카테고리 수정
-router.delete('/categories/:category_id', deleteCategory); // 카테고리 삭제
+router.put('/categories', updateCategory); // 카테고리 수정
+router.delete('/categories', deleteCategory); // 카테고리 삭제
 
 router.get('/orders', getAllUserOrders); // 주문 정보 받아오기
 router.put('/orders', updateOrders); // 주문 수정
-router.post('/orders', deleteOrders); // 해당 사용자의 주문 내역 삭제
+router.delete('/orders', deleteOrders); // 해당 사용자의 주문 내역 삭제
 
 module.exports = router;

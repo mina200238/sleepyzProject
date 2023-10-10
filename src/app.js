@@ -23,7 +23,6 @@ app.use(express.json()); // body-parser
 app.use('/products', productRouter); // 상품 관련 기능
 app.use('/orders', orderRouter); // 주문 관련 기능
 app.use('/users', userRouter); // 유저 관련 기능
-// app.use('/admin', isAdmin, adminRouter); // 관리자 관련 기능
 app.use('/admin', adminRouter); // 관리자 관련 기능
 
 app.use(errorHandler); // 에러 처리 미들웨어

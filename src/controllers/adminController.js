@@ -30,7 +30,7 @@ const createCategory = async (req, res, next) => {
 
     const newCategory = await adminService.createCategory(category_name);
     res.status(200).json({
-      category_data: { category_number: newCategory.category_number, cateogry_name: newCategory.category_name },
+      category_data: { cateogry_name: newCategory.category_name },
       message: '새로운 카테고리를 등록하였습니다',
     });
   } catch (err) {
@@ -40,8 +40,7 @@ const createCategory = async (req, res, next) => {
 
 const updateCategory = async (req, res, next) => {
   try {
-    const { category_id } = req.params;
-    const { category_name } = req.body;
+    const { category_id, category_name } = req.body;
     if (!category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
 
     const adminService = new AdminService();
@@ -58,20 +57,19 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   try {
-    const { category_id } = req.params;
+    const { category_id } = req.body;
 
     const adminService = new AdminService();
     const isObjectId = await adminService.checkObjectId(category_id);
     if (!isObjectId) {
-      throw new BadRequestError('잘못된 요청입니다.');
+      throw new BadRequestError('잘못된 요청입니다. ObjectId');
     }
 
     const checkCategory = await adminService.checkCategoryId(category_id);
     if (!checkCategory) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
-    const deletedCategory = await adminService.delteCategory(category_id);
-    // console.log(deletedCategory);
+    await adminService.delteCategory(category_id);
 
     res.status(200).json({
       category_data: {},
@@ -140,8 +138,8 @@ const addProduct = async (req, res, next) => {
 
 const getAllUserOrders = async (req, res, next) => {
   try {
-    const adminServiceInstance = new adminService();
-    const findOrders = await adminServiceInstance.getAllUserOrders();
+    const adminService = new AdminService();
+    const findOrders = await adminService.getAllUserOrders();
     if (findOrders.length === 0) {
       throw new NotFoundError('주문을 찾을 수 없습니다.');
     }
@@ -155,12 +153,17 @@ const getAllUserOrders = async (req, res, next) => {
 const updateOrders = async (req, res, next) => {
   try {
     const { order_id, delivery_status } = req.body;
-    const adminServiceInstance = new adminService();
-    const updatedOrderInfo = await adminServiceInstance.UpdateOrderInfo(order_id, delivery_status);
-    res.status(200).json({
-      data: updatedOrderInfo,
-      message: '배송 상태가 변경되었습니다.',
-    });
+    const adminService = new AdminService();
+    const updatedOrderInfo = await adminService.UpdateOrderInfo(order_id, delivery_status);
+    console.log(updatedOrderInfo);
+    if (updatedOrderInfo) {
+      res.status(200).json({
+        data: null,
+        message: '배송 상태가 변경되었습니다.',
+      });
+    } else {
+      throw new NotFoundError('주문을 찾을 수 없습니다.');
+    }
   } catch (err) {
     next(err);
   }
@@ -170,10 +173,10 @@ const updateOrders = async (req, res, next) => {
 const deleteOrders = async (req, res, next) => {
   try {
     const { order_id } = req.body;
-    const adminServiceInstance = new adminService();
-    const updatedUserInfo = await adminServiceInstance.deleteOrders(order_id);
+    const adminService = new AdminService();
+    const updatedUserInfo = await adminService.deleteOrders(order_id);
     res.status(200).json({
-      data: updatedUserInfo,
+      data: null,
       message: '주문 내역이 성공적으로 삭제되었습니다',
     });
   } catch (err) {
