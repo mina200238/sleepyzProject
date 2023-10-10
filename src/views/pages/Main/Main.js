@@ -25,7 +25,7 @@ let slideInterval = setInterval(function () {
 }, 6000);
 
 // 상품 데이터를 가져와서 화면에 출력하는 부분
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = 'http://localhost:5000';
 const productContainer = document.querySelector('.products-wrap');
 
 function showMainProducts(products) {

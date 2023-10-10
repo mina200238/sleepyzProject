@@ -1,5 +1,5 @@
 import IndexedDB from '/src/views/public/utils/IndexedDB.js';
-const BASE_URL = 'http://localhost:5000' || 'http://localhost:5001';
+const BASE_URL = 'http://localhost:5000';
 
 // data 가져오는 코드
 const getProductInfo = async function () {
@@ -67,29 +67,63 @@ addtoCartBtn.addEventListener('click', async function () {
 // 데이터를 IndexedDB에 저장하는 함수
 async function saveProductToIndexedDB(productData) {
   try {
+    const db = await IndexedDB.openDatabase();
+    const transaction = db.transaction(['cart'], 'readwrite');
+    const store = transaction.objectStore('cart');
+
     // 이미 있는 데이터인지 검사
     const isExist = await IndexedDB.checkIsExist(productData._id);
-    console.log(isExist);
-    if (isExist) {
-      // 이미 장바구니에 있는 경우 업데이트
-      const confirmMsg = '이미 장바구니에 있는 상품입니다. 추가하시겠습니까?';
-      if (window.confirm(confirmMsg)) {
-        isExist.quantity++;
-        await IndexedDB.updateOrAddProduct(isExist);
-        if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-          window.location.href = '/src/views/pages/Cart/Cart.html';
-        }
+
+    // 비동기 함수로 변환
+    async function updateData() {
+      if (isExist === undefined) {
+        // 새로운 상품 추가
+        const request = store.add(productData);
+        await new Promise((resolve, reject) => {
+          request.onsuccess = function (event) {
+            // 여기에서 추가 후 작업 수행
+            productData.quantity = 1;
+            console.log('상품이 성공적으로 추가되었습니다.');
+            resolve();
+          };
+          request.onerror = function (event) {
+            console.error('상품 추가 중 에러가 발생하였습니다.', event.target.error);
+            reject(event.target.error);
+          };
+        });
       } else {
-        alert('취소되었습니다');
+        // 이미 장바구니에 있는 경우 업데이트
+        const confirmMsg = '이미 장바구니에 있는 상품입니다. 추가하시겠습니까?';
+        if (window.confirm(confirmMsg)) {
+          const request = store.put(isExist);
+          await new Promise((resolve, reject) => {
+            request.onsuccess = function (event) {
+              console.log('상품이 성공적으로 업데이트되었습니다.');
+              // 여기에서 업데이트 후 작업 수행
+              productData.quantity++;
+              resolve();
+            };
+            request.onerror = function (event) {
+              console.error('상품 업데이트 중 에러가 발생하였습니다.', event.target.error);
+              reject(event.target.error);
+            };
+          });
+        } else {
+          alert('취소되었습니다');
+        }
       }
-    } else {
-      // 새로운 상품 추가
-      productData.quantity = 1;
-      await IndexedDB.updateOrAddProduct(productData);
+      // 장바구니 badge 업데이트
+      updateBadge(isExist ? isExist.quantity : 1);
+      console.log('트랜잭션이 완료되었습니다');
+
+      // 트랜잭션 완료 후, 리다이렉션
       if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
         window.location.href = '/src/views/pages/Cart/Cart.html';
       }
     }
+
+    // 비동기 함수 호출
+    await updateData();
   } catch (error) {
     console.error('IndexedDB에 데이터를 저장하는 중 오류 발생:', error);
   }
