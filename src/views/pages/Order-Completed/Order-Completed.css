@@ -1,4 +1,4 @@
-@import '/src/views/public/css/reset.css';
+@import '/public/css/reset.css';
 
 #container {
   display: flex;
@@ -6,11 +6,27 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  font-size: 14px;
+}
+
+.order-completed-message {
+  display: flex;
+  margin-bottom: 50px;
 }
 
 .message {
-  font-size: 24px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.message-thank-you {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+#order_id {
+  font-size: 16px;
 }
 
 .button-container {
@@ -19,7 +35,21 @@
   width: 300px;
 }
 
-.button-container .btn-group {
-  padding: 10px 20px;
+.purchase-btn {
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  line-height: 40px;
   font-size: 16px;
+  height: fit-content;
+}
+.purchase-btn .purchase-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.purchase-btn:hover {
+  background-color: #9261e8;
 }

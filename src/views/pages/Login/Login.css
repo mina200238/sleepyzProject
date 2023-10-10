@@ -1,4 +1,4 @@
-@import '/src/views/public/css/reset.css';
+@import '/public/css/reset.css';
 
 #container {
   display: flex;
