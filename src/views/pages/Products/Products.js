@@ -2,7 +2,6 @@ let currentPage = 1; // 현재 페이지
 const itemsPerPage = 9; // 페이지 당 상품 개수
 const productContainer = document.querySelector('.products-wrap');
 const BASE_URL = 'http://localhost:5000';
-
 function showProductsByPage(pageNumber, products) {
   const startIdx = (pageNumber - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
@@ -10,7 +9,7 @@ function showProductsByPage(pageNumber, products) {
   productContainer.innerHTML = ''; // 이전 상품 삭제
 
   // 각 상품 데이터를 순회하면서 HTML 요소를 동적으로 생성하고 추가
-  products.forEach((product) => {
+  productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
     productLink.href = `/products/${product._id}`;
@@ -20,7 +19,7 @@ function showProductsByPage(pageNumber, products) {
       e.preventDefault();
       // 클릭된 상품의 ID를 얻습니다.
       const clickedProductId = product._id;
-      window.location.href = `/src/views/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+      window.location.href = `/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);
