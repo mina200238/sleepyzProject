@@ -1,4 +1,4 @@
-import updateBadge from '/src/views/public/utils/updateBadge.js';
+import updateBadge from '/public/utils/updateBadge.js';
 
 // 페이지가 로드될 때 실행할 함수
 export function onPageLoad() {

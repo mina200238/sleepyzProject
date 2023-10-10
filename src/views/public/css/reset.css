@@ -1,5 +1,5 @@
-@import '/src/views/public/css/font.css';
-@import '/src/views/public/css/common.css';
+@import '/public/css/font.css';
+@import '/public/css/common.css';
 
 html,
 body,

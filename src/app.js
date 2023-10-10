@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConnection');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 require('express-async-errors');
 const dbFill = require('./config/dbFill');
@@ -19,6 +20,9 @@ const PORT = process.env.PORT || 5001;
 
 app.use(cors()); // cors 허용
 app.use(express.json()); // body-parser
+
+// 정적 파일 사용
+app.use(express.static(path.join(__dirname, '/views')));
 
 app.use('/products', productRouter); // 상품 관련 기능
 app.use('/orders', orderRouter); // 주문 관련 기능
