@@ -7,11 +7,11 @@ import 'firebase/storage';
 // Firebase 프로젝트의 구성 정보를 설정합니다. 여기서는 API 키, 인증 도메인, 프로젝트 ID 등이 포함됩니다.
 const firebaseConfig = {
   apiKey: process.env.apiKey,
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
 };
 
 // Firebase 앱을 초기화합니다.
