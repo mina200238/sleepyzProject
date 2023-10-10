@@ -3,26 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/views/pages/Order-Completed/Order-Completed.css" />
-    <link rel="stylesheet" href="/src/views/public/Header/Header.css" />
-    <link rel="stylesheet" href="/src/views/public/Footer/Footer.css" />
-    <script src="/src/views/pages/Order-Completed/Order-Completed.js" defer></script>
+    <link rel="stylesheet" href="/pages/Order-Completed/Order-Completed.css" />
+    <link rel="stylesheet" href="/public/Header/Header.css" />
+    <link rel="stylesheet" href="/public/Footer/Footer.css" />
+    <script src="/pages/Order-Completed/Order-Completed.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
-    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
-    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
     <title>Order-Completed</title>
   </head>
   <body>
     <header id="header"></header>
     <main id="container">
-      <div>
-        <p class="message" id="message">결제가 완료되었습니다.</p>
-        <p>Thank you for your order!</p>
-        <p>Order number is:</p>
+      <div class="order-completed-message">
+        <div>
+          <img src="/public/assets/icon_order_completed.png" alt="주문완료페이지 아이콘" />
+        </div>
+        <div class="message">
+          <p>결제가 완료되었습니다.</p>
+          <p class="message-thank-you">Thank you for your order!</p>
+          <div>
+            <span>Order number is:</span>
+            <span id="order_id"></span>
+          </div>
+        </div>
       </div>
       <div class="button-container">
-        <button class="btn-group" onclick="checkOrder()">주문내역 확인</button>
-        <button class="btn-group" onclick="continueShopping()">쇼핑 계속하기</button>
+        <button type="button" class="purchase-btn" onclick="checkOrder()"><a class="purchase-link" href=""></a>주문내역 확인</a></button>
+        <button type="button" class="purchase-btn" onclick="continueShopping()"><a class="purchase-link" href=""></a>쇼핑 계속하기</a></button>
       </div>
     </main>
     <footer id="footer"></footer>
