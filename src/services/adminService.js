@@ -4,7 +4,7 @@ class AdminService {
   // 상품 추가
   async addProduct(name, description, price, category, image_id) {
     const detail_url = [];
-    const addImage = await Image.create({ name, image_id, detail_url });
+    const addImage = await Image.create({ name, thumbnail_url: image_id, detail_url });
     const addedImage_id = addImage._id;
     const addedProduct = await Product.create({ name, description, price, category, image_id: addedImage_id });
     return addedProduct;

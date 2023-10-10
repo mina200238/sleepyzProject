@@ -4,6 +4,7 @@ const AdminService = require('../services/adminService');
 const { BadRequestError, ConflictError, InternalServerError, NotFoundError } = require('../config/validateError');
 
 const addProduct = async (req, res, next) => {
+  // 상품 추가
   try {
     const { name, description, price, category, image_id } = req.body;
     if (!name || !description || !price || !category || !image_id) {
