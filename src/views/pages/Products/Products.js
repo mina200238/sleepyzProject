@@ -1,7 +1,7 @@
 let currentPage = 1; // 현재 페이지
 const itemsPerPage = 9; // 페이지 당 상품 개수
 const productContainer = document.querySelector('.products-wrap');
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000' || 'http://localhost:5001';
 
 function showProductsByPage(pageNumber, products) {
   const startIdx = (pageNumber - 1) * itemsPerPage;
