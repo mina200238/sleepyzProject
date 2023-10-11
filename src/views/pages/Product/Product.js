@@ -12,14 +12,14 @@ function showProductsByPage(pageNumber, products) {
   productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/products/${product._id}`;
+    productLink.href = `/product/${product._id}`;
     productLink.classList.add('product-link');
 
     productLink.addEventListener('click', async (e) => {
       e.preventDefault();
       // 클릭된 상품의 ID를 얻습니다.
       const clickedProductId = product._id;
-      window.location.href = `/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+      window.location.href = `/pages/Product-Info/Product-Info.html?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +28,7 @@ function showProductsByPage(pageNumber, products) {
 
       try {
         // 상세 정보를 가져올 때는 async/await를 사용합니다.
-        const response = await axios.get(`${BASE_URL}/products/${clickedProductId}`);
+        const response = await axios.get(`${BASE_URL}/product/${clickedProductId}`);
         const productDetails = response.data.data; // 상세 정보를 가져온다고 가정
         console.log(productDetails);
 
@@ -87,7 +87,7 @@ console.log('Current category :', category);
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
   axios
-    .get(`${BASE_URL}/products/category`, {
+    .get(`${BASE_URL}/product/category`, {
       params: {
         category_name: category,
       },
@@ -104,7 +104,7 @@ if (category) {
 } else {
   // 카테고리 정보가 없으면 전체 상품 데이터를 가져옵니다.
   axios
-    .get(`${BASE_URL}/products`)
+    .get(`${BASE_URL}/product`)
     .then((response) => {
       const allProducts = response.data.data;
 
