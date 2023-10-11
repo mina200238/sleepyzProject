@@ -1,7 +1,9 @@
 function checkOrder() {
   alert('주문내역 확인 페이지로 이동합니다.');
+  //비회원은 비회원 주문내역 페이지/ 회원은 주문내역 페이지
+  window.location.href = '/pages/Non-Member-Order-History/Non-Member-Order-History.html';
 }
-
+//쇼핑계속하기 누르면 전체상품페이지로 넘어가게 만들기
 function continueShopping() {
   alert('쇼핑을 계속합니다.');
   window.location.href = '/pages/Products/Products.html';
@@ -15,5 +17,3 @@ const myParam = urlParams.get('order_id');
 // HTML 요소에 추가하기
 const myElement = document.getElementById('order_id');
 myElement.innerText = `${myParam}`;
-
-//쇼핑계속하기 누르면 전체상품페이지로 넘어가게 만들기

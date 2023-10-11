@@ -1,11 +1,7 @@
-//URL에 상품ID를 파라미터로 추가하기
-//페이지에서 페이지 넘어갈때 데이터를 전달하는 방법?
-const productId = '6524bc616e44b087ce217c8e';
-
-const newUrl = new URL(window.location.href);
-newUrl.searchParams.set('product_id', productId);
-
-window.history.replaceState({}, '', newUrl);
+//URL에서 상품ID, 갯수 쿼리파라미터 가져오기
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('product_id');
+const quantity = urlParams.get('quantity');
 
 //주문 내역부분의 총상품금액, 결제금액을 서버에서 가져와서 화면에 띄움
 insertPriceElement();
@@ -17,8 +13,8 @@ async function insertPriceElement() {
 
   const price = res.data.data[0].price;
 
-  totalProductsPrice.textContent = `${price}원`;
-  amountOfPayment.textContent = `${price + 2500}원`;
+  totalProductsPrice.textContent = `${price * quantity}원`;
+  amountOfPayment.textContent = `${price * quantity + 2500}원`;
 }
 
 //'주문자와 동일하게' 버튼 클릭 시 주문자쪽 input 값이 배송지쪽 input에 자동으로 입력됨
@@ -56,16 +52,14 @@ purchaseBtn.addEventListener('click', async function (e) {
     user_id: '비회원',
     //상세페이지의 상품과 갯수
     products_id: {
-      '651e69649585d36a1c743e4g': 2,
+      productId: quantity,
     },
     delivery_status: '주문완료',
   });
 
   const jsonData = JSON.stringify(jsonObject);
 
-  // console.log(jsonData); 지울부분
-
-  orderForm.reset();
+  // console.log(jsonData); //지울부분
 
   // axios로 생성한 데이터를 서버로 post 요청을 보냄
   try {
@@ -74,9 +68,15 @@ purchaseBtn.addEventListener('click', async function (e) {
         'Content-Type': 'application/json',
       },
     });
-    //post 요청의 res로 받은 order_id를 다음 페이지인 주문완료페이지로 전달하기(url 사용)
-    window.location.href = `/pages/Order-Completed/Order-Completed.html?order_id=${res.data.data.order_id}`;
-    // console.log('응답 받음:', res.data); 지울부분
+    console.log('응답 받음:', res.data);
+    //상품 구매를 최종적으로 확인하는 창을 띄움
+    if (confirm('상품을 구매하시겠습니까?')) {
+      alert('구매가 완료되었습니다!');
+      //post 요청의 res로 받은 order_id를 다음 페이지인 주문완료페이지로 전달하기(url 사용)
+      window.location.href = `/pages/Order-Completed/Order-Completed.html?order_id=${res.data.data.order_id}`;
+    } else {
+      alert('구매가 취소되었습니다.');
+    }
   } catch (err) {
     console.log('에러 발생:', err);
   }

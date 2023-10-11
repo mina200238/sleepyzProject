@@ -37,22 +37,33 @@
   margin: 5px 0;
   margin-bottom: 10px;
   width: 250px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #edf2f7;
 }
 
 #address {
   width: 400px;
 }
 
-/* .same-orderer-btn {
+.same-orderer-btn {
   background-color: #ffffff;
   outline: none;
-  border: 1px solid #cecece;
+  /* border: 1px solid #cecece; */
+  border: none;
   border-radius: 5px;
   font-weight: bold;
-  line-height: 40px;
   font-size: 16px;
   height: fit-content;
-} */
+  cursor: pointer;
+  height: 30px;
+  color: #9261e8;
+}
+
+.same-orderer-btn:hover {
+  background-color: #cecece;
+}
 
 #receiver_address {
   width: 400px;
