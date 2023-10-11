@@ -1,4 +1,5 @@
 // import { getCart, saveCart, addToCart } from '/public/utils/CartData.js';
+import updateBadge from '/public/utils/UpdateBadge.js';
 
 const BASE_URL = 'http://localhost:5000';
 let currentQuantity = 1;
@@ -187,6 +188,7 @@ deleteButton.addEventListener('click', function () {
         // 해당 상품 정보와 이미지 정보를 로컬 스토리지에서 삭제
         localStorage.removeItem(key);
         localStorage.removeItem(productImageKey);
+        updateBadge();
 
         // 선택된 상품 목록에 추가
         selectedProducts.push(cartItem);
