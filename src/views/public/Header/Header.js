@@ -1,4 +1,10 @@
-import updateBadge from '/public/utils/updateBadge.js';
+import updateBadge from '/public/utils/UpdateBadge.js';
+
+// 페이지가 로드될 때 실행
+window.addEventListener('load', () => {
+  fetchHeader();
+  updateBadge();
+});
 
 async function fetchHeader() {
   try {
@@ -19,9 +25,3 @@ async function fetchHeader() {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
   }
 }
-
-fetchHeader();
-// 페이지가 로드될 때 실행
-window.addEventListener('load', () => {
-  updateBadge();
-});

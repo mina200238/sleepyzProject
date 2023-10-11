@@ -34,9 +34,10 @@ const getProductInfo = async function () {
 
     // 상품 상세 페이지 장바구니 담기 버튼
     const addtoCartBtn = document.querySelector('.addtocart-btn');
-    // 장바구니 담기 누르면 localstorage에 데이터 추가
+    // 장바구니 담기 누르면 localstorage에 데이터 추가npm s
     addtoCartBtn.addEventListener('click', async function () {
       addToCart(productInfo, currentQuantity);
+      console.log(localStorage.length);
       if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
         window.location.href = '/pages/Cart/Cart.html';
       }

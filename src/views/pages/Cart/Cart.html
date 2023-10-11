@@ -31,96 +31,28 @@
 
           <!-------------------------------------- 장바구니 상품 영역 --------------------------------------------->
           <ul class="cart-list">
-            <!-- <li class="cart-item">
+            <li class="cart-item">
               <input id="prod1" type="checkbox" value="" />
               <label for="prod1">
                 <div class="item">
                   <div class="img-box">
-                    <img
-                      class=""
-                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169200373284736398.jpg?gif=1&w=640&h=640&c=c&webp=1"
-                      alt=""
-                    />
+                    <img class="product-img" src="" alt="" />
                   </div>
                   <div class="cartitems-info">
-                    <span class="item-name">미드센추리 빈티지맨션 60수 고밀도순면 차렵이불세트 5컬러</span>
-                    <span class="item-price">65,900 원</span>
+                    <span class="item-name"></span>
+                    <span class="item-price"><i class="price"></i> 원</span>
                     <div class="amount-opt">
-                      <label for="count">수량 변경</label>
-                      <select id="count" name="count">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                      </select>
+                      <form action="">
+                        <label for="quantity">수량</label>
+                        <input type="button" id="minus" value="-" />
+                        <input type="text" id="quantity" value="1" size="1" />
+                        <input type="button" id="plus" value="+" />
+                      </form>
                     </div>
                   </div>
                 </div>
               </label>
             </li>
-            <li class="cart-item">
-              <input id="prod2" type="checkbox" value="" />
-              <label for="prod2">
-                <div class="item">
-                  <div class="img-box">
-                    <img
-                      class=""
-                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169200373284736398.jpg?gif=1&w=640&h=640&c=c&webp=1"
-                      alt=""
-                    />
-                  </div>
-                  <div class="cartitems-info">
-                    <span class="item-name">미드센추리 빈티지맨션 60수 고밀도순면 차렵이불세트 5컬러</span>
-                    <span class="item-price">65,900 원</span>
-                    <div class="amount-opt">
-                      <label for="count">수량 변경</label>
-                      <select id="count" name="count">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </label>
-            </li>
-            <li class="cart-item">
-              <input id="prod3" type="checkbox" value="" />
-              <label for="prod3">
-                <div class="item">
-                  <div class="img-box">
-                    <img
-                      class=""
-                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/images/169200373284736398.jpg?gif=1&w=640&h=640&c=c&webp=1"
-                      alt=""
-                    />
-                  </div>
-                  <div class="cartitems-info">
-                    <span class="item-name">미드센추리 빈티지맨션 60수 고밀도순면 차렵이불세트 5컬러</span>
-                    <span class="item-price">65,900 원</span>
-                    <div class="amount-opt">
-                      <label for="count">수량 변경</label>
-                      <select id="count" name="count">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </label>
-            </li> -->
           </ul>
         </div>
 
@@ -129,17 +61,17 @@
           <h2 class="title">주문 내역</h2>
           <div class="total-price">
             <span>총 상품 금액</span>
-            <span>36,000원</span>
+            <span id="product-total"></span>
           </div>
           <div class="shipping-fee">
             <span>배송비</span>
-            <span>2500원</span>
+            <span id="shipping-price"></span>
           </div>
           <div class="total-payment">
             <span>결제 금액</span>
-            <span>38,500원</span>
+            <span id="total-price"></span>
           </div>
-          <button class="purchase-btn"><a href="">구매하기</a></button>
+          <button class="purchase-btn disabled"><a href="">구매하기</a></button>
         </div>
       </section>
     </main>
