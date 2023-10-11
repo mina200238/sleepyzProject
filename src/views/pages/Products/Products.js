@@ -86,7 +86,6 @@ console.log('Current category :', category);
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
-  // 카테고리 정보가 있으면 해당 카테고리의 상품만 서버에서 가져옵니다.
   axios
     .get(`${BASE_URL}/products/category`, {
       params: {
@@ -109,7 +108,6 @@ if (category) {
     .then((response) => {
       const allProducts = response.data.data;
 
-      // 현재 페이지를 1로 설정하고, 전체 상품 데이터를 화면에 표시
       currentPage = 1;
       showProductsByPage(currentPage, allProducts);
 
