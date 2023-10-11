@@ -23,9 +23,9 @@ const app = firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 
 const inp = document.querySelector('.inp');
-const uploadBtn = document.querySelector('.upload');
-const selectImgBtn = document.querySelector('.selectImage');
+const selectImageBtn = document.querySelector('.selectImage');
 const progressbar = document.querySelector('.progress');
+const uploadBtn = document.querySelector('.upload');
 const img = document.querySelector('.img');
 const body = document.querySelector('body');
 const metaData = document.querySelector('.metaData');
@@ -39,9 +39,9 @@ let fileName;
 let progress;
 let uploadedFileName;
 
-selectImgBtn.addEventListener('click', getImageData);
-
-inp.addEventListener('change', getImageData);
+selectImageBtn.addEventListener('click', () => {
+  inp.click();
+});
 
 const getImageData = (e) => {
   files = e.target.files;
@@ -54,7 +54,7 @@ const getImageData = (e) => {
   }
 };
 
-uploadBtn.addEventListener('click', uploadImage);
+inp.addEventListener('change', getImageData);
 
 const uploadImage = async () => {
   for (let i = 0; i < files.length; i++) {
@@ -72,6 +72,8 @@ const uploadImage = async () => {
     }
   }
 };
+
+uploadBtn.addEventListener('click', uploadImage);
 
 const uploadProcess = (file, fileName) => {
   return new Promise((resolve, reject) => {
