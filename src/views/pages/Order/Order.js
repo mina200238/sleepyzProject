@@ -73,7 +73,7 @@ purchaseBtn.addEventListener('click', async function (e) {
     if (confirm('상품을 구매하시겠습니까?')) {
       alert('구매가 완료되었습니다!');
       //post 요청의 res로 받은 order_id를 다음 페이지인 주문완료페이지로 전달하기(url 사용)
-      window.location.href = `/pages/Order-Completed/Order-Completed.html?order_id=${res.data.data.order_id}`;
+      window.location.href = `/pages/Order-Completed?order_id=${res.data.data.order_id}`;
     } else {
       alert('구매가 취소되었습니다.');
     }
