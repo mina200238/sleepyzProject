@@ -80,114 +80,66 @@ function showProductsByPage(pageNumber, products) {
     productContainer.appendChild(productLink);
   });
 }
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get('category');
 
-axios
-  .get(`${BASE_URL}/products`)
-  .then((response) => {
-    const products = response.data.data;
-
-    showProductsByPage(currentPage, products);
-
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const pageButtons = document.querySelectorAll('.pagination-bar .link');
-
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        showProductsByPage(currentPage, products);
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      const maxPages = Math.ceil(products.length / itemsPerPage);
-      if (currentPage < maxPages) {
-        currentPage++;
-        showProductsByPage(currentPage, products);
-      }
-    });
-
-    pageButtons.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        currentPage = Number(e.target.value);
-        showProductsByPage(currentPage, products);
-      });
-    });
+//카테고리별 데이터 가져오기 (수정중)
+if (category) {
+  axios({
+    method: 'get',
+    url: `${BASE_URL}/products/categories`,
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      category_name: category,
+    },
   })
-  .catch((error) => {
-    console.error('데이터를 불러올 수 없습니다:', error);
-  });
+    .then((response) => {
+      const productsByCategory = response.data.data;
+      // console.log(response.data); 데이터 들어오는 거 콘솔은 찍히는데;흠
+      // 받아온 상품 데이터를 화면에 표시
+      showProductsByPage(currentPage, productsByCategory);
+    })
+    .catch((error) => {
+      console.error('카테고리 기반의 상품 데이터를 불러오는데 실패했습니다:', error);
+    });
+} else {
+  // 카테고리 정보가 없으면 전체 상품 데이터를 가져옵니다.
+  axios
+    .get(`${BASE_URL}/products`)
+    .then((response) => {
+      const allProducts = response.data.data;
 
-// //필터 구현해야 하는 코드(수정중)
+      // 현재 페이지를 1로 설정하고, 전체 상품 데이터를 화면에 표시
+      currentPage = 1;
+      showProductsByPage(currentPage, allProducts);
 
-// // let currentPage = 1;
-// // let filteredProducts = [];
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      const pageButtons = document.querySelectorAll('.pagination-bar .link');
 
-// // function updateURI() {
-// //   const currentURL = window.location.href.split('?')[0];
-// //   const newURL = `${currentURL}?page=${currentPage}`;
-// //   window.history.pushState({ page: currentPage }, '', newURL);
-// // }
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          showProductsByPage(currentPage, allProducts);
+        }
+      });
 
-// // document.addEventListener('DOMContentLoaded', function () {
-// //   const itemsPerPage = 9;
-// //   let products = Array.from(document.querySelectorAll('.product-card'));
-// //   let totalPage = Math.ceil(products.length / itemsPerPage);
-// //   let filteredProducts = Array.from(document.querySelectorAll('.product-card'));
+      nextBtn.addEventListener('click', () => {
+        const maxPages = Math.ceil(allProducts.length / itemsPerPage);
+        if (currentPage < maxPages) {
+          currentPage++;
+          showProductsByPage(currentPage, allProducts);
+        }
+      });
 
-// //   products.forEach((product) => (product.style.display = 'block'));
-
-// //   function filterProducts(category) {
-// //     if (category === '전체' || category === 'Products') {
-// //       products.forEach((product) => (product.style.display = 'block'));
-// //     } else {
-// //       products.forEach((product) => {
-// //         if (product.getAttribute('data-category') === category) {
-// //           product.style.display = 'block';
-// //         } else {
-// //           product.style.display = 'none';
-// //         }
-// //       });
-// //     }
-// //     filteredProducts = products.filter((product) => product.style.display === 'block');
-
-// //     currentPage = 1;
-// //     totalPage = Math.ceil(filteredProducts.length / itemsPerPage);
-// //     updateView();
-// //     updateURI();
-// //   }
-// //   function updateView() {
-// //     products.forEach((product) => (product.style.display = 'none'));
-
-// //     const startIndex = (currentPage - 1) * itemsPerPage;
-// //     const endIndex = startIndex + itemsPerPage;
-// //     filteredProducts.slice(startIndex, endIndex).forEach((product) => {
-// //       product.style.display = 'block';
-// //     });
-// //   }
-
-// //   document.querySelector('.pagination-bar').addEventListener('click', function (e) {
-// //     if (e.target.classList.contains('link')) {
-// //       currentPage = parseInt(e.target.value);
-// //     } else if (e.target.classList.contains('prev-btn')) {
-// //       if (currentPage > 1) currentPage--;
-// //     } else if (e.target.classList.contains('next-btn')) {
-// //       if (currentPage < totalPage) currentPage++;
-// //     }
-// //     updateView();
-// //     updateURI();
-// //   });
-
-// //   const categories = document.querySelectorAll('.category-item a');
-
-// //   categories.forEach((category) => {
-// //     category.addEventListener('click', function (event) {
-// //       event.preventDefault();
-
-// //       let currentCategory = this.getAttribute('href').substring(1);
-// //       filterProducts(currentCategory);
-// //     });
-// //   });
-
-// //   filterProducts('전체');
-// // });
+      pageButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          currentPage = Number(e.target.value);
+          showProductsByPage(currentPage, allProducts);
+        });
+      });
+    })
+    .catch((error) => {
+      console.error('전체 상품 데이터를 불러오는데 실패했습니다:', error);
+    });
+}
