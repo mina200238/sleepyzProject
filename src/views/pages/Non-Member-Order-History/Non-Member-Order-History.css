@@ -1,0 +1,57 @@
+@import '/public/css/reset.css';
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  font-size: 14px;
+  margin-top: 80px;
+}
+
+.container-history {
+  width: 400px;
+}
+
+.history-check {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.history-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #edf2f7;
+}
+
+.check-box {
+  text-align: center;
+}
+
+.check-btn {
+  width: 100px;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+.check-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.check-btn:hover {
+  background-color: #9261e8;
+}

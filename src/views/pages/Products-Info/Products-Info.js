@@ -42,11 +42,12 @@ const getProductInfo = async function () {
       }
     });
 
+    //주문 페이지로 이동하기
     const buyNowbtn = document.querySelector('.purchase-btn');
     buyNowbtn.addEventListener('click', async function () {
       addToCart(productInfo, quantityInput.value);
       if (window.confirm('주문 작성 페이지로 이동하시겠습니까?')) {
-        window.location.href = '/pages/Order/Order.html';
+        window.location.href = `/pages/Order/Order.html?product_id=${productId}&quantity=${currentQuantity}`;
       }
     });
   } catch (error) {
