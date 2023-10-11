@@ -57,7 +57,11 @@ function showProductsByPage(pageNumber, products) {
 
     // 이미지 요소 생성
     const productImage = document.createElement('img');
-    productImage.src = product.image_id.thumbnail_url[0];
+    if (product && product.image_id && product.image_id.thumbnail_url && product.image_id.thumbnail_url[0]) {
+      productImage.src = product.image_id.thumbnail_url[0];
+    } else {
+      console.error('상품 이미지 정보가 올바르지 않습니다:', product);
+    }
     productImage.alt = `${product.name} Image`;
 
     // 상품 정보를 표시하는 요소들 생성 및 설정
@@ -82,21 +86,30 @@ function showProductsByPage(pageNumber, products) {
 }
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category');
-console.log('Current category :', category);
+
+const categoryMapping = {
+  blanket: '이불',
+  pillow: '베개',
+  bed: '침대',
+  cover: '커버',
+};
+const categoryTitleElement = document.querySelector('.product-list h2');
+categoryTitleElement.textContent = categoryMapping[category] || '전체 상품';
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
+  const categoryNameInKorean = categoryMapping[category];
+
   axios
-    .get(`${BASE_URL}/product/category`, {
+    .get(`${BASE_URL}/products/category`, {
       params: {
-        category_name: category,
+        category_name: categoryNameInKorean,
       },
     })
     .then((response) => {
+      console.log(response.data);
       const productsByCategory = response.data.data;
       showProductsByPage(currentPage, productsByCategory);
-      const categoryTitle = document.querySelector('.product-list h2');
-      categoryTitle.textContent = category || '전체 상품';
     })
     .catch((error) => {
       console.error('카테고리 기반의 상품 데이터를 불러오는데 실패했습니다:', error);
@@ -108,6 +121,7 @@ if (category) {
     .then((response) => {
       const allProducts = response.data.data;
 
+      // 현재 페이지를 1로 설정하고, 전체 상품 데이터를 화면에 표시
       currentPage = 1;
       showProductsByPage(currentPage, allProducts);
 
@@ -121,7 +135,6 @@ if (category) {
           showProductsByPage(currentPage, allProducts);
         }
       });
-
       nextBtn.addEventListener('click', () => {
         const maxPages = Math.ceil(allProducts.length / itemsPerPage);
         if (currentPage < maxPages) {
@@ -129,7 +142,6 @@ if (category) {
           showProductsByPage(currentPage, allProducts);
         }
       });
-
       pageButtons.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           currentPage = Number(e.target.value);
