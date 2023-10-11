@@ -1,46 +1,6 @@
-// 테스트용 데이터
-const prodMockData = '/src/static/fakeData.json';
-
-let cartData = [];
-
 // 장바구니 데이터 가져오기
 const getCartData = async function () {
   try {
-    // indexedDB 초기화
-    const dbName = 'shoppingCartDB';
-    const dbVersion = '1';
-    const request = indexedDB.open(dbName, dbVersion);
-
-    request.onerror = function (event) {
-      console.error('데이터베이스 생성 에러: ', event.target.errorCode);
-    };
-
-    // 요청 성공 시,
-    request.onsuccess = async function (event) {
-      const db = event.target.result;
-      const transaction = db.transaction(['cart'], 'readwrite');
-      const store = transaction.objectStore('cart');
-
-      // 모든 장바구니 데이터 가져오기
-      const cartDataAll = await store.getAll();
-      console.log(cartDataAll);
-
-      renderCartData(cartDataAll);
-
-      // // 모든 장바구니 데이터 가져오기
-      // const cursor = store.openCursor();
-      // cursor.onsuccess = function (event) {
-      //   const cursorResult = event.target.result;
-
-      //   if (cursorResult) {
-      //     cartData.push(cursorResult.value);
-      //     cursorResult.continue();
-      //   } else {
-      //     // 장바구니 데이터를 화면에 보여주는 함수 호출
-      //     renderCartData();
-      //   }
-      // };
-    };
   } catch (error) {
     console.error('데이터를 로드할 수 없습니다', error);
   }
@@ -68,16 +28,12 @@ const renderCartData = function (data) {
             <span class="item-name">${product.name}</span>
             <span class="item-price">${product.price.toLocaleString()} 원</span>
             <div class="amount-opt">
-              <label for="count">수량 변경</label>
-              <select id="count" name="count">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-              </select>
+              <form action="">
+                <label for="quantity">수량</label>
+                <input type="button" id="minus" value="-">
+                <input type="text" id="quantity" value="1" size="1"/>
+                <input type="button" id="plus" value="+">
+              </form>
             </div>
           </div>
         </div>
