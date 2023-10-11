@@ -23,6 +23,7 @@
 .message-thank-you {
   font-size: 20px;
   margin: 20px 0;
+  font-weight: bold;
 }
 
 #order_id {
@@ -35,7 +36,26 @@
   width: 300px;
 }
 
-.purchase-btn {
+.order-confirmation-btn {
+  background-color: #ffffff;
+  outline: none;
+  border: 1px solid #cecece;
+  border-radius: 50px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  height: fit-content;
+}
+.order-confirmation-link {
+  display: block;
+  height: 100%;
+  margin: 1px 10px;
+}
+.order-confirmation-btn:hover {
+  background-color: #cecece;
+}
+
+.continue-shopping-btn {
   background-color: #b89fe5;
   outline: none;
   border: none;
@@ -45,11 +65,12 @@
   font-size: 16px;
   height: fit-content;
 }
-.purchase-btn .purchase-link {
+.continue-shopping-link {
   display: block;
   height: 100%;
   color: #fff;
+  margin: 1px 10px;
 }
-.purchase-btn:hover {
+.continue-shopping-btn:hover {
   background-color: #9261e8;
 }
