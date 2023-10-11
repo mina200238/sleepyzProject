@@ -23,6 +23,9 @@ app.use(express.static(path.join(__dirname, '/views'))); // 정적 파일 서빙
 app.use(cors()); // cors 허용
 app.use(express.json()); // body-parser
 
+// 정적 파일 사용
+app.use(express.static(path.join(__dirname, '/views')));
+
 app.use('/products', productRouter); // 상품 관련 기능
 app.use('/orders', orderRouter); // 주문 관련 기능
 app.use('/users', userRouter); // 유저 관련 기능

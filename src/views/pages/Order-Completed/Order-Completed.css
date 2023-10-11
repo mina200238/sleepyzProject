@@ -1,4 +1,4 @@
-@import '/src/views/public/css/reset.css';
+@import '/public/css/reset.css';
 
 #container {
   display: flex;
@@ -6,11 +6,28 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  font-size: 14px;
+}
+
+.order-completed-message {
+  display: flex;
+  margin-bottom: 50px;
 }
 
 .message {
-  font-size: 24px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.message-thank-you {
+  font-size: 20px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+#order_id {
+  font-size: 16px;
 }
 
 .button-container {
@@ -19,7 +36,41 @@
   width: 300px;
 }
 
-.button-container .btn-group {
-  padding: 10px 20px;
+.order-confirmation-btn {
+  background-color: #ffffff;
+  outline: none;
+  border: 1px solid #cecece;
+  border-radius: 50px;
+  font-weight: bold;
+  line-height: 40px;
   font-size: 16px;
+  height: fit-content;
+}
+.order-confirmation-link {
+  display: block;
+  height: 100%;
+  margin: 1px 10px;
+}
+.order-confirmation-btn:hover {
+  background-color: #cecece;
+}
+
+.continue-shopping-btn {
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  height: fit-content;
+}
+.continue-shopping-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+  margin: 1px 10px;
+}
+.continue-shopping-btn:hover {
+  background-color: #9261e8;
 }

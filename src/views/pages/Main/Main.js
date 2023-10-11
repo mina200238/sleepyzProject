@@ -3,13 +3,10 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.main-banner .slides img');
 const totalSlides = slides.length;
 
+// 다음 슬라이드로 전환
 document.querySelector('.nextSlide').addEventListener('click', function () {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  updateSlide();
-});
-
-document.querySelector('.prevSlide').addEventListener('click', function () {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  currentSlide++;
+  if (currentSlide === totalSlides) currentSlide = 0;
   updateSlide();
 });
 
@@ -18,14 +15,15 @@ function updateSlide() {
   document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
 }
 
-// 자동 슬라이드 기능
+// 자동 슬라이드 기능: 계속 오른쪽으로 움직이도록 변경
 let slideInterval = setInterval(function () {
-  currentSlide = (currentSlide + 1) % totalSlides;
+  currentSlide++;
+  if (currentSlide === totalSlides) currentSlide = 0;
   updateSlide();
 }, 6000);
 
 // 상품 데이터를 가져와서 화면에 출력하는 부분
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = 'http://localhost:5000';
 const productContainer = document.querySelector('.products-wrap');
 
 function showMainProducts(products) {

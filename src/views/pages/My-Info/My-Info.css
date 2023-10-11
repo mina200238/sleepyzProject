@@ -1,1 +1,58 @@
-@import '/src/views/public/css/reset.css';
+@import '/public/css/reset.css';
+
+.info-section {
+  width: 580px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.info-section h2 {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.login-form label {
+  display: block;
+  margin-top: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sign-in-btn,
+.sign-up-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-group {
+  margin-top: 60px;
+  display: flex;
+}
+
+.btn-group button {
+  width: 230px;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 50px;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Pretendard';
+  color: #fff;
+  font-size: 16px;
+  background-color: #b89fe5;
+  transition: all 0.3s;
+}
+.btn-group button:hover {
+  background-color: #9261e8;
+}

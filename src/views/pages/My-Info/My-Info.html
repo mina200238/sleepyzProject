@@ -4,17 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My-Info</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/src/views/public/Header/Header.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/src/views/public/Footer/Footer.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/src/views/pages/Products/Products.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Header/Header.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/pages/My-Info/My-Info.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
-    <script type="module" src="/src/views/pages/Products/Products.js" defer></script>
-    <script type="module" src="/src/views/public/Header/Header.js" defer></script>
-    <script type="module" src="/src/views/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/pages/My-Info/My-Info.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
   </head>
   <body>
     <header id="header"></header>
-    <main id="container"></main>
+    <main id="container">
+      <section class="info-section">
+        <h2>회원정보수정</h2>
+
+        <form action="#" method="POST">
+          <div class="input-group">
+            <label for="username">이름</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+
+          <div class="input-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="input-group">
+            <label for="tel">전화번호</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">암호</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit">회원 정보 수정</button>
+            <button type="reset">비밀번호 변경</button>
+          </div>
+        </form>
+      </section>
+    </main>
     <footer id="footer"></footer>
   </body>
 </html>
