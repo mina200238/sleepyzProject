@@ -30,32 +30,73 @@ function showMainProducts(products) {
   const productsToShow = products.slice(0, 9);
 
   productsToShow.forEach((product) => {
+    // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/Products-Info.html?id=${product._id}`;
+    productLink.href = `/products/${product._id}`;
     productLink.classList.add('product-link');
 
+    productLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      // 클릭된 상품의 ID를 얻습니다.
+      const clickedProductId = product._id;
+      window.location.href = `/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+
+      // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('product_id');
+      console.log(productId);
+
+      try {
+        // 상세 정보를 가져올 때는 async/await를 사용합니다.
+        const response = await axios.get(`${BASE_URL}/products/${clickedProductId}`);
+        const productDetails = response.data.data; // 상세 정보를 가져온다고 가정
+        console.log(productDetails);
+
+        // 가져온 상세 정보를 HTML에 표시합니다.
+        const productNameElement = document.querySelector('.prod-name');
+        const productPriceElement = document.querySelector('.price');
+        const productCountryElement = document.querySelector('.country');
+        const productShippingFeeElement = document.querySelector('.shipping-fee');
+
+        productNameElement.textContent = productDetails.name;
+        productPriceElement.textContent = `${productDetails.price}원`;
+
+        // 필요한 정보를 가져와서 표시한 후에 원하는 동작을 수행할 수 있습니다.
+      } catch (error) {
+        console.error('상세 정보를 가져올 수 없습니다:', error);
+      }
+    });
+
+    // 상품 카드 요소를 생성
     const productCard = document.createElement('div');
     productCard.classList.add('product-card');
 
+    // 이미지 래퍼 요소 생성
     const imageWrapper = document.createElement('div');
     imageWrapper.classList.add('image-wrapper');
 
+    // 이미지 요소 생성
     const productImage = document.createElement('img');
     productImage.src = product.image_id.thumbnail_url[0];
     productImage.alt = `${product.name} Image`;
 
+    // 상품 정보를 표시하는 요소들 생성 및 설정
     const productName = document.createElement('p');
     productName.textContent = product.name;
 
     const productPrice = document.createElement('span');
     productPrice.textContent = `${product.price}원`;
 
+    // 상품 카드에 이미지 및 정보 요소 추가
     productCard.appendChild(imageWrapper);
     imageWrapper.appendChild(productImage);
     productCard.appendChild(productName);
     productCard.appendChild(productPrice);
 
+    // 상품 링크에 상품 카드 추가
     productLink.appendChild(productCard);
+
+    // 부모 요소에 상품 링크 추가
     productContainer.appendChild(productLink);
   });
 }
