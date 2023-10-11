@@ -39,7 +39,7 @@ function showMainProducts(products) {
       e.preventDefault();
       // 클릭된 상품의 ID를 얻습니다.
       const clickedProductId = product._id;
-      window.location.href = `/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+      window.location.href = `/pages/Product-Info?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);

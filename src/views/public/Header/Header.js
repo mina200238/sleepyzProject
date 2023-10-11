@@ -14,7 +14,7 @@ async function fetchHeader() {
       link.addEventListener('click', function (event) {
         event.preventDefault();
         const categoryName = event.target.textContent;
-        window.location.href = `/pages/Products/Products.html?category=${encodeURIComponent(categoryName)}`;
+        window.location.href = `/pages/Product/Product.html?category=${encodeURIComponent(categoryName)}`;
       });
     });
   } catch (error) {

@@ -19,7 +19,7 @@ function showProductsByPage(pageNumber, products) {
       e.preventDefault();
       // 클릭된 상품의 ID를 얻습니다.
       const clickedProductId = product._id;
-      window.location.href = `/pages/Product-Info/Product-Info.html?product_id=${clickedProductId}`;
+      window.location.href = `/pages/Product-Info?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +28,7 @@ function showProductsByPage(pageNumber, products) {
 
       try {
         // 상세 정보를 가져올 때는 async/await를 사용합니다.
-        const response = await axios.get(`${BASE_URL}/product/${clickedProductId}`);
+        const response = await axios.get(`${BASE_URL}/products/${clickedProductId}`);
         const productDetails = response.data.data; // 상세 정보를 가져온다고 가정
         console.log(productDetails);
 
@@ -104,7 +104,7 @@ if (category) {
 } else {
   // 카테고리 정보가 없으면 전체 상품 데이터를 가져옵니다.
   axios
-    .get(`${BASE_URL}/product`)
+    .get(`${BASE_URL}/products`)
     .then((response) => {
       const allProducts = response.data.data;
 
