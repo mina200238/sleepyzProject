@@ -41,7 +41,7 @@ const createCategory = async (req, res, next) => {
 
 const updateCategory = async (req, res, next) => {
   try {
-    const { category_id, category_name } = req.body;
+    // const { category_id, category_name } = req.body;
     if (!category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
 
     const adminService = new AdminService();
@@ -58,7 +58,7 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   try {
-    const { category_id } = req.body;
+    const { category_id } = req.headers;
 
     const adminService = new AdminService();
     const isObjectId = await adminService.checkObjectId(category_id);
@@ -101,7 +101,7 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   // 상품 삭제
   try {
-    const { product_id } = req.body;
+    const { product_id } = req.headers;
     if (!product_id) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
@@ -173,7 +173,7 @@ const updateOrders = async (req, res, next) => {
 // 해당 사용자의 주문 내역 삭제
 const deleteOrders = async (req, res, next) => {
   try {
-    const { order_id } = req.body;
+    const { order_id } = req.headers;
     const adminService = new AdminService();
     const updatedUserInfo = await adminService.deleteOrders(order_id);
     res.status(200).json({
