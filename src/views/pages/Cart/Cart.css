@@ -52,16 +52,20 @@ input[type='checkbox'] {
 .cart-item {
   display: flex;
 }
-.cart-item .item {
+.cart-item {
   display: flex;
   margin-bottom: 20px;
 }
-.cart-item .item .img-box {
+.cart-item .img-box {
   width: 180px;
+  height: 180px;
+  border-radius: 5px;
 }
 
-.cart-item .item img {
+.cart-item img {
   width: 100%;
+  height: 100%;
+  border-radius: 5px;
 }
 
 .cartitems-info {
@@ -145,4 +149,8 @@ input[type='checkbox'] {
 }
 .order-summary .purchase-btn:hover {
   background-color: #9261e8;
+}
+
+.order-summary .purchase-btn:disabled {
+  background-color: #b89fe5;
 }

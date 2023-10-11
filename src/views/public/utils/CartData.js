@@ -1,8 +1,9 @@
-import updateBadge from '/public/utils/updateBadge.js';
+import updateBadge from '/public/utils/UpdateBadge.js';
 
 // 장바구니 데이터를 로컬 스토리지에서 가져오는 함수
-function getCart() {
-  const cart = localStorage.getItem('added Item');
+function getCart(product) {
+  // const productId = String(product._id);
+  const cart = localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : [];
 }
 
@@ -32,8 +33,18 @@ function addToCart(product, currentQuantity) {
       quantity: currentQuantity,
     });
   }
+  // 상품의 이미지를 로컬 스토리지에 저장
+  localStorage.setItem(`productImage_${product._id}`, product.image_id.thumbnail_url[0]);
+
   saveCart(product, cart); // 장바구니 데이터를 로컬 스토리지에 저장
   updateBadge();
 }
 
-export { getCart, saveCart, addToCart };
+// 장바구니에서 상품 삭제하는 함수
+function removeFromCart(product) {
+  const productId = String(product._id);
+  localStorage.removeItem(`product_${productId}`);
+  updateBadge();
+}
+
+export { getCart, saveCart, addToCart, removeFromCart };
