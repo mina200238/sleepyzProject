@@ -1,4 +1,44 @@
-/* header 영역 */
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #ece1ff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.category-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown li {
+  padding: 10px 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown li:hover {
+  background-color: #f9f9f9;
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.dropdown li a {
+  color: #333;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 3;
+  display: block;
+}
+
+.dropdown li a:hover {
+  color: #9261e8;
+}
 
 #header {
   background-color: #fff;
@@ -15,9 +55,10 @@
   max-width: 1256px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 }
+
 #header.logo {
   display: block;
   height: 100%;
@@ -27,6 +68,9 @@
   height: auto;
 }
 
+.category {
+  margin-left: 100px;
+}
 .category .category-list {
   display: flex;
   justify-content: start;
@@ -49,6 +93,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  margin-left: auto;
 }
 .utils img {
   width: 25px;
