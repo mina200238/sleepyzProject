@@ -17,7 +17,23 @@ const makeOrder = async (req, res, next) => {
 };
 
 const getUserOrders = async (req, res, next) => {
-  // 주문 조회
+  // 회원 주문 조회
+  try {
+    const decoded = req.decoded;
+    const findEmail = decoded.user.email;
+    const orderService = new OrderService();
+    const findData = await orderService.getUserOrders(findEmail);
+    if (findData.length === 0) {
+      throw new NotFoundError('주문을 찾을 수 없습니다.');
+    }
+    res.status(200).json({ data: findData, message: '주문 조회 성공' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getNonMemberOrders = async (req, res, next) => {
+  // 비회원 주문 조회
   try {
     const { email } = req.query;
     const orderService = new OrderService();
@@ -31,4 +47,4 @@ const getUserOrders = async (req, res, next) => {
   }
 };
 
-module.exports = { makeOrder, getUserOrders };
+module.exports = { makeOrder, getUserOrders, getNonMemberOrders };
