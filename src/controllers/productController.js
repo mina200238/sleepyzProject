@@ -22,6 +22,7 @@ const getRecentProducts = async (req, res, next) => {
     const { limit } = req.query;
     const productService = new ProductService();
     const recentProducts = await productService.getRecentProducts(limit);
+
     if (recentProducts.length === 0) {
       throw new NotFoundError('상품이 없습니다!!@@');
     }
