@@ -46,6 +46,7 @@ const renderCartData = function () {
   // 장바구니에 담긴 상품이 없을 때
   if (localStorage.length === 0) {
     const noItemsText = document.createElement('p');
+    noItemsText.classList.add('empty-cart');
     noItemsText.textContent = '장바구니에 담긴 상품이 없습니다 🛒';
     cartList.appendChild(noItemsText);
 
@@ -80,7 +81,6 @@ const renderCartData = function () {
       checkbox.setAttribute('data-product-id', productId);
       checkbox.checked = true;
 
-      // 여기서 각각의 체크박스 요소에 change 이벤트 리스너를 추가합니다.
       checkbox.addEventListener('change', function () {
         updateAllCheckboxes();
         updateOrderSummary();
@@ -264,7 +264,7 @@ function updateOrderSummary() {
         totalProductPrice += productTotalPrice;
 
         if (quantity > 0) {
-          hasProducts = true; // 수량이 1 이상인 상품이 있을 경우
+          hasProducts = true;
         }
       }
     }
@@ -276,12 +276,10 @@ function updateOrderSummary() {
   // 총 결제 금액 계산
   const totalPrice = totalProductPrice + shippingPrice;
 
-  // 요소 가져오기
   const productTotalElement = document.getElementById('product-total');
   const shippingPriceElement = document.getElementById('shipping-price');
   const totalPriceElement = document.getElementById('total-price');
 
-  // 데이터 삽입
   productTotalElement.textContent = `${totalProductPrice.toLocaleString()}원`;
   shippingPriceElement.textContent = `${shippingPrice.toLocaleString()}원`;
   totalPriceElement.textContent = `${totalPrice.toLocaleString()}원`;
@@ -290,7 +288,6 @@ function updateOrderSummary() {
 // 구매 버튼 클릭 시, 주문 페이지로 이동
 const purchaseButton = document.querySelector('.purchase-btn');
 purchaseButton.addEventListener('click', function () {
-  // 구매 프로세스 실행
   if (window.confirm('주문을 계속 진행하시겠습니까?')) {
     window.location.href = '/pages/Order/Order.html';
   }
@@ -300,11 +297,9 @@ function getDataFromLocalStorage(productId) {
   const productKey = `product_${productId}`;
   const productInfo = localStorage.getItem(productKey);
 
-  // 만약 로컬 스토리지에 해당 상품 정보가 저장되어 있다면 JSON 파싱하여 반환
   if (productInfo) {
     return JSON.parse(productInfo);
   } else {
-    // 해당 productId에 대한 상품 정보가 없을 경우 처리
-    return null; // 또는 다른 값을 반환하거나 오류 처리를 수행할 수 있습니다.
+    return null;
   }
 }
