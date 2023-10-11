@@ -13,6 +13,10 @@ const adminRouter = require('./routers/adminRouter');
 const ViewRouter = require('./routers/viewRouter');
 const errorHandler = require('./middlewares/errorHandler');
 const isAdmin = require('./middlewares/isAdmin');
+const uploadToFireStore = require('./middlewares/uploadToFireStore');
+
+// const router = express.Router();
+const multerRouter = require('./routers/multerRouter');
 
 connectDB();
 
@@ -26,6 +30,8 @@ app.use(express.json()); // body-parser
 app.use(express.static(path.join(__dirname, '/views')));
 
 app.use('/pages', ViewRouter); // 페이지 라우터
+
+app.use('/multer', multerRouter); // multer
 
 app.use('/products', productRouter); // 상품 관련 기능
 app.use('/orders', orderRouter); // 주문 관련 기능
