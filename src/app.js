@@ -13,7 +13,7 @@ const adminRouter = require('./routers/adminRouter');
 const ViewRouter = require('./routers/viewRouter');
 const errorHandler = require('./middlewares/errorHandler');
 const isAdmin = require('./middlewares/isAdmin');
-const uploadRouter = require('./routers/uploadRouter');
+// const uploadRouter = require('./routers/uploadRouter');
 
 connectDB();
 
