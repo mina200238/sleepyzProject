@@ -1,57 +1,13 @@
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>404 Not Found</title>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #ece1ff;
-        font-family: 'Arial', sans-serif;
-      }
-      .container {
-        text-align: center;
-      }
-      h1 {
-        font-size: 180px;
-      }
-      p {
-        color: #888;
-        font-size: 22px;
-        max-width: 500px;
-        margin: auto;
-      }
-      .back-link {
-        padding-top: 10%;
-        display: inline-block;
-        text-decoration: none;
-        color: #bc22e2;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>404</h1>
-      <p>Oops! 잘못된 경로입니다!</p>
-      <div><a href="/" class="back-link">메인페이지로 가기</a></div>
-    </div>
-  </body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/reset.css">
     <title>페이지를 찾을 수 없음 - 404 오류</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             background-color: #ece1ff;
             display: flex;
             flex-direction: column;
@@ -74,7 +30,7 @@
 
         .error-text {
             font-size: 3rem;
-            color: #ef40ff;
+            color: #9261E8;
             font-weight: bold;
             margin-bottom: 20px;
             animation: slideIn 1s ease-in-out;
@@ -83,14 +39,15 @@
         .message {
             font-size: 1.8rem;
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
             animation: slideIn 1s ease-in-out;
+            font-weight: bold;
         }
 
         .back-link {
             text-decoration: none;
             color: #fff;
-            background-color: #ef40ff;
+            background-color: #B89FE5;
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: bold;
@@ -98,7 +55,7 @@
         }
 
         .back-link:hover {
-            background-color: #930691;
+            background-color: #9261E8;
         }
 @keyframes fadeIn {
             from {
