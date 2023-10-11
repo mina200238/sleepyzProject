@@ -19,9 +19,9 @@ const makeOrder = async (req, res, next) => {
 const getUserOrders = async (req, res, next) => {
   // 주문 조회
   try {
-    const { user_id } = req.params;
+    const { email } = req.query;
     const orderService = new OrderService();
-    const findData = await orderService.getUserOrders(user_id);
+    const findData = await orderService.getUserOrders(email);
     if (findData.length === 0) {
       throw new NotFoundError('주문을 찾을 수 없습니다.');
     }
@@ -30,7 +30,5 @@ const getUserOrders = async (req, res, next) => {
     next(err);
   }
 };
-
-
 
 module.exports = { makeOrder, getUserOrders };
