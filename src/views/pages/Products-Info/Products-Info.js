@@ -1,4 +1,4 @@
-import { addToCart } from '/public/utils/CartData.js';
+import { getCart, addToCart } from '/public/utils/CartData.js';
 const BASE_URL = 'http://localhost:5000';
 const quantityInput = document.getElementById('quantity');
 let currentQuantity = 1;
@@ -36,11 +36,9 @@ const getProductInfo = async function () {
     const addtoCartBtn = document.querySelector('.addtocart-btn');
     // 장바구니 담기 누르면 localstorage에 데이터 추가
     addtoCartBtn.addEventListener('click', async function () {
-      addToCart(productInfo, quantityInput.value);
+      addToCart(productInfo, currentQuantity);
       if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
         window.location.href = '/pages/Cart/Cart.html';
-      } else {
-        alert('취소되었습니다');
       }
     });
 
@@ -49,8 +47,6 @@ const getProductInfo = async function () {
       addToCart(productInfo, quantityInput.value);
       if (window.confirm('주문 작성 페이지로 이동하시겠습니까?')) {
         window.location.href = '/pages/Order/Order.html';
-      } else {
-        alert('취소되었습니다');
       }
     });
   } catch (error) {
