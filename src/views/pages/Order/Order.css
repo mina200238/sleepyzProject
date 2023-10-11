@@ -43,6 +43,17 @@
   width: 400px;
 }
 
+/* .same-orderer-btn {
+  background-color: #ffffff;
+  outline: none;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  height: fit-content;
+} */
+
 #receiver_address {
   width: 400px;
 }
