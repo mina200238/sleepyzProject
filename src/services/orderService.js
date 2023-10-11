@@ -7,14 +7,13 @@ class OrderService {
     return createdData;
   }
 
-  async getUserOrders(user_id) {
+  async getUserOrders(email) {
     // 주문 조회
     const findData = await Order.find({
-      user_id: user_id,
+      email: email,
     });
     return findData;
   }
-
 }
 
 module.exports = OrderService;
