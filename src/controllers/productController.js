@@ -49,7 +49,7 @@ const getAllProducts = async (req, res, next) => {
 const getCategoryProducts = async (req, res, next) => {
   // 카테고리 상품 전달
   try {
-    const { category_name } = req.body;
+    const { category_name } = req.query;
     const productService = new ProductService();
     const categoryProducts = await productService.getCategoryProducts(category_name);
     res.status(200).json({ data: categoryProducts, message: `${category_name} 상품입니다` });
