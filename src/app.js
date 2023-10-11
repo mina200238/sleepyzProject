@@ -27,7 +27,14 @@ app.use(express.json()); // body-parser
 app.use(express.static(path.join(__dirname, '/views')));
 
 app.get('/', (req, res) => {
+  // 메인 페이지 서빙
   const filePath = path.join(__dirname, 'views/pages/Main', 'Main.html');
+  res.sendFile(filePath);
+});
+app.get('/:page', (req, res) => {
+  // 그외 페이지 서빙
+  const { page } = req.params;
+  const filePath = path.join(__dirname, `views/pages/${page}`, `${page}.html`);
   res.sendFile(filePath);
 });
 
