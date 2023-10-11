@@ -82,22 +82,22 @@ function showProductsByPage(pageNumber, products) {
 }
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category');
+console.log('Current category :', category);
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
-  axios({
-    method: 'get',
-    url: `${BASE_URL}/products/categories`,
-    headers: { 'Content-Type': 'application/json' },
-    data: {
-      category_name: category,
-    },
-  })
+  // 카테고리 정보가 있으면 해당 카테고리의 상품만 서버에서 가져옵니다.
+  axios
+    .get(`${BASE_URL}/products/category`, {
+      params: {
+        category_name: category,
+      },
+    })
     .then((response) => {
       const productsByCategory = response.data.data;
-      // console.log(response.data); 데이터 들어오는 거 콘솔은 찍히는데;흠
-      // 받아온 상품 데이터를 화면에 표시
       showProductsByPage(currentPage, productsByCategory);
+      const categoryTitle = document.querySelector('.product-list h2');
+      categoryTitle.textContent = category || '전체 상품';
     })
     .catch((error) => {
       console.error('카테고리 기반의 상품 데이터를 불러오는데 실패했습니다:', error);

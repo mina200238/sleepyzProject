@@ -9,7 +9,7 @@
       <li class="category-item"><a href="/pages/Products/Products.html">전체 상품</a></li>
       <li class="category-item">
         <a href="/pages/Products/Products.html">카테고리별 상품</a>
-        <ul class="dropdown">
+        <ul class="category-dropdown">
           <li><a href="#blanket">이불</a></li>
           <li><a href="#pillow">베개</a></li>
           <li><a href="#bed">침대</a></li>
@@ -26,10 +26,27 @@
       >
     </li>
     <li class="user-btn">
-      <a class="user-link" href="#user"><img class="user-image" src="/public/assets/icon_user.svg" alt="" /></a>
+      <a class="user-link" href="#user">
+        <img class="user-image" src="/public/assets/icon_user.svg" alt="User" />
+      </a>
+      <div class="utils-dropdown">
+        <ul>
+          <li>
+            <a href="/pages/My-Info/My-Info.html">
+              <img class="my-info-icon" src="/public/assets/icon_user.svg" alt="My Info" /> 내 정보
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문
+              내역
+            </a>
+          </li>
+          <li>
+            <a href="#"> <img class="logout-icon" src="/public/assets/icon_logout.svg" alt="Logout" /> 로그아웃 </a>
+          </li>
+        </ul>
+      </div>
     </li>
-    <!-- <li class="login-btn">
-      <a href="#" class="">Login</a>
-    </li> -->
   </ul>
 </div>
