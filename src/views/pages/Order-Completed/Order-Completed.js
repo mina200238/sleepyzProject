@@ -6,7 +6,7 @@ function checkOrder() {
 //쇼핑계속하기 누르면 전체상품페이지로 넘어가게 만들기
 function continueShopping() {
   alert('쇼핑을 계속합니다.');
-  window.location.href = '/pages/Products/Products.html';
+  window.location.href = '/pages/Product';
 }
 
 //주문페이지에서 구매하기 버튼을 누르고 url에 전달한 order_id를 가져와서 화면에 띄우기

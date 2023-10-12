@@ -128,7 +128,7 @@ if (category) {
   const categoryNameInKorean = categoryMapping[category];
 
   axios
-    .get(`${BASE_URL}/products/category`, {
+    .get(`${BASE_URL}/products/category?category_name=${category}`, {
       params: {
         category_name: categoryNameInKorean,
       },

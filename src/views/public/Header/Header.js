@@ -14,7 +14,11 @@ async function fetchHeader() {
       link.addEventListener('click', function (event) {
         event.preventDefault();
         const categoryName = event.target.textContent;
+<<<<<<< HEAD
+        window.location.href = `/pages/Product?category_name=${encodeURIComponent(categoryName)}`;
+=======
         window.location.href = `/pages/Product/Product.html?category=${encodeURIComponent(categoryName)}`;
+>>>>>>> 7f5882f7ab76a272a6f7e85bb923b8b7a8a8f88e
       });
     });
   } catch (error) {

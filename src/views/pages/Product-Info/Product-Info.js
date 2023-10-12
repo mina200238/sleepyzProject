@@ -12,9 +12,6 @@ const getProductInfo = async function () {
   try {
     const response = await axios.get(`${BASE_URL}/products/${productId}`);
     const productInfo = response.data.data[0];
-
-    console.log('상품 상세:', productInfo);
-
     const productInfoArea = document.querySelector('.products-info');
     const imgBox = productInfoArea.querySelector('.img-box');
     const infoBox = productInfoArea.querySelector('.info-box');
@@ -37,16 +34,11 @@ const getProductInfo = async function () {
     // 장바구니 담기 누르면 localstorage에 데이터 추가npm s
     addtoCartBtn.addEventListener('click', async function () {
       addToCart(productInfo, currentQuantity);
-      console.log(localStorage.length);
-      if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
-        window.location.href = '/pages/Cart/Cart.html';
-      }
     });
 
     //주문 페이지로 이동하기
     const buyNowbtn = document.querySelector('.purchase-btn');
     buyNowbtn.addEventListener('click', async function () {
-      addToCart(productInfo, quantityInput.value);
       if (window.confirm('주문 작성 페이지로 이동하시겠습니까?')) {
         window.location.href = `/pages/Order/Order.html?product_id=${productId}&quantity=${currentQuantity}`;
       }
