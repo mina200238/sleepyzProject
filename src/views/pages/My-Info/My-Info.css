@@ -1,37 +1,53 @@
 @import '/public/css/reset.css';
 
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
 .info-section {
-  width: 580px;
-  margin: 0 auto;
+  background-color: #fff;
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
 }
 
 .info-section h2 {
   text-align: left;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
-.login-form label {
-  display: block;
-  margin-top: 10px;
+.info-section h3 {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.login-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.sign-in-btn,
-.sign-up-btn {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
+.unregister {
+  display: inline-block;
+  color: red;
+  font-size: 13px;
   cursor: pointer;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 90%;
+  padding: 10px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .btn-group {
@@ -55,4 +71,69 @@
 }
 .btn-group button:hover {
   background-color: #9261e8;
+}
+
+.password-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+  height: 300px;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.modal-content input {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+#submit-password-change {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: #b89fe5;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#submit-password-change:hover {
+  background-color: #9261e8;
+}
+
+#close-modal-button {
+  border: none;
+  background-color: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }

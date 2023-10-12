@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/Header/Header.css" />
+    <link rel="stylesheet" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" href="/pages/Order-History/Order-History.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
+    <script src="/pages/Order-History/Order-History.js" defer></script>
+    <title>슬리피즈</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main id="container">
+      <div class="order-container">
+        <h1 class="title">주문 내역</h1>
+        <div class="order">
+          <div class="order-info">
+            <div class="order-info-list">
+              <div>
+                <p>주문일자</p>
+                <p class="order-info-group">임시일자</p>
+              </div>
+              <div>
+                <p>주문번호</p>
+                <p class="order-info-group">임시번호</p>
+              </div>
+              <div>
+                <p>총 금액</p>
+                <p class="order-info-group">임시금액</p>
+              </div>
+            </div>
+            <div class="order-info-btn-group">
+              <button class="order-info-btn">상세페이지</button>
+              <button class="order-info-btn">주문취소</button>
+            </div>
+          </div>
+          <div class="products-info">
+            <p class="product">상품</p>
+            <p class="price">가격</p>
+            <p class="quantity">수량</p>
+            <p class="delivery">배송상태</p>
+          </div>
+          <div class="order-item">
+            <div class="product">
+              <img class="product-img" src="/public/assets/icon_order_completed.png" alt="상품사진" />
+              <p>임시상품이름</p>
+            </div>
+            <p class="price">임시가격</p>
+            <p class="quantity">임시수량</p>
+            <p class="delivery">배송준비중</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>

@@ -31,7 +31,7 @@ class ProductService {
     const category = await Category.findOne({ category_name });
     const categoryProducts = await Product.find({
       category: category._id,
-    });
+    }).populate('image_id');
     return categoryProducts;
   }
 }

@@ -289,7 +289,32 @@ function updateOrderSummary() {
 const purchaseButton = document.querySelector('.purchase-btn');
 purchaseButton.addEventListener('click', function () {
   if (window.confirm('주문을 계속 진행하시겠습니까?')) {
-    window.location.href = '/pages/Order/Order.html';
+    //선택한 상품의 상품ID, 수량을 가져오고 url에 넣기//
+    function getCheckedProducts() {
+      const checkedProducts = [];
+      const cartItems = document.querySelectorAll('.cart-item');
+      cartItems.forEach((cartItem) => {
+        const checkbox = cartItem.querySelector('input[type="checkbox"]');
+        if (checkbox.checked) {
+          const productId = checkbox.getAttribute('data-product-id');
+          const quantityInput = cartItem.querySelector('input[type="text"]');
+          const quantity = parseInt(quantityInput.value);
+          checkedProducts.push({ productId, quantity });
+        }
+      });
+      return checkedProducts;
+    }
+    const checkedProducts = getCheckedProducts();
+    console.log(checkedProducts);
+
+    // URL 파라미터로 상품 정보 추가
+    const params = checkedProducts
+      .map((product) => `product_id=${product.productId}&quantity=${product.quantity}`)
+      .join('&');
+    const orderUrl = '/pages/Order?' + params;
+
+    // 주문 페이지로 이동
+    window.location.href = orderUrl;
   }
 });
 
