@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 
 // Firebase 서비스 계정 키를 불러옵니다.
-const serviceAccount = require('../path/to/serviceAccountKey.json');
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK_CONFIG);
 const { InternalServerError } = require('../config/validateError');
 
 // Firebase Admin SDK를 초기화합니다. 서비스 계정 키와 Storage 버킷의 URL을 설정합니다.
