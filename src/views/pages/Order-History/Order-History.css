@@ -25,13 +25,14 @@
 
 .order-info-list {
   display: flex;
-  gap: 80px;
+  gap: 30px;
   font-size: 16px;
   font-weight: 700;
 }
 
 .order-info-group {
   color: #7e7e7e;
+  font-size: 14px;
 }
 
 .order-info-btn-group {
@@ -63,29 +64,18 @@
 }
 
 .product {
-  width: 500px;
+  width: 400px;
 }
 
 .price,
 .quantity,
 .delivery {
-  width: 100px;
+  width: 133px;
 }
 
 .order-item {
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  padding: 20px 0;
   border-bottom: 1px solid #d1d1d1;
-}
-
-.product {
-  display: flex;
-  align-items: center;
-}
-
-.product-img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
 }
