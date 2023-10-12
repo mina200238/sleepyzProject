@@ -18,7 +18,16 @@ class AdminService {
     const detail_url = [];
     const addImage = await Image.create({ name, thumbnail_url: image_id, detail_url });
     const addedImage_id = addImage._id;
-    const addedProduct = await Product.create({ name, description, price, category, image_id: addedImage_id });
+    const addedCategory = await Category.find({ category_name: category });
+    const addedCategory_id = addedCategory[0]._id;
+    console.log('2여기', addedCategory);
+    const addedProduct = await Product.create({
+      name,
+      description,
+      price,
+      category: addedCategory_id,
+      image_id: addedImage_id,
+    });
     return addedProduct;
   }
 

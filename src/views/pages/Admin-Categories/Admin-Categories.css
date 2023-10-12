@@ -1,0 +1,129 @@
+@import '/public/css/reset.css';
+/* Global */
+
+:root {
+  /* App */
+  --color-backgroud: #f2f2f2;
+
+  /* Colors */
+  --color-purple: #ece1ff;
+  --color-dark-purple: #b89fe5;
+  --color-white: #ffffff;
+  --color-black: #050a13;
+  --color-red: #ff0000;
+  --color-light-gray: #dddddd;
+  --color-gray: #3f4044;
+
+  --color-blue: #03e8f9;
+  --color-orange: #fd6413;
+  --color-green: #d5ff3e;
+  --color-yellow: #f3bf3d;
+  --color-pink: #eb6b79;
+
+  /* Size */
+  --size-max-width: 1200px;
+}
+#container {
+  display: flex;
+  margin-top: 0;
+  width: 100%;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  background-color: var(--color-purple);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar a {
+  padding: 10px 15px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 25px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: var(--color-gray);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 32px;
+  margin: 50px 0 100px 0;
+}
+
+.sidebar .current-page {
+  background-color: var(--color-white);
+  border-radius: 20px;
+}
+
+.sidebar .sidebarLinks {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.section-category {
+  flex: 1;
+  padding: 40px;
+}
+
+.category-title {
+  margin: 50px 0;
+  font-size: 40px;
+}
+
+.category-count {
+  color: var(--color-red);
+}
+
+/* .tableButton {
+
+} */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--color-light-gray);
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: var(--color-backgroud);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid var(--color-gray);
+}
+
+.pagination a.active {
+  background-color: var(--color-dark-purple);
+  color: var(--color-white);
+  border: 1px solid var(--color-dark-purple);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: var(--color-light-gray);
+}

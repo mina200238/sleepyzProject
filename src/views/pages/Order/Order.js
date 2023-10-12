@@ -2,6 +2,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.getAll('product_id'); // 모든 상품 ID를 배열로 가져옴
 const quantity = urlParams.getAll('quantity'); // 모든 수량을 배열로 가져옴
+const productData = []; //상품의 id, name, 가격, 수량을 담을 배열
 
 //주문 내역 부분의 총상품금액, 결제금액을 서버에서 가져와서 화면에 띄움
 insertPriceElement();
@@ -16,6 +17,9 @@ async function insertPriceElement() {
     const res = await axios.get(`http://localhost:5000/products/${productId[i]}`);
     const price = res.data.data[0].price;
     totalProductPrice += price * quantity[i];
+    const name = res.data.data[0].name;
+    const id = res.data.data[0]._id;
+    productData.push([id, name, price, quantity[i]]);
   }
 
   // 배송비
@@ -57,27 +61,17 @@ purchaseBtn.addEventListener('click', async function (e) {
     jsonObject[key] = value;
   });
 
-  // 서버에서 받아오거나 직접 작성해야하는 데이터 추가
-  const productData = {};
-  for (let i = 0; i < productId.length; i++) {
-    Object.assign(productData, {
-      [productId[i]]: quantity[i],
-    });
-  }
-
-  // console.log(productData); //지울부분
-
   Object.assign(jsonObject, {
     // 회원일때는 회원id, 비회원일때는 비회원으로 표시
     user_id: '비회원',
     // 상세페이지의 상품과 갯수
-    products_id: productData,
-    delivery_status: '주문완료',
+    products: productData,
+    delivery_status: '배송준비중',
   });
 
   const jsonData = JSON.stringify(jsonObject);
 
-  // console.log(jsonData); //지울부분
+  console.log(jsonData); //지울부분
 
   // axios로 생성한 데이터를 서버로 post 요청을 보냄
   try {

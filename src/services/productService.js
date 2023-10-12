@@ -22,13 +22,14 @@ class ProductService {
 
   async getAllProducts() {
     // 모든 상품 전달
-    const allProducts = await Product.find({}).populate('image_id');
+    const allProducts = await Product.find({}).populate('image_id').populate('category');
     return allProducts;
   }
 
   async getCategoryProducts(category_name) {
     // 카테고리별 상품 전달
     const category = await Category.findOne({ category_name });
+
     const categoryProducts = await Product.find({
       category: category._id,
     }).populate('image_id');
