@@ -84,6 +84,33 @@ function showProductsByPage(pageNumber, products) {
     productContainer.appendChild(productLink);
   });
 }
+function updatePagination(products) {
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const pageButtons = document.querySelectorAll('.pagination-bar .link');
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showProductsByPage(currentPage, products);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const maxPages = Math.ceil(products.length / itemsPerPage);
+    if (currentPage < maxPages) {
+      currentPage++;
+      showProductsByPage(currentPage, products);
+    }
+  });
+
+  pageButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      currentPage = Number(e.target.value);
+      showProductsByPage(currentPage, products);
+    });
+  });
+}
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category');
 
@@ -110,6 +137,7 @@ if (category) {
       console.log(response.data);
       const productsByCategory = response.data.data;
       showProductsByPage(currentPage, productsByCategory);
+      updatePagination(productsByCategory);
     })
     .catch((error) => {
       console.error('카테고리 기반의 상품 데이터를 불러오는데 실패했습니다:', error);
@@ -120,34 +148,8 @@ if (category) {
     .get(`${BASE_URL}/products`)
     .then((response) => {
       const allProducts = response.data.data;
-
-      // 현재 페이지를 1로 설정하고, 전체 상품 데이터를 화면에 표시
-      currentPage = 1;
       showProductsByPage(currentPage, allProducts);
-
-      const prevBtn = document.querySelector('.prev-btn');
-      const nextBtn = document.querySelector('.next-btn');
-      const pageButtons = document.querySelectorAll('.pagination-bar .link');
-
-      prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          showProductsByPage(currentPage, allProducts);
-        }
-      });
-      nextBtn.addEventListener('click', () => {
-        const maxPages = Math.ceil(allProducts.length / itemsPerPage);
-        if (currentPage < maxPages) {
-          currentPage++;
-          showProductsByPage(currentPage, allProducts);
-        }
-      });
-      pageButtons.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          currentPage = Number(e.target.value);
-          showProductsByPage(currentPage, allProducts);
-        });
-      });
+      updatePagination(allProducts);
     })
     .catch((error) => {
       console.error('전체 상품 데이터를 불러오는데 실패했습니다:', error);
