@@ -81,7 +81,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function checkUserLoginStatus() {
-  // 여기에 로그인 상태를 확인하는 로직을 추가해야 함
-  // 예를 들어, 쿠키, 세션 등을 사용하여 로그인 상태를 판단
-  return false; // 로그인 상태면 true 아니면 false
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return false;
+  }
+  return true;
 }
