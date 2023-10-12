@@ -14,13 +14,44 @@ async function fetchHeader() {
       link.addEventListener('click', function (event) {
         event.preventDefault();
         const categoryName = event.target.textContent;
-<<<<<<< HEAD
         window.location.href = `/pages/Product?category_name=${encodeURIComponent(categoryName)}`;
-=======
-        window.location.href = `/pages/Product/Product.html?category=${encodeURIComponent(categoryName)}`;
->>>>>>> 7f5882f7ab76a272a6f7e85bb923b8b7a8a8f88e
       });
     });
+
+    // 여기에 로그인 상태를 확인하고 드롭다운 메뉴 변경 로직 추가
+    const isLoggedIn = checkUserLoginStatus(); // 로그인 상태 확인 함수 호출
+    const dropdown = document.querySelector('.utils-dropdown ul');
+
+    if (isLoggedIn) {
+      // 로그인 상태인 경우
+      dropdown.innerHTML = `
+        <li>
+          <a href="/pages/My-Info/">
+            <img class="my-info-icon" src="/public/assets/icon_user.svg" alt="My Info" /> 내 정보
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img class="logout-icon" src="/public/assets/icon_logout.svg" alt="Logout" /> 로그아웃
+          </a>
+        </li>
+      `;
+    } else {
+      // 로그아웃 상태인 경우
+      dropdown.innerHTML = `
+        <li>
+          <a href="/pages/Login/">로그인</a>
+        </li>
+        <li>
+          <a href="/pages/Order-History/">주문 내역</a>
+        </li>
+      `;
+    }
   } catch (error) {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
   }
@@ -48,3 +79,10 @@ window.addEventListener('DOMContentLoaded', () => {
   addFavicon();
   fetchHeader();
 });
+
+function checkUserLoginStatus() {
+  // 여기에 로그인 상태를 확인하는 로직을 추가하세요.
+  // 예를 들어, 쿠키, 세션 등을 사용하여 로그인 상태를 판단할 수 있습니다.
+  // 로그인 상태인 경우 true를 반환하고, 로그아웃 상태인 경우 false를 반환하세요.
+  return false; // 기본적으로 비로그인 상태
+}
