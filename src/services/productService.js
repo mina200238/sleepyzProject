@@ -22,7 +22,7 @@ class ProductService {
 
   async getAllProducts() {
     // 모든 상품 전달
-    const allProducts = await Product.find({}).populate('image_id');
+    const allProducts = await Product.find({}).populate('image_id').populate('category');
     return allProducts;
   }
 

@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="/pages/Admin-Products/Admin-Products.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <script type="module" src="/pages/Admin-Products/Admin-Products.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <link rel="stylesheet" href="/public/Header/Header.css" />
   </head>
   <body>
+    <header id="header"></header>
+
     <main id="container">
       <!-- 사이드네비바 -->
       <div class="sidebar">
@@ -28,36 +32,16 @@
       <div class="content">
         <h2>상품관리</h2>
         <div class="tableButton">
-          <button>선택상품삭제</button>
-          <button>상품등록</button>
+          <button class="addButton">상품 추가</button>
         </div>
-        <table>
+        <table class="productTable">
           <tr>
-            <th>선택</th>
             <th>번호</th>
             <th>이미지</th>
             <th>상품명</th>
-            <th>카테고리</th>
             <th>가격</th>
+            <th>카테고리</th>
             <th>관리</th>
-          </tr>
-          <tr>
-            <td>행 1</td>
-            <td>행 2</td>
-            <td>행 3</td>
-            <td>행 4</td>
-            <td>행 5</td>
-            <td>행 6</td>
-            <td>행 7</td>
-          </tr>
-          <tr>
-            <td>행 8</td>
-            <td>행 9</td>
-            <td>행 10</td>
-            <td>행 11</td>
-            <td>행 12</td>
-            <td>행 13</td>
-            <td>행 14</td>
           </tr>
         </table>
         <div class="pagination">
@@ -69,5 +53,36 @@
         </div>
       </div>
     </main>
+    <!-- 상품 등록 모달 테이블 -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form>
+          <div class="modal-title"><h2>상품 추가</h2></div>
+          <div class="input-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" />
+          </div>
+          <div class="input-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+          <div class="input-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" />
+          </div>
+          <div class="input-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" />
+          </div>
+          <div class="input-group">
+            <label for="image">Image:</label>
+            <input type="file" id="imageInput" accept="image/*" />
+          </div>
+          <button class="imageUpload">이미지 업로드</button>
+          <button type="submit" class="submitButton">등록하기</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
