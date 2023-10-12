@@ -9,10 +9,8 @@ export default function updateBadge() {
 
     // "product_"로 시작하는 key들만 필터링
     const productKeys = keys.filter((key) => key.startsWith('product_'));
-    console.log(productKeys);
 
     // "product_"로 시작하는 key들의 개수를 사용하여 뱃지 아이콘 업데이트
     badgeElement.textContent = productKeys.length.toString();
-    console.log(productKeys.length.toString());
   }
 }
