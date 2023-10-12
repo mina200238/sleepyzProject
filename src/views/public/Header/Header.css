@@ -1,6 +1,6 @@
 .category-dropdown {
   display: none;
-  position: absolute;
+  position: relative;
   background-color: rgb(248, 241, 250);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 100;
@@ -11,7 +11,6 @@
   opacity: 1;
   width: 110px;
 }
-
 .category-item:hover .category-dropdown {
   display: block;
 }
@@ -77,11 +76,27 @@
 .category .category-list {
   display: flex;
   justify-content: start;
+  position: relative;
 }
 .category .category-item {
   width: 120px;
   height: 80px;
   line-height: 80px;
+  position: relative;
+}
+.category item::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  border-top: 10px solid #484848;
+  border-left: 10px solid #484848;
+  border-right: 10px solid #484848;
+  border-bottom: 0px solid #484848;
+  content: '';
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  left: 50%;
 }
 .category .category-item a {
   display: block;
@@ -95,8 +110,11 @@
 .utils {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
+  height: 80px;
   margin-left: auto;
+  position: relative;
 }
 .utils img {
   width: 25px;
@@ -107,11 +125,22 @@
 .utils .link-cart {
   position: relative;
 }
+.utils li {
+  height: 100%;
+  width: 40px;
+  line-height: 82px;
+  margin: 0 auto;
+}
+.utils li a {
+  display: block;
+  height: 100%;
+  text-align: center;
+}
 .utils .link-cart .badge {
   display: block;
   position: absolute;
-  top: -7px;
-  right: -5px;
+  top: 12px;
+  right: 3px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -127,6 +156,8 @@
 .utils-dropdown {
   display: none;
   position: absolute;
+  bottom: -84px;
+  left: 0;
   background-color: rgb(248, 241, 250);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 100;
