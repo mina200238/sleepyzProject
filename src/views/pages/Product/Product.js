@@ -87,7 +87,7 @@ console.log('Current category :', category);
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
   axios
-    .get(`${BASE_URL}/product/category`, {
+    .get(`${BASE_URL}/products/category?category_name=${category}`, {
       params: {
         category_name: category,
       },
