@@ -81,8 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function checkUserLoginStatus() {
-  // 여기에 로그인 상태를 확인하는 로직을 추가하세요.
-  // 예를 들어, 쿠키, 세션 등을 사용하여 로그인 상태를 판단할 수 있습니다.
-  // 로그인 상태인 경우 true를 반환하고, 로그아웃 상태인 경우 false를 반환하세요.
-  return false; // 기본적으로 비로그인 상태
+  // 여기에 로그인 상태를 확인하는 로직을 추가해야 함
+  // 예를 들어, 쿠키, 세션 등을 사용하여 로그인 상태를 판단
+  return false; // 로그인 상태면 true 아니면 false
 }

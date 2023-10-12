@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      const url = '/users/password';
+      const url = `${BASE_URL}/users/password`;
       const headers = {
         authorization:
           'jM0NTY3ODkwIiwibnFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
