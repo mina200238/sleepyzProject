@@ -10,7 +10,6 @@ function login() {
       if (response.status === 200) {
         console.log(response.data);
         console.log(response.data.message);
-        console.log(response.message);
         alert('로그인 성공');
 
         // JWT 토큰 저장:
