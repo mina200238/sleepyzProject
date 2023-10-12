@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬리피즈</title>
+    <link rel="icon" type="image/svg+xml" href="/public/assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
+    <link rel="stylesheet" href="/pages/SignUp/SignUp.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+    <script type="module" src="/pages/SignUp/SignUp.js" defer></script>
+  </head>
+  <body id="body">
+    <main id="container">
+      <div class="container-signup">
+        <form action="" class="signup-form">
+          <fieldset>
+            <legend class="title">
+              회원가입을 위해<br />
+              정보를 입력해 주세요 👀
+            </legend>
+            <p class="name-area">
+              <label for="email">이름</label>
+              <input
+                class="signup-info"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="이름을 입력해 주세요"
+                required
+                pattern="[A-Za-z가-힣\s]+"
+              />
+            </p>
+            <p class="email-area">
+              <label for="email">이메일</label>
+              <input
+                class="signup-info"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="off"
+                placeholder="이메일을 입력해 주세요"
+                required
+              />
+            </p>
+            <p class="pw-area">
+              <label for="password">비밀번호</label>
+              <input
+                class="signup-info"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="비밀번호를 입력해 주세요"
+                minlength="4"
+                required
+              />
+            </p>
+            <p class="pw-check">
+              <label for="password-check">비밀번호 확인</label>
+              <input
+                class="signup-info"
+                type="password"
+                id="password-check"
+                name="password-check"
+                placeholder="비밀번호를 다시 입력해 주세요"
+                required
+              />
+            </p>
+            <p class="phonenum-area">
+              <label for="phonenum">전화 번호</label>
+              <input
+                class="signup-info"
+                type="tel"
+                id="phonenum"
+                name="phonenum"
+                autocomplete="off"
+                placeholder="전화 번호를 입력해 주세요"
+                required
+                pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+              />
+            </p>
+            <p class="address-area">
+              <label for="address">주소</label>
+              <input type="text" class="signup-info" id="postcode" placeholder="우편번호" readonly />
+              <input type="button" id="btn-postcode" value="우편번호 찾기" /><br />
+              <input type="text" class="signup-info" id="address" placeholder="주소" readonly /><br />
+              <input type="text" class="signup-info" id="detailAddress" placeholder="상세주소" />
+              <input type="text" class="signup-info" id="extraAddress" placeholder="참고항목" readonly />
+            </p>
+            <button class="signup-btn"><a class="signup-link" href="">회원가입</a></button>
+          </fieldset>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
