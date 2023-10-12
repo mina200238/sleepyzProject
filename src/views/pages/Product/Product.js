@@ -12,14 +12,14 @@ function showProductsByPage(pageNumber, products) {
   productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/products/${product._id}`;
+    productLink.href = `/product/${product._id}`;
     productLink.classList.add('product-link');
 
     productLink.addEventListener('click', async (e) => {
       e.preventDefault();
       // 클릭된 상품의 ID를 얻습니다.
       const clickedProductId = product._id;
-      window.location.href = `/pages/Products-Info/Products-Info.html?product_id=${clickedProductId}`;
+      window.location.href = `/pages/Product-Info?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);
@@ -57,7 +57,11 @@ function showProductsByPage(pageNumber, products) {
 
     // 이미지 요소 생성
     const productImage = document.createElement('img');
-    productImage.src = product.image_id.thumbnail_url[0];
+    if (product && product.image_id && product.image_id.thumbnail_url && product.image_id.thumbnail_url[0]) {
+      productImage.src = product.image_id.thumbnail_url[0];
+    } else {
+      console.error('상품 이미지 정보가 올바르지 않습니다:', product);
+    }
     productImage.alt = `${product.name} Image`;
 
     // 상품 정보를 표시하는 요소들 생성 및 설정
@@ -80,23 +84,60 @@ function showProductsByPage(pageNumber, products) {
     productContainer.appendChild(productLink);
   });
 }
+function updatePagination(products) {
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const pageButtons = document.querySelectorAll('.pagination-bar .link');
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showProductsByPage(currentPage, products);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const maxPages = Math.ceil(products.length / itemsPerPage);
+    if (currentPage < maxPages) {
+      currentPage++;
+      showProductsByPage(currentPage, products);
+    }
+  });
+
+  pageButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      currentPage = Number(e.target.value);
+      showProductsByPage(currentPage, products);
+    });
+  });
+}
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category');
-console.log('Current category :', category);
+
+const categoryMapping = {
+  blanket: '이불',
+  pillow: '베개',
+  bed: '침대',
+  cover: '커버',
+};
+const categoryTitleElement = document.querySelector('.product-list h2');
+categoryTitleElement.textContent = categoryMapping[category] || '전체 상품';
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
+  const categoryNameInKorean = categoryMapping[category];
+
   axios
     .get(`${BASE_URL}/products/category`, {
       params: {
-        category_name: category,
+        category_name: categoryNameInKorean,
       },
     })
     .then((response) => {
+      console.log(response.data);
       const productsByCategory = response.data.data;
       showProductsByPage(currentPage, productsByCategory);
-      const categoryTitle = document.querySelector('.product-list h2');
-      categoryTitle.textContent = category || '전체 상품';
+      updatePagination(productsByCategory);
     })
     .catch((error) => {
       console.error('카테고리 기반의 상품 데이터를 불러오는데 실패했습니다:', error);
@@ -107,35 +148,8 @@ if (category) {
     .get(`${BASE_URL}/products`)
     .then((response) => {
       const allProducts = response.data.data;
-
-      currentPage = 1;
       showProductsByPage(currentPage, allProducts);
-
-      const prevBtn = document.querySelector('.prev-btn');
-      const nextBtn = document.querySelector('.next-btn');
-      const pageButtons = document.querySelectorAll('.pagination-bar .link');
-
-      prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          showProductsByPage(currentPage, allProducts);
-        }
-      });
-
-      nextBtn.addEventListener('click', () => {
-        const maxPages = Math.ceil(allProducts.length / itemsPerPage);
-        if (currentPage < maxPages) {
-          currentPage++;
-          showProductsByPage(currentPage, allProducts);
-        }
-      });
-
-      pageButtons.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          currentPage = Number(e.target.value);
-          showProductsByPage(currentPage, allProducts);
-        });
-      });
+      updatePagination(allProducts);
     })
     .catch((error) => {
       console.error('전체 상품 데이터를 불러오는데 실패했습니다:', error);
