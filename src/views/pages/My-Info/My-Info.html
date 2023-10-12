@@ -17,6 +17,7 @@
     <main id="container">
       <section class="info-section">
         <h2>회원정보수정</h2>
+        <h3><a class="unregister">회원탈퇴</a></h3>
 
         <form action="#" method="POST">
           <div class="input-group">
@@ -30,18 +31,24 @@
           </div>
 
           <div class="input-group">
-            <label for="tel">전화번호</label>
+            <label for="phone">전화번호</label>
             <input type="tel" id="phone" name="phone" required />
-          </div>
-
-          <div class="input-group">
-            <label for="password">암호</label>
-            <input type="password" id="password" name="password" required />
           </div>
 
           <div class="btn-group">
             <button type="submit">회원 정보 수정</button>
-            <button type="reset">비밀번호 변경</button>
+            <button type="button" id="change-password-button">비밀번호 변경</button>
+          </div>
+          <div class="password-modal" id="passwordModal">
+            <div class="modal-content">
+              <button id="close-modal-button" style="float: right">X</button>
+              <h2>비밀번호 변경</h2>
+              <label for="currentPassword">현재 비밀번호</label><br />
+              <input type="password" id="currentPassword" placeholder="현재 비밀번호를 입력하세요." /><br />
+              <label for="newPassword">새 비밀번호</label></br>
+              <input type="password" id="newPassword" placeholder="새 비밀번호를 입력하세요." />
+              <button type="button" id="submit-password-change">비밀번호 변경</button>
+            </div>
           </div>
         </form>
       </section>
