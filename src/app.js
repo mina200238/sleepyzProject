@@ -14,22 +14,9 @@ const ViewRouter = require('./routers/viewRouter');
 const errorHandler = require('./middlewares/errorHandler');
 const isAdmin = require('./middlewares/isAdmin');
 const uploadToFireStore = require('./middlewares/uploadToFireStore');
-
-// const multerRouter = require('./routers/multerRouter');
+const uploadRouter = require('./routers/uploadRouter');
 
 connectDB();
-
-const multer = require('multer');
-const admin = require('firebase-admin');
-const serviceAccount = require('./path/to/serviceAccountKey.json');
-// const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: 'elice-project-1.appspot.com', // Firebase Storage 버킷의 URL
-});
-
-const bucket = admin.storage().bucket();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -47,44 +34,7 @@ app.use('/users', userRouter); // 유저 관련 기능
 app.use('/admin', adminRouter); // 관리자 관련 기능
 // app.use('/admin', isAdmin, adminRouter); // 관리자 관련 기능
 
-// app.use('/multer', multerRouter); // multer
-
-const upload = multer({ storage: multer.memoryStorage() });
-
-app.post('/upload', upload.single('image'), async (req, res) => {
-  try {
-    const file = req.file;
-    console.log(file);
-
-    if (!file) {
-      return res.status(400).send('No file uploaded.');
-    }
-
-    const blob = bucket.file(file.originalname);
-    const blobWriter = blob.createWriteStream({
-      metadata: {
-        contentType: file.mimetype,
-      },
-    });
-
-    blobWriter.on('error', (err) => {
-      console.error(err);
-      return res.status(500).send('Error uploading image.');
-    });
-
-    blobWriter.on('finish', () => {
-      // 이미지 업로드 성공
-      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-      return res.status(200).send(publicUrl);
-    });
-
-    blobWriter.end(file.buffer);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send('Error uploading image.');
-  }
-});
-
+app.use('/upload', uploadRouter); // multer를 사용한 파이어 스토어 이미지 업로드 기능
 app.use(errorHandler); // 에러 처리 미들웨어
 
 app.use((req, res) => {
