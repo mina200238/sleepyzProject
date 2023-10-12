@@ -29,6 +29,7 @@ class ProductService {
   async getCategoryProducts(category_name) {
     // 카테고리별 상품 전달
     const category = await Category.findOne({ category_name });
+
     const categoryProducts = await Product.find({
       category: category._id,
     });
