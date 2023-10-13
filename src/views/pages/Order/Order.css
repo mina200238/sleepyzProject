@@ -16,7 +16,7 @@
 
 .order-payment {
   font-size: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   font-weight: bold;
 }
 
@@ -25,7 +25,7 @@
   justify-content: space-between;
   font-size: 16px;
   margin-bottom: 20px;
-  margin-top: 100px;
+  margin-top: 50px;
   padding-bottom: 10px;
   font-weight: 500;
   border-bottom: 1px solid rgb(215, 215, 215);
@@ -43,7 +43,8 @@
   background-color: #edf2f7;
 }
 
-#address {
+#address,
+#address2 {
   width: 400px;
 }
 .address-area {
@@ -65,13 +66,17 @@
   display: inline-block;
 }
 #address,
-#detailAddress {
+#address2,
+#detailAddress,
+#detailAddress2 {
   margin-left: 83px;
 }
-.address-area #postcode {
+.address-area #postcode,
+#postcode2 {
   width: 290px;
 }
-.address-area #btn-postcode {
+.address-area #btn-postcode1,
+#btn-postcode2 {
   appearance: none;
   width: 105px;
   border-radius: 10px;
@@ -86,13 +91,16 @@
   cursor: pointer;
   transition: all 0.2s;
 }
-.address-area #btn-postcode:hover {
+.address-area #btn-postcode1:hover,
+#btn-postcode2:hover {
   background-color: #9261e8;
 }
-#detailAddress {
+#detailAddress,
+#detailAddress2 {
   width: 245px;
 }
-#extraAddress {
+#extraAddress,
+#extraAddress2 {
   width: 147px;
 }
 
