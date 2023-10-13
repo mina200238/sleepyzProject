@@ -137,7 +137,7 @@ function displayOrderDetails(orderDetails) {
       orderDeleteBtn.addEventListener('click', async function () {
         console.log('delte버튼 클릭!', orderInfoList._id);
         axios
-          .delete(`${BASE_URL}/admin/orders`, {
+          .delete(`${BASE_URL}/orders`, {
             headers: { order_id: orderInfoList._id },
           })
           .then((response) => {
