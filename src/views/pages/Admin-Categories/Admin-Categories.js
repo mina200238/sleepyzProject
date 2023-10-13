@@ -3,7 +3,7 @@
  * 삭제 모달 JS 구현
  */
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 // pagination 관련
 const itemsPerPage = 10; // 페이지당 표시할 항목 수
