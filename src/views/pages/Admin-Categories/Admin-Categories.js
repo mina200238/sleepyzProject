@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
 const tableBody = document.querySelector('.table-body');
 const addCategoryBtn = document.querySelector('.add-category-btn');
 

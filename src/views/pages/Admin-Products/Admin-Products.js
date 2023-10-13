@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
 const productContainer = document.querySelector('.products-wrap');
 const productTable = document.querySelector('.productTable');
 
@@ -106,7 +106,7 @@ async function uploadImage(e) {
 
   try {
     // axios를 사용하여 이미지 업로드
-    const response = await axios.post('http://localhost:5000/upload', formData, {
+    const response = await axios.post('http://kdt-sw-6-team06.elicecoding.com/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

@@ -13,7 +13,7 @@ async function insertPriceElement() {
   // 서버에서 상품 정보를 가져오는 부분
   let totalProductPrice = 0;
   for (let i = 0; i < productId.length; i++) {
-    const res = await axios.get(`http://localhost:5000/products/${productId[i]}`);
+    const res = await axios.get(`http://kdt-sw-6-team06.elicecoding.com/products/${productId[i]}`);
     const price = res.data.data[0].price;
     totalProductPrice += price * quantity[i];
   }
@@ -81,7 +81,7 @@ purchaseBtn.addEventListener('click', async function (e) {
 
   // axios로 생성한 데이터를 서버로 post 요청을 보냄
   try {
-    const res = await axios.post('http://localhost:5000/orders', jsonData, {
+    const res = await axios.post('http://kdt-sw-6-team06.elicecoding.com/orders', jsonData, {
       headers: {
         'Content-Type': 'application/json',
       },

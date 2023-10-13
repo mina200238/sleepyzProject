@@ -1,5 +1,5 @@
 import { getCart, addToCart } from '/public/utils/CartData.js';
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
 const quantityInput = document.getElementById('quantity');
 let currentQuantity = 1;
 
