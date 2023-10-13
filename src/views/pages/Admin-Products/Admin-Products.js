@@ -45,12 +45,14 @@ function showMainProducts(showProducts, start) {
 
     // 상품 수정 버튼 추가
     const fixButton = document.createElement('button');
+    fixButton.className = 'btn';
     fixButton.textContent = '상품 수정';
     fixButton.onclick = () => {
       productFix(product._id);
     };
     // 마지막으로 삭제 버튼 추가
     const deleteButton = document.createElement('button');
+    deleteButton.className = 'btn';
     deleteButton.textContent = '상품 삭제';
     deleteButton.onclick = () => {
       if (confirm('정말 상품을 삭제하시겠습니까?')) {
@@ -73,30 +75,30 @@ function showMainProducts(showProducts, start) {
 const modal = document.getElementById('myModal');
 const span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
-  modal.style.display = 'none';
+  modal.classList.add('hidden');
 };
 window.onclick = function (event) {
   if (event.target === modal) {
-    modal.style.display = 'none';
+    modal.classList.add('hidden');
   }
   if (event.target === _modal) {
-    _modal.style.display = 'none';
+    _modal.classList.add('hidden');
   }
 };
 // 수정 모달
 const _modal = document.getElementById('_myModal');
 const _span = document.getElementsByClassName('_close')[0];
 _span.onclick = function () {
-  _modal.style.display = 'none';
+  _modal.classList.add('hidden');
 };
 
 // 함수, 버튼
 function productAdd() {
-  modal.style.display = 'block';
+  modal.classList.remove('hidden');
 }
 let fixProduct_id;
 async function productFix(product_id) {
-  _modal.style.display = 'block';
+  _modal.classList.remove('hidden');
   fixProduct_id = product_id;
   const fixProduct = await axios.get(`${BASE_URL}/products/${fixProduct_id}`);
   const fillData = fixProduct.data.data[0];
@@ -234,7 +236,7 @@ document.querySelector('.modal-content form').addEventListener('submit', async f
       // 업로드된 이미지를 화면에 표시
 
       console.log(response);
-      modal.style.display = 'none';
+      modal.classList.add('hidden');
       alert('상품 추가 성공!');
       this.reset();
       location.reload();
@@ -270,7 +272,7 @@ document.querySelector('._modal-content form').addEventListener('submit', async 
       // 업로드된 이미지를 화면에 표시
 
       console.log(response);
-      _modal.style.display = 'none';
+      _modal.classList.add('hidden');
       alert('상품 수정 성공!');
       this.reset();
       location.reload();
@@ -312,6 +314,7 @@ function createPaginationButtons(totalItems) {
 
   for (let i = 1; i <= totalPages; i++) {
     let btn = document.createElement('button');
+    btn.className = 'btn';
     btn.innerText = i;
     btn.onclick = function () {
       currentPage = i;
