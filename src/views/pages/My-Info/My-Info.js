@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       phone_number: phoneInput.value,
       address: addressInput.value,
     };
+    const access = getCookie('accessToken');
     try {
       const updatedUser = await axios.put(`${BASE_URL}/users/userInfo`, userData, {
         headers: {
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
       return;
     }
+    const access = getCookie('accessToken');
     try {
       const requestDelete = await axios.post(`${BASE_URL}/users/signOut`, {
         headers: {
