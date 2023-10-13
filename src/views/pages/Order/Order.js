@@ -1,4 +1,5 @@
 //URL에서 상품ID, 갯수 쿼리파라미터 가져오기
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.getAll('product_id'); // 모든 상품 ID를 배열로 가져옴
 const quantity = urlParams.getAll('quantity'); // 모든 수량을 배열로 가져옴
