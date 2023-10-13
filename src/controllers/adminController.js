@@ -182,7 +182,7 @@ const updateOrders = async (req, res, next) => {
 // 해당 사용자의 주문 내역 삭제
 const deleteOrders = async (req, res, next) => {
   try {
-    const { order_id } = req.headers;
+    const { order_id } = req.body;
     const adminService = new AdminService();
     const updatedUserInfo = await adminService.deleteOrders(order_id);
     res.status(200).json({
