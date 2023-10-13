@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/public/Footer/Footer.css" />
     <link rel="stylesheet" href="/pages/Order/Order.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
     <script type="module" src="/public/Header/Header.js" defer></script>
     <script type="module" src="/public/Footer/Footer.js" defer></script>
     <script src="/pages/Order/Order.js" defer></script>
@@ -58,8 +59,14 @@
               />
             </div>
             <div>
-              <label class="order-label" for="address">주소</label>
-              <input class="order-info-group" type="text" id="address" name="address" autocomplete="address" required />
+              <p class="address-area">
+                <label class="order-label" for="address">주소</label>
+                <input type="text" class="" id="postcode" placeholder="우편번호" readonly />
+                <input type="button" id="btn-postcode" value="우편번호 찾기" /><br />
+                <input type="text" class="receiver_address" id="address" placeholder="주소" readonly /><br />
+                <input type="text" class="receiver_detailAddress" id="detailAddress" placeholder="상세주소" />
+                <input type="text" class="receiver_extraAddress" id="extraAddress" placeholder="참고항목" readonly />
+              </p>
             </div>
           </div>
           <div class="deliveryAddress">
@@ -92,15 +99,14 @@
               />
             </div>
             <div>
-              <label class="order-label" for="receiver_address">주소</label>
-              <input
-                class="order-info-group"
-                type="text"
-                id="receiver_address"
-                name="receiver_address"
-                autocomplete="address"
-                required
-              />
+              <p class="address-area">
+                <label class="order-label" for="receiver_address">주소</label>
+                <input type="text" class="receiver_postcode" id="postcode" placeholder="우편번호" readonly />
+                <input type="button" class="receiver_postcode" id="btn-postcode" value="우편번호 찾기" /><br />
+                <input type="text" class="receiver_addr" id="address" placeholder="주소" readonly /><br />
+                <input type="text" class="signup-info receiver_detailAddr" id="detailAddress" placeholder="상세주소" />
+                <input type="text" class="receiver_extraAddr" id="extraAddress" placeholder="참고항목" readonly />
+              </p>
             </div>
           </div>
         </div>

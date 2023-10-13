@@ -56,44 +56,6 @@ function login() {
     });
 }
 
-// // 로그인 상태 확인 코드
-// function getUserInfo() {
-//   const refreshToken = getCookie('refreshToken');
-//   const accessToken = localStorage.getItem('accessToken');
-
-//   if (!refreshToken || !accessToken) return;
-
-//   axios
-//     .get(`${BASE_URL}/users/userInfo`, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//       withCredentials: true,
-//     })
-//     .then((response) => {
-//       if (response.status === 200) {
-//         console.log(response.data);
-
-//         // 유저 정보 화면에 표시 등
-//       } else if (response.status === 500) {
-//         alert('서버 오류가 발생했습니다. 나중에 다시 시도해주세요.');
-//       }
-//     })
-//     .catch((error) => {
-//       console.error(error);
-
-//       if (error.response && error.response.status === 401) {
-//         // 세션이 만료된 경우, 로컬 쿠키 삭제
-//         deleteCookie('refreshToken');
-
-//         alert('세션이 만료되었습니다. 다시 로그인하세요.');
-
-//         window.location.href = '/login';
-//       }
-//       // 에러 처리, 예를 들어 에러 메시지 표시 등
-//     });
-// }
-
 document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.querySelector('.login-btn');
   btnLogin.addEventListener('click', function (e) {

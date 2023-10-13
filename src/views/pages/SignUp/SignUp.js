@@ -24,9 +24,10 @@ const submitForm = async function () {
 
       if (response.status === 200) {
         // 등록이 성공적으로 이루어진 경우
-        alert('회원가입이 완료되었습니다!🎉');
-        window.location.href = '/pages';
-        // window.location.href = '/pages/login';
+        console.log(user);
+        alert('회원가입이 완료되었습니다!🎉\n로그인 페이지로 이동합니다.');
+        // window.location.href = '/pages';
+        window.location.href = '/pages/login';
       }
     } catch (error) {
       console.error('오류:', error);

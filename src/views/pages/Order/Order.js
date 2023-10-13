@@ -38,11 +38,17 @@ const sameOrdererBtn = document.querySelector('.same-orderer-btn');
 sameOrdererBtn.addEventListener('click', function () {
   const name = document.getElementById('name').value;
   const phoneNumber = document.getElementById('phone_number').value;
+  const postCode = document.getElementById('postcode').value;
   const address = document.getElementById('address').value;
+  const detailAddress = document.getElementById('detailAddress').value;
+  const extraAddress = document.getElementById('extraAddress').value;
 
   document.getElementById('receiver_name').value = name;
   document.getElementById('receiver_phone_number').value = phoneNumber;
-  document.getElementById('receiver_address').value = address;
+  document.querySelector('.receiver_addr').value = address;
+  document.querySelector('.receiver_postcode').value = postCode;
+  document.querySelector('.receiver_detailAddr').value = detailAddress;
+  document.querySelector('.receiver_extraAddr').value = extraAddress;
 });
 
 //구매하기 버튼 클릭 시 formdata 생성
@@ -52,26 +58,70 @@ const orderForm = document.getElementById('order-form');
 purchaseBtn.addEventListener('click', async function (e) {
   e.preventDefault();
 
-  const formData = new FormData(orderForm);
+  // 상품 데이터 생성
+  const products = [];
+  for (let i = 0; i < productId.length; i++) {
+    products.push({
+      id: productId[i],
+      name: productData[i][1], // 상품명
+      price: productData[i][2], // 상품 가격
+      quantity: quantity[i], // 수량
+    });
+  }
 
-  let jsonObject = {};
+  // 주문자 정보 가져오기
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone_number = document.getElementById('phone_number').value;
+  const address = document.getElementById('address').value;
 
-  // FormData의 각 키-값 쌍을 JavaScript 객체에 추가
-  formData.forEach(function (value, key) {
-    jsonObject[key] = value;
-  });
+  // 배송지 정보 가져오기
+  const receiver_name = document.getElementById('receiver_name').value;
+  const receiver_phone_number = document.getElementById('receiver_phone_number').value;
+  const receiver_address = document.getElementById('receiver_address').value; // 이 부분은 클라이언트에서 수정해야 할 부분
 
-  Object.assign(jsonObject, {
-    // 회원일때는 회원id, 비회원일때는 비회원으로 표시
-    user_id: '비회원',
-    // 상세페이지의 상품과 갯수
-    products: productData,
-    delivery_status: '배송준비중',
-  });
+  // 데이터 패키징
+  const orderData = {
+    user_id: '비회원', // 회원/비회원 여부
+    products: products, // 상품 데이터
+    name,
+    email,
+    phone_number,
+    address,
+    receiver_name,
+    receiver_phone_number,
+    receiver_address,
+    delivery_status: '배송중',
+  };
 
-  const jsonData = JSON.stringify(jsonObject);
+  // const formData = new FormData(orderForm);
+  // // 특정 입력 요소를 FormData에서 제거
+  // formData.delete('detailAddress');
+  // formData.delete('extraAddress');
+  // formData.delete('postcode');
 
-  console.log(jsonData); //지울부분
+  // const addressInput = document.getElementById('address');
+  // formData.append('address', addressInput.value);
+
+  // let jsonObject = {};
+  // console.log(formData);
+
+  // // FormData의 각 키-값 쌍을 JavaScript 객체에 추가
+  // formData.forEach(function (value, key) {
+  //   jsonObject[key] = value;
+  // });
+
+  // Object.assign(jsonObject, {
+  //   // 회원일때는 회원id, 비회원일때는 비회원으로 표시
+  //   user_id: '비회원',
+  //   // 상세페이지의 상품과 갯수
+  //   products: productData,
+  //   delivery_status: '배송중',
+  // });
+
+  // const jsonData = JSON.stringify(jsonObject);
+
+  // console.log(jsonData); //지울부분
 
   // axios로 생성한 데이터를 서버로 post 요청을 보냄
   try {
@@ -105,4 +155,55 @@ purchaseBtn.addEventListener('click', async function (e) {
   } catch (err) {
     console.log('에러 발생:', err);
   }
+});
+
+// 주소 찾기
+function execDaumPostcode() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+      var addr = ''; // 주소 변수
+      var extraAddr = ''; // 참고항목 변수
+
+      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+      if (data.userSelectedType === 'R') {
+        // 사용자가 도로명 주소를 선택했을 경우
+        addr = data.roadAddress;
+      } else {
+        // 사용자가 지번 주소를 선택했을 경우(J)
+        addr = data.jibunAddress;
+      }
+
+      // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+      if (data.userSelectedType === 'R') {
+        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+          extraAddr += data.bname;
+        }
+        if (data.buildingName !== '' && data.apartment === 'Y') {
+          extraAddr += extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+        }
+        if (extraAddr !== '') {
+          extraAddr = ' (' + extraAddr + ')';
+        }
+        // 조합된 참고항목을 해당 필드에 넣는다.
+        document.getElementById('extraAddress').value = extraAddr;
+      } else {
+        document.getElementById('extraAddress').value = '';
+      }
+
+      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      document.getElementById('postcode').value = data.zonecode;
+      document.getElementById('address').value = addr;
+      // 커서를 상세주소 필드로 이동한다.
+      document.getElementById('detailAddress').focus();
+    },
+  }).open();
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  let postcodeButton = document.getElementById('btn-postcode');
+  postcodeButton.addEventListener('click', function () {
+    execDaumPostcode();
+  });
 });
