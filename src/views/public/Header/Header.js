@@ -28,7 +28,7 @@ async function fetchHeader() {
           <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="/pages/Order-History>
+          <a href="/pages/Order-History">
             주문 내역
           </a>
         </li>
