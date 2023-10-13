@@ -17,6 +17,6 @@ router.use('/Order-History', ViewService.serveStatic('Order-History'));
 router.use('/Non-Member-Order-History', ViewService.serveStatic('Non-Member-Order-History'));
 router.use('/Order-Completed', ViewService.serveStatic('Order-Completed'));
 router.use('/Product', ViewService.serveStatic('Product'));
-router.use('/Product-info', ViewService.serveStatic('Product-info'));
+router.use('/Product-Info', ViewService.serveStatic('Product-Info'));
 
 module.exports = router;
