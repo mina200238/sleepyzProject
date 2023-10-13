@@ -7,23 +7,19 @@
     <link rel="stylesheet" href="/pages/Admin-Products/Admin-Products.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <script type="module" src="/pages/Admin-Products/Admin-Products.js" defer></script>
-    <script type="module" src="/public/Header/Header.js" defer></script>
-    <link rel="stylesheet" href="/public/Header/Header.css" />
   </head>
   <body>
-    <header id="header"></header>
-
     <main id="container">
       <!-- 사이드네비바 -->
       <div class="sidebar">
         <div class="sidebarCategories">
           <h2>관리자 페이지</h2>
-          <a href="#" class="current-page">상품관리</a>
-          <a href="#">카테고리관리</a>
-          <a href="#">주문관리</a>
+          <a href="/pages/Admin-Products" class="current-page">상품관리</a>
+          <a href="/pages/Admin-Categories">카테고리관리</a>
+          <a href="/pages/Orders">주문관리</a>
         </div>
         <div class="sidebarLinks">
-          <a href="#">Home</a>
+          <a href="/pages">Home</a>
           <a href="#">Logout</a>
         </div>
       </div>
@@ -31,26 +27,21 @@
       <!-- 메인 상품관리 테이블 -->
       <div class="content">
         <h2>상품관리</h2>
+
+        <table class="productTable">
+          <tr>
+            <th class="table_number" style="width: 10%">번호</th>
+            <th class="table_image" style="width: 20%">이미지</th>
+            <th class="table_name" style="width: 40%">상품명</th>
+            <th class="table_price" style="width: 10%">가격</th>
+            <th class="table_category" style="width: 10%">카테고리</th>
+            <th class="table_manage" style="width: 10%">관리</th>
+          </tr>
+        </table>
         <div class="tableButton">
           <button class="addButton">상품 추가</button>
         </div>
-        <table class="productTable">
-          <tr>
-            <th>번호</th>
-            <th>이미지</th>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>카테고리</th>
-            <th>관리</th>
-          </tr>
-        </table>
-        <div class="pagination">
-          <a href="#" class="active">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-        </div>
+        <div id="pagination" class="pagination"></div>
       </div>
     </main>
     <!-- 상품 등록 모달 테이블 -->
@@ -80,7 +71,38 @@
             <input type="file" id="imageInput" accept="image/*" />
           </div>
           <button class="imageUpload">이미지 업로드</button>
-          <button type="submit" class="submitButton">등록하기</button>
+          <button type="submit" class="submitButton" id="submitButton" disabled>등록하기</button>
+        </form>
+      </div>
+    </div>
+    <!-- 상품 수정 모달 테이블 -->
+    <div id="_myModal" class="_modal">
+      <div class="_modal-content">
+        <span class="_close">&times;</span>
+        <form>
+          <div class="_modal-title"><h2>상품 수정</h2></div>
+          <div class="_input-group">
+            <label for="name">Name:</label>
+            <input type="text" id="_name" name="name" />
+          </div>
+          <div class="_input-group">
+            <label for="description">Description:</label>
+            <textarea id="_description" name="description"></textarea>
+          </div>
+          <div class="_input-group">
+            <label for="price">Price:</label>
+            <input type="number" id="_price" name="price" />
+          </div>
+          <div class="_input-group">
+            <label for="category">Category:</label>
+            <input type="text" id="_category" name="category" />
+          </div>
+          <div class="_input-group">
+            <label for="image">Image:</label>
+            <input type="file" id="_imageInput" accept="image/*" />
+          </div>
+          <button class="_imageUpload">이미지 업로드</button>
+          <button type="submit" class="_submitButton" id="_submitButton">등록하기</button>
         </form>
       </div>
     </div>

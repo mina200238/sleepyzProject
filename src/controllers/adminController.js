@@ -84,11 +84,18 @@ const updateProduct = async (req, res, next) => {
   // 상품 수정
   try {
     const { product_id, name, description, price, category, image_id } = req.body;
-    if (!product_id || !name || !description || !price || !category || !image_id) {
+    if (!product_id || !name || !description || !price || !category) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
     const adminService = new AdminService();
-    const updatedProduct = await adminService.updateProduct(product_id, name, description, price, category, image_id);
+    const updatedProduct = await adminService.updateProduct(
+      product_id,
+      name,
+      description,
+      price,
+      category,
+      image_id[0] !== null ? image_id : false,
+    );
     res.status(200).json({
       data: null,
       message: '상품 정보가 변경되었습니다.',

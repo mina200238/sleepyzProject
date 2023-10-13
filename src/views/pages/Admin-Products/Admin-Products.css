@@ -2,8 +2,8 @@
 
 #container {
   display: flex;
-  margin-top: 80px;
   width: 100%;
+  margin-top: 0;
 }
 
 .sidebar {
@@ -58,11 +58,11 @@
 .tableButton {
   display: flex;
   justify-content: left;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .addButton {
-  width: 140px;
+  width: 10.2%;
 }
 
 table {
@@ -87,6 +87,29 @@ th {
   flex-direction: column;
   justify-content: space-between;
 }
+.productTable {
+  table-layout: fixed;
+  width: 97%; /* 테이블 전체 크기 지정. 필요에 따라 조절하세요 */
+}
+/* 
+.table_number {
+  width: 5%;
+}
+.table_image {
+  width: 5%;
+}
+.table_name {
+  width: 50%;
+}
+.table_price {
+  width: 10%;
+}
+.table_category {
+  width: 10%;
+}
+.table_manage {
+  width: 10%;
+} */
 
 .pagination {
   display: flex;
@@ -113,7 +136,8 @@ th {
   background-color: #ddd;
 }
 
-.modal {
+.modal,
+._modal {
   display: none;
   position: absolute;
   top: 0;
@@ -124,7 +148,8 @@ th {
   z-index: 998;
 }
 
-.modal-content {
+.modal-content,
+._modal-content {
   position: absolute;
   top: 52%;
   left: 50%;
@@ -141,12 +166,14 @@ th {
   display: flex;
   justify-content: center;
 }
-.modal-title {
+.modal-title,
+._modal-title {
   height: 10%;
   font-size: 30px;
   margin-bottom: 30px;
 }
-.input-group {
+.input-group,
+._input-group {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,31 +181,37 @@ th {
   margin-bottom: 10px; /* optional, adds some space between fields */
 }
 
-.input-group label {
+.input-group label,
+._input-group label {
   width: 100px; /* adjust as needed */
 }
 
 .input-group input,
-.input-group textarea {
+.input-group textarea,
+._input-group input,
+._input-group textarea {
   width: calc(50%); /* adjust as needed */
 }
 #description {
   height: 80px;
 }
+.imageUpload,
 .imageUpload {
   width: calc(22%);
 }
 .submitButton {
   width: calc(22%);
 }
-.modal-content form {
+.modal-content form,
+._modal-content form {
   width: 500px; /* Set a specific width for the form */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.close {
+.close,
+._close {
   color: #aaa;
   float: right;
 }
