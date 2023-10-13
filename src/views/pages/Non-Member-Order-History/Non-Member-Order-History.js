@@ -1,11 +1,13 @@
 const checkBtn = document.querySelector('.check-btn');
 const containerHistory = document.querySelector('.container-history');
+const orderTitle = document.querySelector('.order-title');
 
 let userEmail = null;
 checkBtn.addEventListener('click', function () {
   userEmail = document.getElementById('email').value;
   renderHistory(userEmail);
   containerHistory.style.display = 'none';
+  orderTitle.style.display = 'block';
 });
 
 async function renderHistory(userEmail) {
