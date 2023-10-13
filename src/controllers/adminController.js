@@ -41,7 +41,7 @@ const createCategory = async (req, res, next) => {
 
 const updateCategory = async (req, res, next) => {
   try {
-    // const { category_id, category_name } = req.body;
+    const { category_id, category_name } = req.body;
     if (!category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
 
     const adminService = new AdminService();
