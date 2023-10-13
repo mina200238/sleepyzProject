@@ -1,4 +1,4 @@
-import updateBadge from '/public/utils/UpdateBadge.js';
+// import updateBadge from '/public/utils/UpdateBadge.js';
 
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 let currentQuantity = 1;
@@ -232,7 +232,7 @@ deleteButton.addEventListener('click', function () {
 
         localStorage.removeItem(key);
         localStorage.removeItem(productImageKey);
-        updateBadge();
+        // updateBadge();
 
         selectedProducts.push(cartItem);
       }
