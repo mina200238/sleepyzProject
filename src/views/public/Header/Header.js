@@ -29,12 +29,25 @@ async function fetchHeader() {
           <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="#">주문 내역</a>
+          <a href="/pages/Order-History">
+            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
+          </a>
         </li>
         <li>
           <a href="#">로그아웃</a>
         </li>
       `;
+      const logoutButton = document.getElementById('logout');
+      console.log(logoutButton);
+      if (logoutButton) {
+        logoutButton.addEventListener('click', function (e) {
+          console.log('클릭');
+          e.preventDefault();
+          localStorage.removeItem('accessToken');
+          deleteCookie('refreshToken');
+          window.location.href = '/pages';
+        });
+      }
     } else {
       // 로그아웃 상태인 경우
       dropdown.innerHTML = `
@@ -42,12 +55,23 @@ async function fetchHeader() {
           <a href="/pages/Login/">로그인</a>
         </li>
         <li>
-          <a href="/pages/Order-History/">주문 내역</a>
+          <a href="/pages/Order-History">주문 내역</a>
         </li>
       `;
     }
   } catch (error) {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
+  }
+  const logoutButton = document.getElementById('logout');
+  console.log(logoutButton);
+  if (logoutButton) {
+    logoutButton.addEventListener('click', function (e) {
+      console.log('클릭');
+      e.preventDefault();
+      localStorage.removeItem('accessToken');
+      deleteCookie('refreshToken');
+      window.location.href = '/pages';
+    });
   }
 }
 
@@ -101,24 +125,23 @@ function checkUserLoginStatus() {
 }
 
 // document.addEventListener('DOMContentLoaded', function () {
-//   // 모든 category-item 요소를 선택합니다.
-//   const categoryItems = document.querySelectorAll('.category-item');
+//   const logoutButton = document.getElementById('logout');
+//   console.log(logoutButton);
 
-//   // 각 category-item 요소에 클릭 이벤트 리스너를 추가합니다.
-//   categoryItems.forEach(function (item) {
-//     item.addEventListener('click', function () {
-//       console.log('클릭');
-//       // 클릭된 요소에 active 클래스를 추가합니다.
-//       item.classList.add('active');
+//   if (logoutButton) {
+//     logoutButton.addEventListener('click', function (e) {
+//       e.preventDefault();
 
-//       // 다른 category-item 요소에 active 클래스를 제거합니다.
-//       categoryItems.forEach(function (otherItem) {
-//         if (otherItem !== item) {
-//           otherItem.classList.remove('active');
-//         }
-//       });
-//       // 클릭된 요소에 active 클래스를 추가합니다.
-//       item.classList.add('active');
+//       localStorage.removeItem('accessToken');
+
+//       deleteCookie('refreshToken');
+
+//       window.location.href = '/pages';
 //     });
-//   });
+//   }
+
+//   // 쿠키 삭제 함수
+//   function deleteCookie(name) {
+//     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;';
+//   }
 // });
