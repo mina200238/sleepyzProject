@@ -1,4 +1,6 @@
-const submitForm = function () {
+const BASE_URL = 'http://localhost:5000';
+
+const submitForm = async function () {
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -15,29 +17,24 @@ const submitForm = function () {
       phone_number,
       address,
     };
-    console.log(user);
 
-    // 서버로 POST 요청 보내기
-    fetch('/users/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        if (response.ok) {
-          // 등록이 성공적으로 이루어진 경우
-          alert('가입이 성공했습니다');
-          // 사용자를 다른 페이지로 리디렉션하거나 필요한 다른 조치를 취할 수 있습니다
-        } else {
-          // 등록 오류를 처리합니다. 예: 이미 사용 중인 이메일 등
-          alert('가입에 실패했습니다. 다시 시도해 주세요.');
-        }
-      })
-      .catch((error) => {
-        console.error('오류:', error);
-      });
+    try {
+      // 서버로 POST 요청 보내기
+      const response = await axios.post(`${BASE_URL}/users/signup`, user);
+
+      if (response.status === 200) {
+        // 등록이 성공적으로 이루어진 경우
+        console.log(user);
+        alert('회원가입이 완료되었습니다!🎉\n로그인 페이지로 이동합니다.');
+        // window.location.href = '/pages';
+        window.location.href = '/pages/login';
+      }
+    } catch (error) {
+      console.error('오류:', error);
+      alert(error.response.data.message || '가입에 실패했습니다. 다시 시도해 주세요😭');
+    }
+  } else {
+    alert('모든 정보를 입력해주세요!');
   }
 };
 
@@ -45,7 +42,6 @@ const submitForm = function () {
 function checkPasswordLength(input) {
   let passwordWarning = document.getElementById('password-warning');
   const passwordCheckInput = document.getElementById('password-check');
-  const signupButton = document.querySelector('.signup-btn');
 
   if (input.value.length > 0 && input.value.length < 4) {
     // 비밀번호가 4글자 미만일 때 보여줄 메시지
@@ -61,7 +57,6 @@ function checkPasswordLength(input) {
     // 조건 미충족시 비밀번호 확인란 비활성화
     passwordCheckInput.value = '';
     passwordCheckInput.disabled = true;
-    signupButton.disabled = true;
   } else {
     // If password is long enough, remove the warning message
     if (passwordWarning) {
@@ -69,7 +64,6 @@ function checkPasswordLength(input) {
     }
     // 조건 충족 시, 비밀번호 확인란 활성화
     passwordCheckInput.disabled = false;
-    signupButton.disabled = false;
     checkPasswordMatch();
   }
 }
@@ -79,7 +73,6 @@ function checkPasswordMatch() {
   const password = document.getElementById('password').value;
   const passwordCheck = document.getElementById('password-check').value;
   let passwordWarning = document.getElementById('password-warning');
-  const signupButton = document.querySelector('.signup-btn');
 
   if (password !== passwordCheck) {
     if (!passwordWarning) {
@@ -92,18 +85,15 @@ function checkPasswordMatch() {
       pwCheck.appendChild(passwordWarning);
     }
     passwordWarning.textContent = '비밀번호가 일치하지 않습니다.';
-    signupButton.disabled = true;
   } else {
     if (passwordWarning) {
       passwordWarning.parentNode.removeChild(passwordWarning);
-      signupButton.disabled = false;
     }
   }
 }
 
 function checkEmail(input) {
   let emailWarning = document.getElementById('email-warning');
-  const signupButton = document.querySelector('.signup-btn');
 
   if (!input.value.includes('@') || !input.value.includes('.')) {
     if (!emailWarning) {
@@ -115,18 +105,15 @@ function checkEmail(input) {
     }
 
     emailWarning.textContent = '유효한 이메일 주소를 입력해주세요.';
-    signupButton.disabled = false;
   } else {
     if (emailWarning) {
       emailWarning.parentNode.removeChild(emailWarning);
-      signupButton.disabled = false;
     }
   }
 }
 
 function checkPhoneNumber(input) {
   let phoneNumWarning = document.getElementById('phoneNum-warning');
-  const signupButton = document.querySelector('.signup-btn');
 
   let phoneNumPattern = /[0-9]{3}-[0-9]{4}-[0-9]{4}/;
 
@@ -140,11 +127,9 @@ function checkPhoneNumber(input) {
     }
 
     phoneNumWarning.textContent = '(000-0000-0000) 형식의 유효한 전화번호를 입력해주세요.';
-    signupButton.disabled = true;
   } else {
     if (phoneNumWarning) {
       phoneNumWarning.parentNode.removeChild(phoneNumWarning);
-      signupButton.disabled = false;
     }
   }
 }
@@ -194,7 +179,6 @@ function execDaumPostcode() {
 }
 
 // HTML 요소 가져오기 및 함수 실행 설정
-
 window.addEventListener('DOMContentLoaded', function () {
   let passwordInput = document.getElementById('password');
   passwordInput.addEventListener('input', function () {

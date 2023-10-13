@@ -37,14 +37,23 @@ function updateAllCheckboxes() {
 // 상품이 하나라도 존재하는지 여부
 let hasProducts = false;
 
-const renderCartData = function () {
+const renderCartData = function (productId) {
   // 화면에 데이터 렌더링하는 코드
   const cartList = document.querySelector('.cart-list');
   // 기존 상품 목록 초기화
   cartList.innerHTML = '';
 
+  let productCount = 0;
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith('product_')) {
+      productCount++;
+    }
+  }
+
   // 장바구니에 담긴 상품이 없을 때
-  if (localStorage.length === 0) {
+  if (productCount === 0) {
     const noItemsText = document.createElement('p');
     noItemsText.classList.add('empty-cart');
     noItemsText.textContent = '장바구니에 담긴 상품이 없습니다 🛒';

@@ -6,7 +6,9 @@ class ProductService {
     const id = String(product_id);
     const product = await Product.find({
       _id: id,
-    }).populate('image_id');
+    })
+      .populate('image_id')
+      .populate('category');
 
     return product;
   }
@@ -16,6 +18,7 @@ class ProductService {
     const skipProduct = await Product.count();
     const recentPoducts = await Product.find()
       .populate('image_id')
+      .populate('category')
       .skip(skipProduct - limit);
     return recentPoducts;
   }
@@ -32,7 +35,9 @@ class ProductService {
 
     const categoryProducts = await Product.find({
       category: category._id,
-    }).populate('image_id');
+    })
+      .populate('image_id')
+      .populate('category');
     return categoryProducts;
   }
 }

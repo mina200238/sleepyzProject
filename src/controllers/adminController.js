@@ -7,7 +7,6 @@ const getCategories = async (req, res, next) => {
   try {
     const adminService = new AdminService();
     const categories = await adminService.getCategories();
-    // console.log(categories);
     if (categories.length === 0) {
       throw new NotFoundError('카테고리가 없습니다!');
     }
@@ -31,7 +30,7 @@ const createCategory = async (req, res, next) => {
 
     const newCategory = await adminService.createCategory(category_name);
     res.status(200).json({
-      category_data: { cateogry_name: newCategory.category_name },
+      category_data: { category_name: newCategory.category_name },
       message: '새로운 카테고리를 등록하였습니다',
     });
   } catch (err) {
@@ -42,10 +41,13 @@ const createCategory = async (req, res, next) => {
 const updateCategory = async (req, res, next) => {
   try {
     // const { category_id, category_name } = req.body;
-    if (!category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
+
+    const { original_category_name, new_category_name } = req.body.data;
+    if (!new_category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
 
     const adminService = new AdminService();
-    const updatedCategory = await adminService.updateCategory(category_id, category_name);
+    // const updatedCategory = await adminService.updateCategory(category_id, category_name);
+    const updatedCategory = await adminService.updateCategory(original_category_name, new_category_name);
 
     res.status(200).json({
       category_data: { category_name: updatedCategory.category_name },
@@ -84,11 +86,18 @@ const updateProduct = async (req, res, next) => {
   // 상품 수정
   try {
     const { product_id, name, description, price, category, image_id } = req.body;
-    if (!product_id || !name || !description || !price || !category || !image_id) {
+    if (!product_id || !name || !description || !price || !category) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
     const adminService = new AdminService();
-    const updatedProduct = await adminService.updateProduct(product_id, name, description, price, category, image_id);
+    const updatedProduct = await adminService.updateProduct(
+      product_id,
+      name,
+      description,
+      price,
+      category,
+      image_id[0] !== null ? image_id : false,
+    );
     res.status(200).json({
       data: null,
       message: '상품 정보가 변경되었습니다.',

@@ -27,7 +27,7 @@ const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
 const productContainer = document.querySelector('.products-wrap');
 
 function showMainProducts(products) {
-  const productsToShow = products.slice(0, 9);
+  const productsToShow = products.slice(-9).reverse();
 
   productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성

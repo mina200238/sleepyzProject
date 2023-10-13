@@ -46,6 +46,55 @@
 #address {
   width: 400px;
 }
+.address-area {
+  margin-top: 10px;
+}
+.address-area input[type='text'] {
+  padding: 5px;
+  font-size: 16px;
+  margin: 5px 0;
+  margin-bottom: 10px;
+  width: 200px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #edf2f7;
+}
+.address-area label {
+  width: 80px;
+  display: inline-block;
+}
+#address,
+#detailAddress {
+  margin-left: 83px;
+}
+.address-area #postcode {
+  width: 290px;
+}
+.address-area #btn-postcode {
+  appearance: none;
+  width: 105px;
+  border-radius: 10px;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  height: 34px;
+  font-weight: bold;
+  line-height: 34px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.address-area #btn-postcode:hover {
+  background-color: #9261e8;
+}
+#detailAddress {
+  width: 245px;
+}
+#extraAddress {
+  width: 147px;
+}
 
 .same-orderer-btn {
   background-color: #ffffff;

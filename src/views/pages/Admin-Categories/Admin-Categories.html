@@ -16,12 +16,12 @@
       <aside class="sidebar">
         <div class="sidebarCategories">
           <h2>관리자 페이지</h2>
-          <a href="#">상품관리</a>
-          <a href="#" class="current-page">카테고리관리</a>
-          <a href="#">주문관리</a>
+          <a href="/pages/Admin-Products">상품관리</a>
+          <a href="/pages/Admin-Categories" class="current-page">카테고리관리</a>
+          <a href="/pages/Admin-Orders">주문관리</a>
         </div>
         <div class="sidebarLinks">
-          <a href="#">Home</a>
+          <a href="/pages">Home</a>
           <a href="#">Logout</a>
         </div>
       </aside>
@@ -29,52 +29,71 @@
       <!-- 메인 상품관리관리 테이블 -->
       <section class="section-category">
         <h2 class="category-title">카테고리 관리</h2>
-        <p>총 <span class="category-count">4</span>개</p>
-        <div class="tableButton">
-          <!-- <button class="delete-category-btn">카테고리 제거</button> -->
-          <button class="add-category-btn">카테고리 추가</button>
-        </div>
-        <table>
+        <p>총 <span class="category-count"></span> 개</p>
+        <button class="btn add-category-btn">카테고리 추가</button>
+        <table class="productTable">
           <thead>
             <tr>
-              <th>카테고리명</th>
-              <th>상품 개수</th>
-              <th>관리</th>
+              <th style="width: 10%">카테고리명</th>
+              <th style="width: 10%">상품 개수</th>
+              <th style="width: 15%">관리</th>
             </tr>
           </thead>
-          <tbody class="table-body">
-            <!-- <tr>
-              <td><input type="checkbox" id="category-1" /><label for="category-1">의자</label></td>
-              <td>a600</td>
-              <td>13</td>
-              <td><button>수정</button></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" id="category-2" /><label for="category-2">책상</label></td>
-              <td>a200</td>
-              <td>15</td>
-              <td><button>수정</button></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" id="category-3" /><label for="category-3">조명</label></td>
-              <td>a400</td>
-              <td>17</td>
-              <td><button>수정</button></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" id="category-4" /><label for="category-4">선반</label></td>
-              <td>a1234</td>
-              <td>2</td>
-              <td><button>수정</button></td>
-            </tr> -->
-          </tbody>
+          <tbody class="table-body"></tbody>
         </table>
         <div class="pagination">
-          <a href="#" class="active">1</a>
+          <!-- <a href="#" class="active">1</a>
           <a href="#">2</a>
           <a href="#">3</a>
           <a href="#">4</a>
-          <a href="#">5</a>
+          <a href="#">5</a> -->
+        </div>
+      </section>
+      <section class="section-category-add-modal hidden">
+        <div class="category-modal-container">
+          <h1 class="category-modal-title">카테고리 추가</h1>
+          <div class="category-input-container">
+            <label for="category-add-name" class="category-name">카테고리 이름: </label>
+            <input
+              type="text"
+              id="category-add-name"
+              class="category-add-input"
+              placeholder="카테고리 이름을 입력해주세요."
+              required
+            />
+          </div>
+          <div class="btns-container">
+            <button class="btn modal-btn btn-add-confirm-category">확인</button>
+            <button class="btn modal-btn btn-add-cancel-category">취소</button>
+          </div>
+        </div>
+      </section>
+      <section class="section-category-edit-modal hidden">
+        <div class="category-modal-container">
+          <h1 class="category-modal-title">카테고리 수정</h1>
+          <div class="category-input-container">
+            <label for="category-edit-name" class="category-name">카테고리 이름: </label>
+            <input
+              type="text"
+              id="category-edit-name"
+              class="category-edit-input"
+              placeholder="카테고리 이름을 입력해주세요."
+              required
+            />
+          </div>
+          <div class="btns-container">
+            <button class="btn modal-btn btn-edit-confirm-category">확인</button>
+            <button class="btn modal-btn btn-edit-cancel-category">취소</button>
+          </div>
+        </div>
+      </section>
+      <section class="section-category-delete-modal hidden">
+        <div class="category-modal-container">
+          <h1 class="category-modal-title">카테고리 삭제</h1>
+          <div class="btns-container">
+            <button class="btn modal-btn btn-delete-confirm-category">확인</button>
+            <button class="btn modal-btn btn-delete-cancel-category">취소</button>
+          </div>
         </div>
       </section>
     </main>

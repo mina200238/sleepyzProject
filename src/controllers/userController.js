@@ -40,16 +40,15 @@ const login = async (req, res, next) => {
       throw new NotFoundError('이미 탈퇴한 회원 입니다!!!');
     }
 
-    const [accessToken, refreshToken] = await userService.login(email, password);
-
-    if (!accessToken) {
+    const tokens = await userService.login(email, password);
+    if (!tokens) {
       throw new BadRequestError('이메일 또는 비밀번호를 잘못 입력하셨습니다.');
     }
-
+    const [accessToken, refreshToken] = tokens;
     res
       .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict', secure: true })
       .status(200)
-      .json({ accessToken });
+      .json({ accessToken: accessToken, message: '로그인에 성공했습니다!' });
   } catch (error) {
     next(error);
   }
@@ -61,7 +60,7 @@ const signOut = async (req, res, next) => {
     const userService = new UserService();
     await userService.signOut(decoded);
 
-    res.status(200).json({ data: null, message: '회원 탈퇴가 되었습니다.' });
+    res.status(200).json({ data: null, message: '회원 탈퇴가 처리 되었습니다.' });
   } catch (err) {
     next(err);
   }
