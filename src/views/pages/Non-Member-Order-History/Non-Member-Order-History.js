@@ -136,18 +136,19 @@ function displayOrderDetails(orderDetails) {
       });
       orderDeleteBtn.addEventListener('click', async function () {
         console.log('delte버튼 클릭!', orderInfoList._id);
-        await axios
-          .delete(`${BASE_URL}/orders`, {
+        try {
+          const response = await axios.delete(`${BASE_URL}/orders`, {
             headers: {
               'Content-Type': 'application/json',
               order_id: orderInfoList._id,
             },
-          })
-          .then((response) => {
-            // 성공적으로 업데이트되었을 때 처리
-            console.log('주문이 삭제되었습니다.', response);
-            alert('주문이 삭제되었습니다.');
           });
+          if (response.status === 200) {
+            console.log(response);
+          }
+        } catch (err) {
+          console.log(err);
+        }
       });
 
       container.appendChild(order);
