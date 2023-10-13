@@ -2,17 +2,6 @@ const checkBtn = document.querySelector('.check-btn');
 const containerHistory = document.querySelector('.container-history');
 const orderTitle = document.querySelector('.order-title');
 
-const orderFixBtn = document.createElement('button');
-const orderDeleteBtn = document.createElement('button');
-
-orderFixBtn.addEventListener('click', function () {
-  console.log('fix버튼 클릭!');
-});
-
-orderDeleteBtn.addEventListener('click', function () {
-  console.log('delte버튼 클릭!');
-});
-
 let userEmail = null;
 checkBtn.addEventListener('click', function () {
   userEmail = document.getElementById('email').value;
@@ -129,6 +118,18 @@ function displayOrderDetails(orderDetails) {
     const order = document.createElement('div');
     order.classList.add('order');
 
+    const orderFixBtn = document.createElement('button');
+    const orderDeleteBtn = document.createElement('button');
+    orderFixBtn.textContent = '주문 수정';
+    orderDeleteBtn.textContent = '주문 삭제';
+    orderFixBtn.classList.add('orderFixBtn');
+    orderDeleteBtn.classList.add('orderDeleteBtn');
+    orderFixBtn.addEventListener('click', function () {
+      console.log('fix버튼 클릭!', orderInfoList._id);
+    });
+    orderDeleteBtn.addEventListener('click', function () {
+      console.log('delte버튼 클릭!', orderInfoList._id);
+    });
     order.appendChild(orderFixBtn);
     order.appendChild(orderDeleteBtn);
 
