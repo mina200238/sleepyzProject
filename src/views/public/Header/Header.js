@@ -1,4 +1,4 @@
-import updateBadge from '/public/utils/UpdateBadge.js';
+// import updateBadge from '/public/utils/UpdateBadge.js';
 
 async function fetchHeader() {
   try {
@@ -6,7 +6,7 @@ async function fetchHeader() {
     const data = await response.text();
     document.getElementById('header').innerHTML = data;
 
-    updateBadge();
+    // updateBadge();
 
     const categoryLinks = document.querySelectorAll('.dropdown a');
 
