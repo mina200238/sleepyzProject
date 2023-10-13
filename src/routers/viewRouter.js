@@ -13,6 +13,8 @@ router.use('/SignUp', ViewService.serveStatic('SignUp'));
 router.use('/', ViewService.serveStatic('Main'));
 router.use('/My-Info', ViewService.serveStatic('My-Info'));
 router.use('/Order', ViewService.serveStatic('Order'));
+router.use('/Order-History', ViewService.serveStatic('Order-History'));
+router.use('/Non-Member-Order-History', ViewService.serveStatic('Non-Member-Order-History'));
 router.use('/Order-Completed', ViewService.serveStatic('Order-Completed'));
 router.use('/Product', ViewService.serveStatic('Product'));
 router.use('/Product-info', ViewService.serveStatic('Product-info'));
