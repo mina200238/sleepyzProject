@@ -137,9 +137,8 @@ function displayOrderDetails(orderDetails) {
       orderDeleteBtn.addEventListener('click', async function () {
         console.log('delte버튼 클릭!', orderInfoList._id);
         try {
-          const response = await axios.delete(`${BASE_URL}/orders`, {
+          const response = await axios.post(`${BASE_URL}/orders/delete`, {
             headers: {
-              'Content-Type': 'application/json',
               order_id: orderInfoList._id,
             },
           });

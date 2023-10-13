@@ -7,7 +7,7 @@ const { deleteOrders } = require('../controllers/adminController');
 const router = Router();
 
 router.post('/', makeOrder); // 주문 작성
-router.delete('/', deleteOrders); // 주문 삭제
+router.post('/delete', deleteOrders); // 주문 삭제
 router.get('/history', validateToken, getUserOrders); // 회원 주문 조회
 router.get('/search', getNonMemberOrders); // 비회원 주문 조회
 router.get('/', validateToken, getUserInfo); // 주문 작성시 유저 정보 불러오기
