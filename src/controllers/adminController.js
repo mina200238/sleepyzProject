@@ -185,17 +185,10 @@ const deleteOrders = async (req, res, next) => {
     const { order_id } = req.headers;
     const adminService = new AdminService();
     const updatedUserInfo = await adminService.deleteOrders(order_id);
-    if (order_id) {
-      res.status(200).json({
-        data: order_id,
-        message: '주문 내역이 성공적으로 삭제되었습니다',
-      });
-    } else {
-      res.status(200).json({
-        data: order_id,
-        message: '실패했습니다. 삭제되었습니다',
-      });
-    }
+    res.status(200).json({
+      data: null,
+      message: '주문 내역이 성공적으로 삭제되었습니다',
+    });
   } catch (err) {
     next(err);
   }
