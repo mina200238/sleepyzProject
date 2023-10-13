@@ -1,4 +1,4 @@
-import updateBadge from '/public/utils/UpdateBadge.js';
+// import updateBadge from '/public/utils/UpdateBadge.js';
 
 // 장바구니 데이터를 로컬 스토리지에서 가져오는 함수
 function getCart(product) {
@@ -42,7 +42,7 @@ function addToCart(product, currentQuantity) {
   localStorage.setItem(`productImage_${product._id}`, product.image_id.thumbnail_url[0]);
 
   saveCart(product, cart); // 장바구니 데이터를 로컬 스토리지에 저장
-  updateBadge();
+  // updateBadge();
 
   if (window.confirm('장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?')) {
     window.location.href = '/pages/Cart/Cart.html';
@@ -54,7 +54,7 @@ function addToCart(product, currentQuantity) {
 function removeFromCart(product) {
   const productId = String(product._id);
   localStorage.removeItem(`product_${productId}`);
-  updateBadge();
+  // updateBadge();
 }
 
 export { getCart, saveCart, addToCart, removeFromCart };

@@ -38,7 +38,7 @@ async function fetchHeader() {
         </li>
       `;
       const logoutButton = document.getElementById('logout');
-      console.log(logoutButton);
+
       if (logoutButton) {
         logoutButton.addEventListener('click', function (e) {
           console.log('클릭');
@@ -63,7 +63,7 @@ async function fetchHeader() {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
   }
   const logoutButton = document.getElementById('logout');
-  console.log(logoutButton);
+
   if (logoutButton) {
     logoutButton.addEventListener('click', function (e) {
       console.log('클릭');
