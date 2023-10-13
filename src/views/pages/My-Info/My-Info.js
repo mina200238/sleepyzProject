@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       address: addressInput.value,
     };
     try {
-      const updatedUser = await axios.put(`${BASE_URL}/users/userInfo`, {
+      const updatedUser = await axios.put(`${BASE_URL}/users/userInfo`, userData, {
         headers: {
           authorization: access,
         },
