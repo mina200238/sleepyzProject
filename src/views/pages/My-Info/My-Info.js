@@ -1,36 +1,6 @@
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const unregisterLink = document.querySelector('.unregister');
-
-  unregisterLink.addEventListener('click', async function (e) {
-    e.preventDefault();
-
-    if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
-      return;
-    }
-
-    // DELETE 요청
-    const headers = {
-      authorization:
-        'jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-    };
-
-    await axios
-      .delete(`${BASE_URL}/users/signout`, { headers: headers })
-      .then((response) => {
-        if (response.status === 204) {
-          alert('회원탈퇴가 완료되었습니다.');
-        } else {
-          console.error('회원탈퇴 실패:', response.data.message);
-        }
-      })
-      .catch((error) => {
-        alert('회원탈퇴 중 오류가 발생하였습니다.');
-        console.error(error);
-      });
-  });
-
   const modal = document.getElementById('passwordModal');
   const openModalButton = document.getElementById('change-password-button');
   const closeModalButton = document.getElementById('close-modal-button');
@@ -126,6 +96,34 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (updatedUser.status === 200) {
         alert('회원 정보가 수정되었습니다.');
         location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  function deleteCookie(...cookieNames) {
+    cookieNames.forEach((cookieName) => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`;
+    });
+  }
+  // 회원 탈퇴
+  const unregisterLink = document.querySelector('.unregister');
+  unregisterLink.addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
+      return;
+    }
+    try {
+      const requestDelete = await axios.post(`${BASE_URL}/users/signOut`, {
+        headers: {
+          authorization: access,
+        },
+      });
+      if (requestDelete.status === 200) {
+        alert('회원 탈퇴가 되었습니다.');
+        deleteCookie('accessToken', 'refreshToken');
+        window.location.href = '/pages';
       }
     } catch (err) {
       console.log(err);
