@@ -186,7 +186,7 @@ const deleteOrders = async (req, res, next) => {
     const adminService = new AdminService();
     const updatedUserInfo = await adminService.deleteOrders(order_id);
     res.status(200).json({
-      data: nuupdatedUserInfoll,
+      data: updatedUserInfo,
       id: order_id,
       message: '주문 내역이 성공적으로 삭제되었습니다',
     });
