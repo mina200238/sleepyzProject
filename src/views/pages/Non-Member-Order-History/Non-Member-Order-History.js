@@ -1,6 +1,16 @@
 const checkBtn = document.querySelector('.check-btn');
 const containerHistory = document.querySelector('.container-history');
 const orderTitle = document.querySelector('.order-title');
+const orderFixBtn = document.querySelector('.orderFixBtn');
+const orderDeleteBtn = document.querySelector('.orderDeleteBtn');
+
+orderFixBtn.addEventListener('click', function () {
+  console.log('fix버튼 클릭!');
+});
+
+orderDeleteBtn.addEventListener('click', function () {
+  console.log('delte버튼 클릭!');
+});
 
 let userEmail = null;
 checkBtn.addEventListener('click', function () {
