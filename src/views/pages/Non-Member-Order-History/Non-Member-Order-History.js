@@ -139,6 +139,7 @@ function displayOrderDetails(orderDetails) {
         await axios
           .delete(`${BASE_URL}/orders`, {
             headers: {
+              'Content-Type': 'application/json',
               order_id: orderInfoList._id,
             },
           })
