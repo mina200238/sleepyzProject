@@ -1,9 +1,9 @@
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
   const unregisterLink = document.querySelector('.unregister');
 
-  unregisterLink.addEventListener('click', function (e) {
+  unregisterLink.addEventListener('click', async function (e) {
     e.preventDefault();
 
     if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
     };
 
-    axios
+    await axios
       .delete(`${BASE_URL}/users/signout`, { headers: headers })
       .then((response) => {
         if (response.status === 204) {
@@ -79,8 +79,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   const userInfoForm = document.querySelector('form');
   const usernameInput = document.getElementById('username');
-  const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
+  const addressInput = document.getElementById('address');
+
+  function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name + '=') === 0) {
+        return cookie.substring(name.length + 1, cookie.length);
+      }
+    }
+    return '';
+  }
+  const access = getCookie(accessToken);
+  const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    headers: {
+      authorization: access,
+    },
+  });
+  console.log(myData);
 
   //회원정보 변경
   userInfoForm.addEventListener('submit', function (e) {
@@ -88,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const userData = {
       name: usernameInput.value,
-      email: emailInput.value,
       phone_number: phoneInput.value,
+      address: addressInput.value,
     };
 
     const url = '/users/userInfo';
