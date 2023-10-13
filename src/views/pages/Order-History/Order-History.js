@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log('3여기', beforeData);
 
   // URL에서 이메일 파라미터 가져오기
-  const urlParams = new URLSearchParams(window.location.search);
-  const userEmail = urlParams.get('email');
+  const userEmail = beforeData.email;
 
   //주문내역 정보를 서버에서 가져오고 화면에 띄우는 과정
   if (userEmail) {
