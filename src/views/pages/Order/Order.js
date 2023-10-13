@@ -2,6 +2,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.getAll('product_id'); // 모든 상품 ID를 배열로 가져옴
 const quantity = urlParams.getAll('quantity'); // 모든 수량을 배열로 가져옴
+const productData = []; //상품의 id, name, 가격, 수량을 담을 배열
 
 //주문 내역 부분의 총상품금액, 결제금액을 서버에서 가져와서 화면에 띄움
 insertPriceElement();
@@ -16,6 +17,9 @@ async function insertPriceElement() {
     const res = await axios.get(`http://localhost:5000/products/${productId[i]}`);
     const price = res.data.data[0].price;
     totalProductPrice += price * quantity[i];
+    const name = res.data.data[0].name;
+    const id = res.data.data[0]._id;
+    productData.push([id, name, price, quantity[i]]);
   }
 
   // 배송비
@@ -34,11 +38,17 @@ const sameOrdererBtn = document.querySelector('.same-orderer-btn');
 sameOrdererBtn.addEventListener('click', function () {
   const name = document.getElementById('name').value;
   const phoneNumber = document.getElementById('phone_number').value;
+  const postCode = document.getElementById('postcode').value;
   const address = document.getElementById('address').value;
+  const detailAddress = document.getElementById('detailAddress').value;
+  const extraAddress = document.getElementById('extraAddress').value;
 
   document.getElementById('receiver_name').value = name;
   document.getElementById('receiver_phone_number').value = phoneNumber;
-  document.getElementById('receiver_address').value = address;
+  document.querySelector('.receiver_addr').value = address;
+  document.querySelector('.receiver_postcode').value = postCode;
+  document.querySelector('.receiver_detailAddr').value = detailAddress;
+  document.querySelector('.receiver_extraAddr').value = extraAddress;
 });
 
 //구매하기 버튼 클릭 시 formdata 생성
@@ -48,34 +58,68 @@ const orderForm = document.getElementById('order-form');
 purchaseBtn.addEventListener('click', async function (e) {
   e.preventDefault();
 
-  const formData = new FormData(orderForm);
-
-  let jsonObject = {};
-
-  // FormData의 각 키-값 쌍을 JavaScript 객체에 추가
-  formData.forEach(function (value, key) {
-    jsonObject[key] = value;
-  });
-
-  // 서버에서 받아오거나 직접 작성해야하는 데이터 추가
-  const productData = {};
+  // 상품 데이터 생성
+  const products = [];
   for (let i = 0; i < productId.length; i++) {
-    Object.assign(productData, {
-      [productId[i]]: quantity[i],
+    products.push({
+      id: productId[i],
+      name: productData[i][1], // 상품명
+      price: productData[i][2], // 상품 가격
+      quantity: quantity[i], // 수량
     });
   }
 
-  // console.log(productData); //지울부분
+  // 주문자 정보 가져오기
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone_number = document.getElementById('phone_number').value;
+  const address = document.getElementById('address').value;
 
-  Object.assign(jsonObject, {
-    // 회원일때는 회원id, 비회원일때는 비회원으로 표시
-    user_id: '비회원',
-    // 상세페이지의 상품과 갯수
-    products_id: productData,
-    delivery_status: '주문완료',
-  });
+  // 배송지 정보 가져오기
+  const receiver_name = document.getElementById('receiver_name').value;
+  const receiver_phone_number = document.getElementById('receiver_phone_number').value;
+  const receiver_address = document.getElementById('receiver_address').value; // 이 부분은 클라이언트에서 수정해야 할 부분
 
-  const jsonData = JSON.stringify(jsonObject);
+  // 데이터 패키징
+  const orderData = {
+    user_id: '비회원', // 회원/비회원 여부
+    products: products, // 상품 데이터
+    name,
+    email,
+    phone_number,
+    address,
+    receiver_name,
+    receiver_phone_number,
+    receiver_address,
+    delivery_status: '배송중',
+  };
+
+  // const formData = new FormData(orderForm);
+  // // 특정 입력 요소를 FormData에서 제거
+  // formData.delete('detailAddress');
+  // formData.delete('extraAddress');
+  // formData.delete('postcode');
+
+  // const addressInput = document.getElementById('address');
+  // formData.append('address', addressInput.value);
+
+  // let jsonObject = {};
+  // console.log(formData);
+
+  // // FormData의 각 키-값 쌍을 JavaScript 객체에 추가
+  // formData.forEach(function (value, key) {
+  //   jsonObject[key] = value;
+  // });
+
+  // Object.assign(jsonObject, {
+  //   // 회원일때는 회원id, 비회원일때는 비회원으로 표시
+  //   user_id: '비회원',
+  //   // 상세페이지의 상품과 갯수
+  //   products: productData,
+  //   delivery_status: '배송중',
+  // });
+
+  // const jsonData = JSON.stringify(jsonObject);
 
   // console.log(jsonData); //지울부분
 
@@ -111,4 +155,55 @@ purchaseBtn.addEventListener('click', async function (e) {
   } catch (err) {
     console.log('에러 발생:', err);
   }
+});
+
+// 주소 찾기
+function execDaumPostcode() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+      var addr = ''; // 주소 변수
+      var extraAddr = ''; // 참고항목 변수
+
+      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+      if (data.userSelectedType === 'R') {
+        // 사용자가 도로명 주소를 선택했을 경우
+        addr = data.roadAddress;
+      } else {
+        // 사용자가 지번 주소를 선택했을 경우(J)
+        addr = data.jibunAddress;
+      }
+
+      // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+      if (data.userSelectedType === 'R') {
+        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+          extraAddr += data.bname;
+        }
+        if (data.buildingName !== '' && data.apartment === 'Y') {
+          extraAddr += extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+        }
+        if (extraAddr !== '') {
+          extraAddr = ' (' + extraAddr + ')';
+        }
+        // 조합된 참고항목을 해당 필드에 넣는다.
+        document.getElementById('extraAddress').value = extraAddr;
+      } else {
+        document.getElementById('extraAddress').value = '';
+      }
+
+      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      document.getElementById('postcode').value = data.zonecode;
+      document.getElementById('address').value = addr;
+      // 커서를 상세주소 필드로 이동한다.
+      document.getElementById('detailAddress').focus();
+    },
+  }).open();
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  let postcodeButton = document.getElementById('btn-postcode');
+  postcodeButton.addEventListener('click', function () {
+    execDaumPostcode();
+  });
 });

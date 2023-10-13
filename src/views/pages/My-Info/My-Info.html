@@ -22,17 +22,25 @@
         <form action="#" method="POST">
           <div class="input-group">
             <label for="username">이름</label>
-            <input type="text" id="username" name="username" required />
-          </div>
-
-          <div class="input-group">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" required />
+            <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            placeholder="이름을 입력해주세요." 
+            pattern="[A-Za-z가-힣\s]+"
+            autocomplete="off"
+            />
           </div>
 
           <div class="input-group">
             <label for="phone">전화번호</label>
-            <input type="tel" id="phone" name="phone" required />
+            <input type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="off"
+              placeholder="전화번호를 입력해 주세요"
+              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+              required />
           </div>
 
           <div class="btn-group">

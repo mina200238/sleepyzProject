@@ -24,13 +24,11 @@ function showProductsByPage(pageNumber, products) {
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
       const urlParams = new URLSearchParams(window.location.search);
       const productId = urlParams.get('product_id');
-      console.log(productId);
 
       try {
         // 상세 정보를 가져올 때는 async/await를 사용합니다.
         const response = await axios.get(`${BASE_URL}/products/${clickedProductId}`);
         const productDetails = response.data.data; // 상세 정보를 가져온다고 가정
-        console.log(productDetails);
 
         // 가져온 상세 정보를 HTML에 표시합니다.
         const productNameElement = document.querySelector('.prod-name');
@@ -42,9 +40,7 @@ function showProductsByPage(pageNumber, products) {
         productPriceElement.textContent = `${productDetails.price}원`;
 
         // 필요한 정보를 가져와서 표시한 후에 원하는 동작을 수행할 수 있습니다.
-      } catch (error) {
-        console.error('상세 정보를 가져올 수 없습니다:', error);
-      }
+      } catch (error) {}
     });
 
     // 상품 카드 요소를 생성
@@ -121,7 +117,7 @@ const categoryMapping = {
   cover: '커버',
 };
 const categoryTitleElement = document.querySelector('.product-list h2');
-categoryTitleElement.textContent = categoryMapping[category] || '전체 상품';
+categoryTitleElement.textContent = categoryMapping[category] || '전체';
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
