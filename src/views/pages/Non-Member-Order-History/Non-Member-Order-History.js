@@ -1,8 +1,9 @@
 const checkBtn = document.querySelector('.check-btn');
 const containerHistory = document.querySelector('.container-history');
 const orderTitle = document.querySelector('.order-title');
-const orderFixBtn = document.querySelector('.orderFixBtn');
-const orderDeleteBtn = document.querySelector('.orderDeleteBtn');
+
+const orderFixBtn = document.createElement('button');
+const orderDeleteBtn = document.createElement('button');
 
 orderFixBtn.addEventListener('click', function () {
   console.log('fix버튼 클릭!');
@@ -126,11 +127,10 @@ function displayOrderDetails(orderDetails) {
 
     //만들어놓은 3개의 클래스를 order 클래스에 추가
     const order = document.createElement('div');
-    order.innerHTML = `
-    <button class="orderFixBtn">주문 수정</button>
-        <button class="orderDeleteBtn">주문 취소</button>
-    `;
     order.classList.add('order');
+
+    order.appendChild(orderFixBtn);
+    order.appendChild(orderDeleteBtn);
 
     order.appendChild(orderInfo);
     order.appendChild(productsInfo);
