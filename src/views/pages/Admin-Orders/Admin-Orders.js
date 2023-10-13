@@ -96,6 +96,7 @@ function showOrders(orders) {
     manageButton.id = `button${i}`;
     i++;
     manageButton.textContent = '수정';
+    manageButton.className = 'btn';
     manageTd2.appendChild(manageButton);
     manageTd.appendChild(manageTd2);
 
@@ -112,6 +113,7 @@ function showOrders(orders) {
     const manageTd3 = document.createElement('div');
     const deleteButton = document.createElement('button');
     deleteButton.textContent = '삭제';
+    deleteButton.className = 'btn';
 
     manageTd3.appendChild(deleteButton);
     manageTd.appendChild(manageTd3);
@@ -237,16 +239,20 @@ function addPagination(totalPages) {
   // 기존 페이지네이션 버튼 제거
   paginationContainer.innerHTML = '';
 
-  // 이전 페이지 버튼
-  const prevButton = document.createElement('button');
-  prevButton.textContent = '이전';
-  prevButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-      currentPage--;
-      refreshOrders();
-    }
-  });
-  paginationContainer.appendChild(prevButton);
+  if (totalPages >= 5) {
+    // 이전 페이지 버튼
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '<';
+    prevButton.className = 'btn';
+    prevButton.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        refreshOrders();
+      }
+    });
+
+    paginationContainer.appendChild(prevButton);
+  }
 
   // 페이지 번호 버튼
   for (let i = 1; i <= totalPages; i++) {
@@ -256,19 +262,23 @@ function addPagination(totalPages) {
       currentPage = i;
       refreshOrders();
     });
+    pageButton.className = 'btn';
     paginationContainer.appendChild(pageButton);
   }
 
-  // 다음 페이지 버튼
-  const nextButton = document.createElement('button');
-  nextButton.textContent = '다음';
-  nextButton.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-      currentPage++;
-      refreshOrders();
-    }
-  });
-  paginationContainer.appendChild(nextButton);
+  if (totalPages >= 5) {
+    // 다음 페이지 버튼
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '>';
+    nextButton.className = 'btn';
+    nextButton.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        refreshOrders();
+      }
+    });
+    paginationContainer.appendChild(nextButton);
+  }
 }
 
 // 주문을 다시 표시하는 함수
