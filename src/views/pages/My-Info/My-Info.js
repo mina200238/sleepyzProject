@@ -117,10 +117,11 @@ document.addEventListener('DOMContentLoaded', async function () {
       return;
     }
     const access = getCookie('accessToken');
+    console.log('3여기', access);
     try {
       const requestDelete = await axios.post(`${BASE_URL}/users/signOut`, {
         headers: {
-          authorization: access,
+          authorization: `${access}`,
         },
       });
       if (requestDelete.status === 200) {
