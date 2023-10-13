@@ -16,174 +16,40 @@
 
     <main id="container">
       <!-- 사이드네비바 -->
-      <div class="sidebar">
+      <aside class="sidebar">
         <div class="sidebarCategories">
           <h2>관리자 페이지</h2>
-          <a href="#" class="current-page">상품관리</a>
-          <a href="#">카테고리관리</a>
-          <a href="#">주문관리</a>
+          <a href="/pages/Admin-Products">상품관리</a>
+          <a href="/pages/Admin-Categories" class="current-page">카테고리관리</a>
+          <a href="/pages/Admin-Categories">주문관리</a>
         </div>
         <div class="sidebarLinks">
-          <a href="#">Home</a>
+          <a href="/pages">Home</a>
           <a href="#">Logout</a>
         </div>
-      </div>
+      </aside>
 
       <!-- 메인 상품관리 테이블 -->
       <div class="content">
         <h2>주문관리</h2>
 
-        <table>
+        <table class="productTable">
           <tr>
             <th>번호</th>
-            <th>이미지</th>
             <th>상품명</th>
             <th>카테고리</th>
             <th>가격</th>
             <th>배송 상태</th>
             <th>배송 상태 수정</th>
           </tr>
-          <tr>
-            <td id="1행 1열">1</td>
-            <td id="1행 2열">2</td>
-            <td id="1행 3열">3</td>
-            <td id="1행 4열">4</td>
-            <td id="1행 5열">5</td>
-            <td id="1행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-
-            <td id="1행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td id="2행 1열">행 8</td>
-            <td id="2행 2열">행 9</td>
-            <td id="2행 3열">행 10</td>
-            <td id="2행 4열">행 11</td>
-            <td id="2행 5열">행 12</td>
-
-            <td id="2행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-            <td id="2행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="3행 1열">행 8</td>
-            <td id="3행 2열">행 9</td>
-            <td id="3행 3열">행 10</td>
-            <td id="3행 4열">행 11</td>
-            <td id="3행 5열">행 12</td>
-
-            <td id="3행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-            <td id="3행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="4행 1열">행 8</td>
-            <td id="4행 2열">행 9</td>
-            <td id="4행 3열">행 10</td>
-            <td id="4행 4열">행 11</td>
-            <td id="4행 5열">행 12</td>
-            <td id="4행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-            <td id="4행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="5행 1열">행 8</td>
-            <td id="5행 2열">행 9</td>
-            <td id="5행 3열">행 10</td>
-            <td id="5행 4열">행 11</td>
-            <td id="5행 5열">행 12</td>
-            <td id="5행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-            <td id="5행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="6행 1열">행 8</td>
-            <td id="6행 2열">행 9</td>
-            <td id="6행 3열">행 10</td>
-            <td id="6행 4열">행 11</td>
-            <td id="6행 5열">행 12</td>
-            <td id="6행 6열">
-              <div class="tableButton">
-                <select id="statusDropdown">
-                  <option value="preparing">준비중</option>
-                  <option value="shipping">배송중</option>
-                  <option value="delivered">배송완료</option>
-                </select>
-              </div>
-            </td>
-            <td id="6행 7열">
-              <div class="tableButton">
-                <button onclick="updateSelectedStatus()">수정</button>
-              </div>
-            </td>
-          </tr>
         </table>
 
-        <div class="pagination">
-          <a href="#" class="active">1</a>
+        <div class="pagination"></div>
+          <!-- <a href="#" class="active">1</a>
           <a href="#">2</a>
           <a href="#">3</a>
           <a href="#">4</a>
-          <a href="#">5</a>
+          <a href="#">5</a> -->
         </div>
       </div>
     </main>
