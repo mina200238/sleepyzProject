@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
     return '';
   }
-  const access = getCookie(accessToken);
+  const access = getCookie('accessToken');
   const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
     headers: {
       authorization: access,
