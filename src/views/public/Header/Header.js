@@ -26,19 +26,13 @@ async function fetchHeader() {
       // 로그인 상태인 경우
       dropdown.innerHTML = `
         <li>
-          <a href="/pages/My-Info/">
-            <img class="my-info-icon" src="/public/assets/icon_user.svg" alt="My Info" /> 내 정보
-          </a>
+          <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="#">
-            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
-          </a>
+          <a href="#">주문 내역</a>
         </li>
         <li>
-          <a href="#">
-            <img class="logout-icon" src="/public/assets/icon_logout.svg" alt="Logout" /> 로그아웃
-          </a>
+          <a href="#">로그아웃</a>
         </li>
       `;
     } else {
@@ -80,10 +74,51 @@ window.addEventListener('DOMContentLoaded', () => {
   fetchHeader();
 });
 
+// 쿠키에서 accessToken을 가져오는 함수
+function getAccessTokenFromCookie() {
+  const name = 'accessToken=';
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
+}
+
 function checkUserLoginStatus() {
-  const token = localStorage.getItem('token');
+  const token = getAccessTokenFromCookie();
   if (!token) {
     return false;
   }
   return true;
 }
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   // 모든 category-item 요소를 선택합니다.
+//   const categoryItems = document.querySelectorAll('.category-item');
+
+//   // 각 category-item 요소에 클릭 이벤트 리스너를 추가합니다.
+//   categoryItems.forEach(function (item) {
+//     item.addEventListener('click', function () {
+//       console.log('클릭');
+//       // 클릭된 요소에 active 클래스를 추가합니다.
+//       item.classList.add('active');
+
+//       // 다른 category-item 요소에 active 클래스를 제거합니다.
+//       categoryItems.forEach(function (otherItem) {
+//         if (otherItem !== item) {
+//           otherItem.classList.remove('active');
+//         }
+//       });
+//       // 클릭된 요소에 active 클래스를 추가합니다.
+//       item.classList.add('active');
+//     });
+//   });
+// });
