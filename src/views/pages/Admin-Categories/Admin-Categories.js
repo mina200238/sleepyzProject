@@ -193,13 +193,19 @@ const renderCategories = async () => {
       productCount = 0; // 에러 발생 시 상품 개수를 0으로 설정하거나 다른 처리를 할 수 있습니다.
     }
 
+    const isDefault =
+      category.category_name === '이불' ||
+      category.category_name === '침대' ||
+      category.category_name === '커버' ||
+      category.category_name === '베개';
+
     const markup = `
       <tr>
         <td data-id=${category._id}>${category.category_name}</td>
         <td>${productCount}</td>
         <td>
-          <button class="btn edit-category-btn">수정</button>
-          <button class="btn delete-category-btn">삭제</button>
+          <button class="btn edit-category-btn" ${isDefault ? 'disabled' : ''}>수정</button>
+          <button class="btn delete-category-btn" ${isDefault ? 'disabled' : ''}>삭제</button>
         </td>
       </tr>
     `;

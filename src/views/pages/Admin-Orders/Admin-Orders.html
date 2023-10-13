@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>슬리피즈</title>
-    <link rel="stylesheet" href="/public/Header/Header.css" />
+    <!-- <link rel="stylesheet" href="/public/Header/Header.css" /> -->
     <!-- <link rel="stylesheet" href="/pages/Admin-Orders/Admin-Orders.css" /> -->
     <link rel="stylesheet" type="text/css" media="screen" href="/pages/Admin-Orders/Admin-Orders.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
-    <script type="module" src="/public/Header/Header.js" defer></script>
+    <!-- <script type="module" src="/public/Header/Header.js" defer></script> -->
     <script type="module" src="/pages/Admin-Orders/Admin-Orders.js" defer></script>
   </head>
   <body>
-    <header id="header"></header>
+
 
     <main id="container">
       <!-- 사이드네비바 -->
@@ -20,8 +20,8 @@
         <div class="sidebarCategories">
           <h2>관리자 페이지</h2>
           <a href="/pages/Admin-Products">상품관리</a>
-          <a href="/pages/Admin-Categories" class="current-page">카테고리관리</a>
-          <a href="/pages/Admin-Categories">주문관리</a>
+          <a href="/pages/Admin-Categories" >카테고리관리</a>
+          <a href="/pages/Admin-Categories" class="current-page">주문관리</a>
         </div>
         <div class="sidebarLinks">
           <a href="/pages">Home</a>
@@ -35,12 +35,12 @@
 
         <table class="productTable">
           <tr>
-            <th>번호</th>
-            <th>상품명</th>
-            <th>카테고리</th>
-            <th>가격</th>
-            <th>배송 상태</th>
-            <th>배송 상태 수정</th>
+            <th style="width: 5%">번호</th>
+            <th style="width: 10%">주문자</th>
+            <th style="width: 30%">주문 상품</th>
+            <th style="width: 5%">주문 가격</th>
+            <th style="width: 5%">배송 상태</th>
+            <th style="width: 5%">주문 관리</th>
           </tr>
         </table>
 
