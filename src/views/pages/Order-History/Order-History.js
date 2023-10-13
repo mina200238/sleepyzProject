@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
   function getCookie(name) {
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookies = decodedCookie.split(';');
