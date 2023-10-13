@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 const submitForm = async function () {
   const name = document.getElementById('name').value;

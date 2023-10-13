@@ -1,6 +1,6 @@
 import updateBadge from '/public/utils/UpdateBadge.js';
 
-const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 let currentQuantity = 1;
 
 // 페이지 로드 시, 장바구니 데이터 가져와서 화면에 렌더링

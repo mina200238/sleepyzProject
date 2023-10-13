@@ -1,7 +1,7 @@
 const tableBody = document.querySelector('.table-body');
 const addCategoryBtn = document.querySelector('.add-category-btn');
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 // pagination 관련
 const itemsPerPage = 10; // 페이지당 표시할 항목 수

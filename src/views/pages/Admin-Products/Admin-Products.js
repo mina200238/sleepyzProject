@@ -1,4 +1,4 @@
-const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com/';
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 const productContainer = document.querySelector('.products-wrap');
 const productTable = document.querySelector('.productTable');
 
