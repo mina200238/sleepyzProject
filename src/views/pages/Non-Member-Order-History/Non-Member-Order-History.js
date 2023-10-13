@@ -124,20 +124,20 @@ function displayOrderDetails(orderDetails) {
     orderDeleteBtn.textContent = '주문 삭제';
     orderFixBtn.classList.add('orderFixBtn');
     orderDeleteBtn.classList.add('orderDeleteBtn');
+
+    order.appendChild(orderFixBtn);
+    order.appendChild(orderDeleteBtn);
+
+    order.appendChild(orderInfo);
+    order.appendChild(productsInfo);
+    order.innerHTML += productsInfoHTML;
     orderFixBtn.addEventListener('click', function () {
       console.log('fix버튼 클릭!', orderInfoList._id);
     });
     orderDeleteBtn.addEventListener('click', function () {
       console.log('delte버튼 클릭!', orderInfoList._id);
     });
-    order.appendChild(orderFixBtn);
-    order.appendChild(orderDeleteBtn);
-
-    order.appendChild(orderInfo);
-    order.appendChild(productsInfo);
-    // order.innerHTML += productsInfoHTML;
 
     container.appendChild(order);
-    container.insertAdjacentHTML('beforeend', productsInfoHTML);
   });
 }
