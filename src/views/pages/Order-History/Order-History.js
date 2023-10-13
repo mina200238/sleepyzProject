@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name + '=') === 0) {
+        return cookie.substring(name.length + 1, cookie.length);
+      }
+    }
+    return '';
+  }
+  const access = getCookie('accessToken');
+  console.log('2여기', access);
+  const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    headers: {
+      authorization: access,
+    },
+  });
+  const beforeData = myData.data.data;
+  console.log('3여기', beforeData);
+
   // URL에서 이메일 파라미터 가져오기
   const urlParams = new URLSearchParams(window.location.search);
   const userEmail = urlParams.get('email');
