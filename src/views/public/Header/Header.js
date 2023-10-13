@@ -1,3 +1,4 @@
+// import updateBadge from '/public/utils/UpdateBadge.js';
 
 async function fetchHeader() {
   try {
@@ -5,6 +6,7 @@ async function fetchHeader() {
     const data = await response.text();
     document.getElementById('header').innerHTML = data;
 
+    // updateBadge();
 
     const categoryLinks = document.querySelectorAll('.dropdown a');
 
@@ -36,7 +38,7 @@ async function fetchHeader() {
         </li>
       `;
       const logoutButton = document.getElementById('logout');
-      console.log(logoutButton);
+
       if (logoutButton) {
         logoutButton.addEventListener('click', function (e) {
           console.log('클릭');
@@ -61,7 +63,7 @@ async function fetchHeader() {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
   }
   const logoutButton = document.getElementById('logout');
-  console.log(logoutButton);
+
   if (logoutButton) {
     logoutButton.addEventListener('click', function (e) {
       console.log('클릭');
@@ -120,3 +122,26 @@ function checkUserLoginStatus() {
     return false;
   }
   return true;
+}
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   const logoutButton = document.getElementById('logout');
+//   console.log(logoutButton);
+
+//   if (logoutButton) {
+//     logoutButton.addEventListener('click', function (e) {
+//       e.preventDefault();
+
+//       localStorage.removeItem('accessToken');
+
+//       deleteCookie('refreshToken');
+
+//       window.location.href = '/pages';
+//     });
+//   }
+
+//   // 쿠키 삭제 함수
+//   function deleteCookie(name) {
+//     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;';
+//   }
+// });
