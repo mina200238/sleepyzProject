@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     return '';
   }
   const access = getCookie('accessToken');
+  console.log('2여기', access);
   const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
     headers: {
       authorization: access,
