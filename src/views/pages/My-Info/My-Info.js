@@ -108,30 +108,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   addressInput.value = beforeData.address;
 
   //회원정보 변경
-  userInfoForm.addEventListener('submit', function (e) {
+  userInfoForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const userData = {
+      email: beforeData.email,
       name: usernameInput.value,
       phone_number: phoneInput.value,
       address: addressInput.value,
     };
-
-    const url = '/users/userInfo';
-    const headers = {
-      authorization: '토큰 자리',
-      'Content-Type': 'application/json',
-    };
-
-    axios
-      .put(url, userData, { headers: headers })
-      .then((response) => {
-        alert('수정이 완료되었습니다.');
-      })
-      .catch((error) => {
-        alert('회원정보 수정 중 오류가 발생하였습니다.');
-        console.error(error);
+    try {
+      const updatedUser = await axios.put(`${BASE_URL}/users/userInfo`, {
+        headers: {
+          authorization: access,
+        },
       });
+      console.log(updatedUser);
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 
