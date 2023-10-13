@@ -1,5 +1,6 @@
 async function fetchHeader() {
   try {
+    const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
     const response = await fetch('/public/Header/Header.html');
     const data = await response.text();
     document.getElementById('header').innerHTML = data;
@@ -20,6 +21,29 @@ async function fetchHeader() {
     const isLoggedIn = checkUserLoginStatus(); // 로그인 상태 확인 함수 호출
     const dropdown = document.querySelector('.utils-dropdown ul');
 
+    function getCookie(name) {
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const cookies = decodedCookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name + '=') === 0) {
+          return cookie.substring(name.length + 1, cookie.length);
+        }
+      }
+      return '';
+    }
+    const access = getCookie('accessToken');
+    console.log('2여기', access);
+    const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+      headers: {
+        authorization: access,
+      },
+    });
+    const userEmail = mydata.data.data.email;
+
     if (isLoggedIn) {
       // 로그인 상태인 경우
       dropdown.innerHTML = `
@@ -27,7 +51,7 @@ async function fetchHeader() {
           <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="/pages/Order-History">
+          <a href="/pages/Order-History/?email=${userEmail}">
             주문 내역
           </a>
         </li>
@@ -51,6 +75,9 @@ async function fetchHeader() {
       dropdown.innerHTML = `
         <li>
           <a href="/pages/Login/">로그인</a>
+        </li>
+        <li>
+          <a href="/pages/SignUp/">회원가입</a>
         </li>
         <li>
           <a href="/pages/Order-History">주문 내역</a>
