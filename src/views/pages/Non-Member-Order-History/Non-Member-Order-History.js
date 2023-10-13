@@ -17,6 +17,15 @@ async function renderHistory(userEmail) {
   }
 }
 
+//주문내역정보 서버에서 가져오기
+async function fetchOrderDetails(email) {
+  try {
+    const response = await axios.get(`http://kdt-sw-6-team06.elicecoding.com/orders/search?email=${email}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+  }
+}
 //화면에 주문내역정보 띄우기
 function displayOrderDetails(orderDetails) {
   console.log('1여기', orderDetails);
