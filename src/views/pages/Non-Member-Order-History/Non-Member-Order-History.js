@@ -136,15 +136,16 @@ function displayOrderDetails(orderDetails) {
       });
       orderDeleteBtn.addEventListener('click', async function () {
         console.log('delte버튼 클릭!', orderInfoList._id);
-        axios
+        await axios
           .delete(`${BASE_URL}/orders`, {
-            headers: { order_id: orderInfoList._id },
+            headers: {
+              order_id: orderInfoList._id,
+            },
           })
           .then((response) => {
             // 성공적으로 업데이트되었을 때 처리
-            console.log('주문이 삭제되었습니다.', response.data);
+            console.log('주문이 삭제되었습니다.', response);
             alert('주문이 삭제되었습니다.');
-            location.reload();
           });
       });
 
