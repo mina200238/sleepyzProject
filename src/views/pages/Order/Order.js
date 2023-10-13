@@ -32,6 +32,42 @@ async function insertPriceElement() {
   amountOfPayment.textContent = `${totalPrice.toLocaleString()}원`;
 }
 
+const orderUser_name = document.getElementById('name');
+const orderUser_email = document.getElementById('email');
+const orderUser_phone_number = document.getElementById('phone_number');
+const orderUser_address = document.getElementById('address');
+
+function getCookie(name) {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1, cookie.length);
+    }
+  }
+  return '';
+}
+
+async function getOrderUserInfo() {
+  const access = getCookie('accessToken');
+
+  const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    headers: {
+      authorization: access,
+    },
+  });
+  const beforeData = myData.data.data;
+  orderUser_name.value = beforeData.name;
+  orderUser_email.value = beforeData.email;
+  orderUser_phone_number.value = beforeData.phone_number;
+  orderUser_address.value = beforeData.address;
+}
+getOrderUserInfo();
+
 //'주문자와 동일하게' 버튼 클릭 시 주문자쪽 input 값이 배송지쪽 input에 자동으로 입력됨
 const sameOrdererBtn = document.querySelector('.same-orderer-btn');
 
