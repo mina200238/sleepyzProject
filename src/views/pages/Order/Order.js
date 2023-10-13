@@ -61,7 +61,13 @@ purchaseBtn.addEventListener('click', async function (e) {
   // 상품 데이터 생성
   const products = [];
   for (let i = 0; i < productId.length; i++) {
-    products.push([productId[i], productData[i][1], productData[i][2], quantity[i]]);
+    const product = [
+      productId[i],
+      productData[i][1], // 상품명
+      productData[i][2], // 상품 가격
+      quantity[i], // 수량
+    ];
+    products.push(product);
   }
 
   // 주문자 정보 가져오기
