@@ -12,11 +12,12 @@
     <script src="/pages/Order-History/Order-History.js" defer></script>
     <title>슬리피즈</title>
   </head>
-  <body>
+  <body class="body">
     <header id="header"></header>
     <main id="container">
       <div class="order-container">
         <h1 class="title">주문 내역</h1>
+        <!-- 주석처리해야하는 부분(테스트) -->
         <!-- <div class="order">
           <div class="order-info">
             <div class="order-info-list">
@@ -33,10 +34,24 @@
                 <p class="order-info-group">임시금액</p>
               </div>
             </div>
-            <div class="order-info-btn-group">
+            <div class="delivery-info-list">
+              <div>
+                <p>받는 사람</p>
+                <p class="delivery-info-group">임시이름</p>
+              </div>
+              <div>
+                <p>전화번호</p>
+                <p class="delivery-info-group">임시번호</p>
+              </div>
+              <div>
+                <p>주소</p>
+                <p class="delivery-info-group">임시주소</p>
+              </div>
+            </div>
+            // <div class="order-info-btn-group">
               <button class="order-info-btn">상세페이지</button>
               <button class="order-info-btn">주문취소</button>
-            </div>
+            </div> // 구현못한 부분
           </div>
           <div class="products-info">
             <p class="product">상품</p>
@@ -51,8 +66,23 @@
             <p class="delivery">배송준비중</p>
           </div>
         </div> -->
+        <!-- 주석처리해야하는 부분(테스트) -->
       </div>
     </main>
     <footer id="footer"></footer>
+
+    <!-- 상세페이지모달 -->
+    <!-- <div class="modal" id="deliveryModal">
+      <div class="modal-content">
+        <h2 class="delivery-title">배송지 정보</h2>
+        <button id="edit-btn">수정</button>
+        <div class="delivery-info">
+          <p>받는 사람: <span id="recipientName"></span></p>
+          <p>전화번호: <span id="phoneNumber"></span></p>
+          <p>주소: <span id="address"></span></p>
+        </div>
+        <button id="closeModal">닫기</button>
+      </div>
+    </div> -->
   </body>
 </html>
