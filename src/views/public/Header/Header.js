@@ -29,9 +29,7 @@ async function fetchHeader() {
           <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="/pages/Order-History">
-            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
-          </a>
+          <a href="/pages/Non-Member-Order-History">주문 내역</a>
         </li>
         <li>
           <a href="#">로그아웃</a>
