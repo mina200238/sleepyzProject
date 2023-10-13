@@ -135,8 +135,9 @@ function displayOrderDetails(orderDetails) {
 
     order.appendChild(orderInfo);
     order.appendChild(productsInfo);
-    order.innerHTML += productsInfoHTML;
+    // order.innerHTML += productsInfoHTML;
 
     container.appendChild(order);
+    container.insertAdjacentHTML('beforeend', productsInfoHTML);
   });
 }
