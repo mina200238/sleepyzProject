@@ -15,8 +15,6 @@ const errorHandler = require('./middlewares/errorHandler');
 const isAdmin = require('./middlewares/isAdmin');
 const uploadRouter = require('./routers/uploadRouter');
 
-const uploadRouter = require('./routers/uploadRouter');
-
 connectDB();
 
 const app = express();

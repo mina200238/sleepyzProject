@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function fetchOrderDetails(email) {
   try {
     const response = await axios.get(`http://localhost:5000/orders/search?email=${email}`);
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error('Error fetching order details:', error);
@@ -30,7 +29,7 @@ function displayOrderDetails(orderDetails) {
   const container = document.querySelector('.order-container');
 
   //주문내역이 없으면 화면에 '주문내역이 없습니다.'를 띄움
-  if (orderDetails.length < 1) {
+  if (!orderDetails || orderDetails.length < 1) {
     const noOrderMessage = document.createElement('div');
     noOrderMessage.classList.add('no-order-message');
     noOrderMessage.textContent = '주문내역이 없습니다.';
@@ -65,13 +64,21 @@ function displayOrderDetails(orderDetails) {
           <p class="order-info-group">${tatalPrice}원</p>
         </div>
       </div>
-      <div class="order-info-btn-group">
-        <button class="order-info-btn">상세페이지</button>
-        <button class="order-info-btn">주문취소</button>
+      <div class="delivery-info-list">
+        <div>
+          <p>받는 사람</p>
+          <p class="delivery-info-group">${orderInfoList.receiver_name}</p>
+        </div>
+        <div>
+          <p>전화번호</p>
+          <p class="delivery-info-group">${orderInfoList.receiver_phone_number}</p>
+        </div>
+        <div>
+          <p>주소</p>
+          <p class="delivery-info-group">${orderInfoList.receiver_address}</p>
+        </div>
       </div>
     `;
-
-    console.log(orderInfo);
 
     //products-info 클래스의 내용
     const productsInfo = document.createElement('div');
@@ -83,8 +90,6 @@ function displayOrderDetails(orderDetails) {
       <p class="quantity">수량</p>
       <p class="delivery">배송상태</p>
     `;
-
-    console.log(productsInfo);
 
     //order-item 클래스 내용
     const productsInfoHTML = orderInfoList.products
@@ -111,3 +116,44 @@ function displayOrderDetails(orderDetails) {
     container.appendChild(order);
   });
 }
+
+// // 모달을 여는 함수
+// function openModal(recipientName, phoneNumber, address) {
+//   const modal = document.getElementById('deliveryModal');
+//   const recipientNameSpan = document.getElementById('recipientName');
+//   const phoneNumberSpan = document.getElementById('phoneNumber');
+//   const addressSpan = document.getElementById('address');
+
+//   recipientNameSpan.textContent = recipientName;
+//   phoneNumberSpan.textContent = phoneNumber;
+//   addressSpan.textContent = address;
+
+//   modal.style.display = 'block';
+// }
+
+// // 모달을 닫는 함수
+// function closeModal() {
+//   const modal = document.getElementById('deliveryModal');
+//   modal.style.display = 'none';
+// }
+
+// // "상세페이지" 버튼 클릭 시 모달 열기
+// document.addEventListener('click', function (event) {
+//   if (event.target.classList.contains('order-info-btn') && event.target.textContent === '상세페이지') {
+//     const recipientName = '이름'; // 받는 사람 정보를 적절한 방식으로 가져오세요.
+//     const phoneNumber = '전화번호'; // 전화번호 정보를 적절한 방식으로 가져오세요.
+//     const address = '주소'; // 주소 정보를 적절한 방식으로 가져오세요.
+//     openModal(recipientName, phoneNumber, address);
+//   }
+// });
+
+// // "닫기" 버튼 클릭 시 모달 닫기
+// document.getElementById('closeModal').addEventListener('click', closeModal);
+
+// // 화면 클릭 시 모달 닫기 (모달 바깥 클릭 시)
+// window.addEventListener('click', function (event) {
+//   const modal = document.getElementById('deliveryModal');
+//   if (event.target == modal) {
+//     closeModal();
+//   }
+// });
