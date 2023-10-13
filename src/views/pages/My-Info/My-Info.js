@@ -102,7 +102,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       authorization: access,
     },
   });
-  console.log(myData);
+  const beforeData = myData.data.data;
+  usernameInput.value = beforeData.name;
+  phoneInput.value = beforeData.phone_number;
+  addressInput.value = beforeData.address;
 
   //회원정보 변경
   userInfoForm.addEventListener('submit', function (e) {
