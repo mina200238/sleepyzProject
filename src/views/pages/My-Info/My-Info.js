@@ -123,7 +123,10 @@ document.addEventListener('DOMContentLoaded', async function () {
           authorization: access,
         },
       });
-      console.log(updatedUser);
+      if (updatedUser.status === 200) {
+        alert('회원 정보가 수정되었습니다.');
+        location.reload();
+      }
     } catch (err) {
       console.log(err);
     }
