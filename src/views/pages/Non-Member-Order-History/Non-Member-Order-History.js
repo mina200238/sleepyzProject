@@ -143,7 +143,7 @@ function displayOrderDetails(orderDetails) {
           if (response.status === 200) {
             console.log(response);
             alert('주문이 삭제되었습니다.');
-            renderHistory(userEmail);
+            window.location.reload();
           }
         } catch (err) {
           console.log(err);
