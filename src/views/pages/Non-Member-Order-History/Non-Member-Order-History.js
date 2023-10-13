@@ -126,6 +126,10 @@ function displayOrderDetails(orderDetails) {
 
     //만들어놓은 3개의 클래스를 order 클래스에 추가
     const order = document.createElement('div');
+    order.innerHTML = `
+    <button class="orderFixBtn">주문 수정</button>
+        <button class="orderDeleteBtn">주문 취소</button>
+    `;
     order.classList.add('order');
 
     order.appendChild(orderInfo);
