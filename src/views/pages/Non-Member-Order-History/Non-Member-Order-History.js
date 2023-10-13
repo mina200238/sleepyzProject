@@ -1,6 +1,7 @@
 const checkBtn = document.querySelector('.check-btn');
 const containerHistory = document.querySelector('.container-history');
 const orderTitle = document.querySelector('.order-title');
+const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 let userEmail = null;
 checkBtn.addEventListener('click', function () {
