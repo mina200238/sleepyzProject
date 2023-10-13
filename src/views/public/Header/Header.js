@@ -21,28 +21,28 @@ async function fetchHeader() {
     const isLoggedIn = checkUserLoginStatus(); // 로그인 상태 확인 함수 호출
     const dropdown = document.querySelector('.utils-dropdown ul');
 
-    function getCookie(name) {
-      const decodedCookie = decodeURIComponent(document.cookie);
-      const cookies = decodedCookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i];
-        while (cookie.charAt(0) === ' ') {
-          cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(name + '=') === 0) {
-          return cookie.substring(name.length + 1, cookie.length);
-        }
-      }
-      return '';
-    }
-    const access = getCookie('accessToken');
-    console.log('2여기', access);
-    const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
-      headers: {
-        authorization: access,
-      },
-    });
-    const userEmail = mydata.data.data.email;
+    // function getCookie(name) {
+    //   const decodedCookie = decodeURIComponent(document.cookie);
+    //   const cookies = decodedCookie.split(';');
+    //   for (let i = 0; i < cookies.length; i++) {
+    //     let cookie = cookies[i];
+    //     while (cookie.charAt(0) === ' ') {
+    //       cookie = cookie.substring(1);
+    //     }
+    //     if (cookie.indexOf(name + '=') === 0) {
+    //       return cookie.substring(name.length + 1, cookie.length);
+    //     }
+    //   }
+    //   return '';
+    // }
+    // const access = getCookie('accessToken');
+    // console.log('2여기', access);
+    // const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    //   headers: {
+    //     authorization: access,
+    //   },
+    // });
+    // const userEmail = mydata.data.data.email;
 
     if (isLoggedIn) {
       // 로그인 상태인 경우
@@ -51,7 +51,7 @@ async function fetchHeader() {
           <a href="/pages/My-Info/">내 정보</a>
         </li>
         <li>
-          <a href="/pages/Order-History/?email=${userEmail}">
+          <a href="/pages/Order-History/?email=">
             주문 내역
           </a>
         </li>
