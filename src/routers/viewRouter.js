@@ -11,7 +11,7 @@ router.use('/ImageUpload', ViewService.serveStatic('ImageUpload'));
 router.use('/Login', ViewService.serveStatic('Login'));
 router.use('/SignUp', ViewService.serveStatic('SignUp'));
 router.use('/', ViewService.serveStatic('Main'));
-router.use('/My-info', ViewService.serveStatic('My-info'));
+router.use('/My-Info', ViewService.serveStatic('My-Info'));
 router.use('/Order', ViewService.serveStatic('Order'));
 router.use('/Order-Completed', ViewService.serveStatic('Order-Completed'));
 router.use('/Product', ViewService.serveStatic('Product'));
