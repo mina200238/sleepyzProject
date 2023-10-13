@@ -1,5 +1,29 @@
 const BASE_URL = 'http://localhost:5000';
 
+// 쿠키 설정 함수
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = 'expires=' + date.toUTCString();
+  document.cookie = name + '=' + value + ';' + expires + ';path=/';
+}
+
+// 쿠키 가져오는 함수
+function getCookie(name) {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1, cookie.length);
+    }
+  }
+  return '';
+}
+
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -8,12 +32,10 @@ function login() {
     .post(`${BASE_URL}/users/login`, { email, password }, { withCredentials: true })
     .then((response) => {
       if (response.status === 200) {
-        console.log(response.data);
-        console.log(response.data.message);
-        alert('로그인 성공');
+        alert(response.data.message);
 
-        // JWT 토큰 저장:
-        localStorage.setItem('accessToken', response.data.accessToken);
+        // JWT 토큰을 쿠키에 저장
+        setCookie('accessToken', response.data.accessToken, 1);
 
         // 로그인 후 필요한 동작 수행, 예를 들어 메인 페이지로 이동
         window.location.href = '/pages';
@@ -72,19 +94,10 @@ function login() {
 //     });
 // }
 
-// // 쿠키를 가져오는 함수
-// function getCookie(name) {
-//   const value = `; ${document.cookie}`;
-//   const parts = value.split(`; ${name}=`);
-//   if (parts.length === 2) return parts.pop().split(';').shift();
-// }
-
-// // 쿠키를 삭제하는 함수
-// function deleteCookie(name) {
-//   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-// }
-
-document.querySelector('.login-btn').addEventListener('click', function (e) {
-  e.preventDefault();
-  login();
+document.addEventListener('DOMContentLoaded', function () {
+  const btnLogin = document.querySelector('.login-btn');
+  btnLogin.addEventListener('click', function (e) {
+    e.preventDefault();
+    login();
+  });
 });

@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
     res
       .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict', secure: true })
       .status(200)
-      .json({ accessToken: accessToken, message: '로그인 성공' });
+      .json({ accessToken: accessToken, message: '로그인에 성공했습니다!' });
   } catch (error) {
     next(error);
   }
@@ -63,7 +63,7 @@ const signOut = async (req, res, next) => {
     const userService = new UserService();
     await userService.signOut(decoded);
 
-    res.status(200).json({ data: null, message: '회원 탈퇴가 되었습니다.' });
+    res.status(200).json({ data: null, message: '회원 탈퇴가 처리 되었습니다.' });
   } catch (err) {
     next(err);
   }

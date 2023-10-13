@@ -117,7 +117,7 @@ const categoryMapping = {
   cover: '커버',
 };
 const categoryTitleElement = document.querySelector('.product-list h2');
-categoryTitleElement.textContent = categoryMapping[category] || '전체 상품';
+categoryTitleElement.textContent = categoryMapping[category] || '전체';
 
 //카테고리별 데이터 가져오기 (수정중)
 if (category) {
