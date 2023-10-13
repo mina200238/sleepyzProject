@@ -7,7 +7,6 @@ const getCategories = async (req, res, next) => {
   try {
     const adminService = new AdminService();
     const categories = await adminService.getCategories();
-    // console.log(categories);
     if (categories.length === 0) {
       throw new NotFoundError('카테고리가 없습니다!');
     }
@@ -31,7 +30,7 @@ const createCategory = async (req, res, next) => {
 
     const newCategory = await adminService.createCategory(category_name);
     res.status(200).json({
-      category_data: { cateogry_name: newCategory.category_name },
+      category_data: { category_name: newCategory.category_name },
       message: '새로운 카테고리를 등록하였습니다',
     });
   } catch (err) {
@@ -42,10 +41,13 @@ const createCategory = async (req, res, next) => {
 const updateCategory = async (req, res, next) => {
   try {
     // const { category_id, category_name } = req.body;
-    if (!category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
+
+    const { original_category_name, new_category_name } = req.body.data;
+    if (!new_category_name) throw new BadRequestError('카테고리 이름을 기입해주세요.');
 
     const adminService = new AdminService();
-    const updatedCategory = await adminService.updateCategory(category_id, category_name);
+    // const updatedCategory = await adminService.updateCategory(category_id, category_name);
+    const updatedCategory = await adminService.updateCategory(original_category_name, new_category_name);
 
     res.status(200).json({
       category_data: { category_name: updatedCategory.category_name },
