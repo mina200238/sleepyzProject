@@ -46,7 +46,7 @@ const login = async (req, res, next) => {
     }
     const [accessToken, refreshToken] = tokens;
     res
-      .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict', secure: true })
+      .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
       .status(200)
       .json({ accessToken: accessToken, message: '로그인에 성공했습니다!' });
   } catch (error) {
