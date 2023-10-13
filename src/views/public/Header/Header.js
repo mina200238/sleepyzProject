@@ -57,7 +57,7 @@ async function fetchHeader() {
           <a href="/pages/SignUp/">회원가입</a>
         </li>
         <li>
-          <a href="/pages/Order-History">주문 내역</a>
+          <a href="/pages/Non-Member-Order-History">주문 내역</a>
         </li>
       `;
     }
