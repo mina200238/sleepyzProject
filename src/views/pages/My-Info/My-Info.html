@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬리피즈</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Header/Header.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/pages/My-Info/My-Info.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/pages/My-Info/My-Info.js" defer></script>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main id="container">
+      <section class="info-section">
+        <h2>회원정보수정</h2>
+        <h3><a class="unregister">회원탈퇴</a></h3>
+
+        <form action="#" method="POST">
+          <div class="input-group">
+            <label for="username">이름</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+
+          <div class="input-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="input-group">
+            <label for="phone">전화번호</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit">회원 정보 수정</button>
+            <button type="button" id="change-password-button">비밀번호 변경</button>
+          </div>
+          <div class="password-modal" id="passwordModal">
+            <div class="modal-content">
+              <button id="close-modal-button" style="float: right">X</button>
+              <h2>비밀번호 변경</h2>
+              <label for="currentPassword">현재 비밀번호</label><br />
+              <input type="password" id="currentPassword" placeholder="현재 비밀번호를 입력하세요." /><br />
+              <label for="newPassword">새 비밀번호</label></br>
+              <input type="password" id="newPassword" placeholder="새 비밀번호를 입력하세요." />
+              <button type="button" id="submit-password-change">비밀번호 변경</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>

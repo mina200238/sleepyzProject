@@ -1,0 +1,102 @@
+@import '/public/css/reset.css';
+
+input[type]:focus {
+  outline: 0 none;
+  border-color: #9261e8;
+  border-width: 2px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.container-signup {
+  margin-top: 40px;
+  width: 400px;
+}
+
+.signin,
+.signup {
+  text-align: center;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+.signup-form .signup-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  /* margin-bottom: 30px; */
+  margin-top: 10px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background-color: #f1eafeb4;
+}
+
+.signup-form p {
+  margin-bottom: 20px;
+}
+.address-area label {
+  display: block;
+}
+.address-area #postcode {
+  width: 290px;
+}
+.address-area #btn-postcode {
+  appearance: none;
+  width: 105px;
+  border-radius: 10px;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.address-area #btn-postcode:hover {
+  background-color: #9261e8;
+}
+#detailAddress {
+  width: 245px;
+}
+#extraAddress {
+  width: 150px;
+}
+.signup-btn {
+  width: 100%;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+.signup-btn .signup-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.signup-btn:hover {
+  background-color: #9261e8;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}

@@ -1,0 +1,20 @@
+/* 페이지 영역 고정 */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  max-width: 1920px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+button {
+  transition: all 0.3s;
+}
+input {
+  margin-bottom: 5px;
+}

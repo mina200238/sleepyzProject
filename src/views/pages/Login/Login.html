@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬리피즈</title>
+    <link rel="icon" type="image/svg+xml" href="/public/assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
+    <link rel="stylesheet" href="/pages/Login/Login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/pages/Login/Login.js" defer></script>
+  </head>
+  <body id="body">
+    <main id="container">
+      <div class="container-login">
+        <a class="logo" href="/pages/">
+          <img class="logo-img" src="/public/assets/logo_sleepyz.png" alt="로고" />
+        </a>
+        <h1 class="signin">슬리피즈에 오신 걸 환영합니다!🥰</h1>
+        <form class="login-form">
+          <label for="email">이메일</label>
+          <input
+            class="login-info"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="이메일을 입력해 주세요"
+            required
+          />
+          <label for="password">비밀번호</label>
+          <input
+            class="login-info"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="비밀번호를 입력해 주세요"
+            required
+          />
+          <button class="login-btn"><a class="login-link" href="">로그인하기</a></button>
+        </form>
+        <p class="signup">계정이 없으신가요? <a class="signup-link" href="/pages/SignUp/SignUp.html">회원가입</a></p>
+      </div>
+    </main>
+  </body>
+</html>

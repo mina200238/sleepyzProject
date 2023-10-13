@@ -1,0 +1,84 @@
+@import '/public/css/reset.css';
+
+input:focus,
+input[type]:focus {
+  outline: 0 none;
+  border-color: #9261e8;
+  border-width: 2px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.container-login {
+  width: 400px;
+}
+
+.logo {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.signin,
+.signup {
+  text-align: center;
+}
+
+.signin {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 40px 0;
+}
+
+.logo-img {
+  max-width: 300px;
+}
+
+.login-form .login-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background-color: #f1eafeb4;
+}
+
+.login-btn {
+  width: 100%;
+  background-color: #b89fe5;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  height: 40px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+.login-btn .login-link {
+  display: block;
+  height: 100%;
+  color: #fff;
+}
+.login-btn:hover {
+  background-color: #9261e8;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.signup-link:hover {
+  color: #9261e8;
+}

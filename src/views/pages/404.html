@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/public/assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="/public/assets/favicon.png" />
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <title>페이지를 찾을 수 없음 - 404 오류</title>
+    <style>
+        body {
+            background-color: #ece1ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 0.8s infinite;
+        }
+
+        .error-text {
+            font-size: 3rem;
+            color: #9261E8;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            color: #555;
+            margin-bottom: 50px;
+            animation: slideIn 1s ease-in-out;
+            font-weight: bold;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #fff;
+            background-color: #B89FE5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #9261E8;
+        }
+@keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="emoji">😢</div>
+        <div class="error-text">404</div>
+        <div class="message">죄송합니다, 페이지를 찾을 수 없어요!</div>
+        <div><a href="/pages" class="back-link">메인 페이지로 돌아가기</a></div>
+    </div>
+</body

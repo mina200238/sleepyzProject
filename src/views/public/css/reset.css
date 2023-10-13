@@ -1,4 +1,5 @@
-@import './font.css';
+@import '/public/css/font.css';
+@import '/public/css/common.css';
 
 html,
 body,
@@ -106,6 +107,7 @@ body {
   min-height: 100vh;
   line-height: 1;
   font-family: Pretendard, sans-serif;
+  font-size: 16px;
   position: relative;
   background-color: #fff;
 }
@@ -132,4 +134,7 @@ table {
 a {
   text-decoration: none;
   color: #000;
+}
+button {
+  cursor: pointer;
 }

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/Header/Header.css" />
+    <link rel="stylesheet" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" href="/pages/Non-Member-Order-History/Non-Member-Order-History.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
+    <script src="/pages/Non-Member-Order-History/Non-Member-Order-History.js" defer></script>
+    <title>슬리피즈</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main id="container">
+      <div class="container-history">
+        <p class="history-check">비회원 주문내역 조회</p>
+        <form class="history-form">
+          <label for="email">이메일</label>
+          <input
+            class="history-info"
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            placeholder="이메일을 입력해 주세요"
+            required
+          />
+          <div class="check-box">
+            <button type="button" class="check-btn"><a class="check-link">확인</a></button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>

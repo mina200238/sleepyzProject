@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>슬리피즈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Header/Header.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/pages/Product/Product.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
+    <script type="module" src="/pages/Product/Product.js" defer></script>
+  </head>
+  <body>
+    <header id="header"></header>
+    <!-- 헤더 모듈화 한 부분 필터 기능 시 에러 확인-->
+    <main id="container">
+      <section class="product-list">
+        <h2>전체 상품</h2>
+        <div class="products-wrap"></div>
+        <div class="pagination-bar">
+          <button class="prev-btn">이전</button>
+          <button class="link" value="1">1</button>
+          <button class="link" value="2">2</button>
+          <button class="link" value="3">3</button>
+          <button class="next-btn">다음</button>
+        </div>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>

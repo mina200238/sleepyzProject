@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/Header/Header.css" />
+    <link rel="stylesheet" href="/public/Footer/Footer.css" />
+    <link rel="stylesheet" href="/pages/Order/Order.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script type="module" src="/public/Header/Header.js" defer></script>
+    <script type="module" src="/public/Footer/Footer.js" defer></script>
+    <script src="/pages/Order/Order.js" defer></script>
+    <title>슬리피즈</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <main id="container">
+      <form id="order-form">
+        <!-- 배송 정보 영역 -->
+        <div class="shipping-info">
+          <p class="order-payment">주문/결제</p>
+          <div class="orderer">
+            <h2 class="order-info">주문자</h2>
+            <div>
+              <label class="order-label" for="name">이름</label>
+              <input
+                class="order-info-group"
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="이름을 입력해 주세요"
+                required
+              />
+            </div>
+            <div>
+              <label class="order-label" for="email">이메일</label>
+              <input
+                class="order-info-group"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="이메일을 입력해 주세요"
+                required
+              />
+            </div>
+            <div>
+              <label class="order-label" for="phone_number">전화번호</label>
+              <input
+                class="order-info-group"
+                type="tel"
+                id="phone_number"
+                name="phone_number"
+                autocomplete="tel"
+                placeholder="전화번호를 입력해 주세요"
+                required
+              />
+            </div>
+            <div>
+              <label class="order-label" for="address">주소</label>
+              <input class="order-info-group" type="text" id="address" name="address" autocomplete="address" required />
+            </div>
+          </div>
+          <div class="deliveryAddress">
+            <div class="order-info">
+              <h2>배송지</h2>
+              <button type="button" class="same-orderer-btn">주문자와 동일하게</button>
+            </div>
+            <div>
+              <label class="order-label" for="receiver_name">받는사람</label>
+              <input
+                class="order-info-group"
+                type="text"
+                id="receiver_name"
+                name="receiver_name"
+                autocomplete="name"
+                placeholder="이름을 입력해 주세요"
+                required
+              />
+            </div>
+            <div>
+              <label class="order-label" for="receiver_phone_number">전화번호</label>
+              <input
+                class="order-info-group"
+                type="tel"
+                id="receiver_phone_number"
+                name="receiver_phone_number"
+                autocomplete="tel"
+                placeholder="전화번호를 입력해 주세요"
+                required
+              />
+            </div>
+            <div>
+              <label class="order-label" for="receiver_address">주소</label>
+              <input
+                class="order-info-group"
+                type="text"
+                id="receiver_address"
+                name="receiver_address"
+                autocomplete="address"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <!-- 결제 정보 영역 -->
+        <div class="order-summary">
+          <h2 class="order-history">주문 내역</h2>
+          <div class="total-price">
+            <span>총 상품 금액</span>
+            <span id="total-products-price"></span>
+          </div>
+          <div class="shipping-fee">
+            <span>배송비</span>
+            <span>2500원</span>
+          </div>
+          <div class="total-payment">
+            <span>결제 금액</span>
+            <span id="amount-of-payment"></span>
+          </div>
+          <button type="submit" class="purchase-btn">
+            <a class="purchase-link" href="">구매하기</a>
+          </button>
+        </div>
+      </form>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>

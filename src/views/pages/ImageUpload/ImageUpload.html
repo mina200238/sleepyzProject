@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Image Upload</title>
+
+    <!-- <link rel="stylesheet" href="/pages/ImageUpload/ImageUpload.css" /> -->
+    <script src="/pages/ImageUpload/firebase/firebase.js" defer></script>
+    <script src="/pages/ImageUpload/firebase/firebasestorage.js" defer></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script> -->
+    <script type="module" src="/pages/ImageUpload/ImageUpload.js" defer></script>
+  </head>
+  <body>
+    <div class="imageUpload">
+      <input type="file" class="inp" multiple />
+      <button class="selectImage">Select Images</button>
+      <div class="metaData"></div>
+      <div class="progressBar">
+        <div class="progress"></div>
+      </div>
+      <button class="upload">Upload</button>
+      <span class="completeMsg"></span>
+      <span class="loading">Loading...</span>
+      <div class="images"></div>
+    </div>
+  </body>
+</html>

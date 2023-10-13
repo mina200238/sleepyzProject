@@ -1,45 +1,51 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const mainRouter = require('./routers/mainRouter');
-const { Product } = require('./models');
-const fakeData = require('./static/fakeData.json');
+const connectDB = require('./config/dbConnection');
+const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
+require('express-async-errors');
+const dbFill = require('./config/dbFill');
+const productRouter = require('./routers/productRouter');
+const orderRouter = require('./routers/orderRouter');
+const userRouter = require('./routers/userRouter');
+const adminRouter = require('./routers/adminRouter');
+const ViewRouter = require('./routers/viewRouter');
+const errorHandler = require('./middlewares/errorHandler');
+const isAdmin = require('./middlewares/isAdmin');
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.DATABASE_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+const uploadRouter = require('./routers/uploadRouter');
 
 connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+app.use(cors()); // cors 허용
 app.use(express.json()); // body-parser
 
-app.get('/', mainRouter);
+// 정적 파일 사용
+app.use(express.static(path.join(__dirname, '/views')));
+
+app.use('/pages', ViewRouter); // 페이지 라우터
+app.use('/products', productRouter); // 상품 관련 기능
+app.use('/orders', orderRouter); // 주문 관련 기능
+app.use('/users', userRouter); // 유저 관련 기능
+app.use('/admin', adminRouter); // 관리자 관련 기능
+// app.use('/admin', isAdmin, adminRouter); // 관리자 관련 기능
+
+app.use('/upload', uploadRouter); // multer를 사용한 파이어 스토어 이미지 업로드 기능
+app.use(errorHandler); // 에러 처리 미들웨어
+
+app.use((req, res) => {
+  // 404 페이지
+  const filePath = path.join(__dirname, 'views/pages/404.html');
+  res.status(404).sendFile(filePath);
+});
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-
-  const test = async (req, res) => {
-    const data = await Product.find({});
-    if (data.length === 0) {
-      await Product.create(fakeData.product);
-      console.log('성공');
-    }
-
-    // 🤔: _id를 그냥 id로 사용 할 수 있을까요?
-    console.log(data[0]._id.toString()); // 651d24ced801f4471025046d
-  };
-  test();
-
+  dbFill();
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
