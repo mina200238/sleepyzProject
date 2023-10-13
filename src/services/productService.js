@@ -32,7 +32,9 @@ class ProductService {
 
     const categoryProducts = await Product.find({
       category: category._id,
-    });
+    })
+      .populate('image_id')
+      .populate('category');
     return categoryProducts;
   }
 }

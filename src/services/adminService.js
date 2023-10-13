@@ -20,7 +20,7 @@ class AdminService {
     const addedImage_id = addImage._id;
     const addedCategory = await Category.find({ category_name: category });
     const addedCategory_id = addedCategory[0]._id;
-    console.log('2여기', addedCategory);
+
     const addedProduct = await Product.create({
       name,
       description,
@@ -160,9 +160,10 @@ class AdminService {
   }
 
   // 카테고리 수정
-  async updateCategory(category_id, category_name) {
-    const updatedCategory = await Category.findByIdAndUpdate(
-      category_id,
+  // async updateCategory(category_id, category_name) {
+  async updateCategory(original_category_name, category_name) {
+    const updatedCategory = await Category.findOneAndUpdate(
+      { category_name: original_category_name },
       {
         category_name: category_name,
       },

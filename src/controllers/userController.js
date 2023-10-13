@@ -40,16 +40,18 @@ const login = async (req, res, next) => {
       throw new NotFoundError('이미 탈퇴한 회원 입니다!!!');
     }
 
-    const [accessToken, refreshToken] = await userService.login(email, password);
+    const tokens = await userService.login(email, password);
 
-    if (!accessToken) {
+    if (!tokens) {
       throw new BadRequestError('이메일 또는 비밀번호를 잘못 입력하셨습니다.');
     }
+
+    const [accessToken, refreshToken] = tokens;
 
     res
       .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict', secure: true })
       .status(200)
-      .json({ accessToken });
+      .json({ data: accessToken, message: '로그인 성공' });
   } catch (error) {
     next(error);
   }

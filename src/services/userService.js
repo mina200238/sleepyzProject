@@ -67,7 +67,7 @@ class UserService {
       );
 
       return [accessToken, refreshToken];
-    } else return undefined;
+    } else return false;
   }
 
   // 회원 탈퇴
