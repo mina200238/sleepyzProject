@@ -30,7 +30,7 @@ async function fetchHeader() {
         </li>
         <li>
           <a href="/pages/Order-History">
-            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
+            주문 내역
           </a>
         </li>
         <li>

@@ -33,14 +33,14 @@ function showProductsByPage(pageNumber, products) {
         // 가져온 상세 정보를 HTML에 표시합니다.
         const productNameElement = document.querySelector('.prod-name');
         const productPriceElement = document.querySelector('.price');
-        const productCountryElement = document.querySelector('.country');
-        const productShippingFeeElement = document.querySelector('.shipping-fee');
 
         productNameElement.textContent = productDetails.name;
         productPriceElement.textContent = `${productDetails.price}원`;
 
         // 필요한 정보를 가져와서 표시한 후에 원하는 동작을 수행할 수 있습니다.
-      } catch (error) {}
+      } catch (error) {
+        console.error('error: ', error);
+      }
     });
 
     // 상품 카드 요소를 생성
