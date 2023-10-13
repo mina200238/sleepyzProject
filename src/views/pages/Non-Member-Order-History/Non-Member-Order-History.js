@@ -47,18 +47,18 @@ function displayOrderDetails(orderDetails) {
   //여러 주문내역에 대해 하나씩 화면에 띄움
   orderDetails.forEach((orderInfoList) => {
     console.log('2여기', orderInfoList);
+    if (!orderInfoList.deleted_at) {
+      //총 금액
+      let tatalPrice = 0;
+      for (let i = 0; i < orderInfoList.products.length; i++) {
+        tatalPrice += orderInfoList.products[i][2] * orderInfoList.products[i][3];
+      }
 
-    //총 금액
-    let tatalPrice = 0;
-    for (let i = 0; i < orderInfoList.products.length; i++) {
-      tatalPrice += orderInfoList.products[i][2] * orderInfoList.products[i][3];
-    }
+      //order-info 클래스의 내용
+      const orderInfo = document.createElement('div');
+      orderInfo.classList.add('order-info');
 
-    //order-info 클래스의 내용
-    const orderInfo = document.createElement('div');
-    orderInfo.classList.add('order-info');
-
-    orderInfo.innerHTML = `
+      orderInfo.innerHTML = `
     <div class="order-info-list">
       <div>
         <p>주문일자</p>
@@ -89,21 +89,21 @@ function displayOrderDetails(orderDetails) {
     </div>
   `;
 
-    //products-info 클래스의 내용
-    const productsInfo = document.createElement('div');
-    productsInfo.classList.add('products-info');
+      //products-info 클래스의 내용
+      const productsInfo = document.createElement('div');
+      productsInfo.classList.add('products-info');
 
-    productsInfo.innerHTML = `
+      productsInfo.innerHTML = `
     <p class="product">상품</p>
     <p class="price">가격</p>
     <p class="quantity">수량</p>
     <p class="delivery">배송상태</p>
   `;
 
-    //order-item 클래스 내용
-    const productsInfoHTML = orderInfoList.products
-      .map(
-        (order) => `
+      //order-item 클래스 내용
+      const productsInfoHTML = orderInfoList.products
+        .map(
+          (order) => `
     <div class="order-item">
       <p class="product">${order[1]}</p>
       <p class="price">${order[2]}</p>
@@ -111,32 +111,43 @@ function displayOrderDetails(orderDetails) {
       <p class="delivery">${orderInfoList.delivery_status}</p>
     </div>
   `,
-      )
-      .join('');
+        )
+        .join('');
 
-    //만들어놓은 3개의 클래스를 order 클래스에 추가
-    const order = document.createElement('div');
-    order.classList.add('order');
+      //만들어놓은 3개의 클래스를 order 클래스에 추가
+      const order = document.createElement('div');
+      order.classList.add('order');
 
-    const orderFixBtn = document.createElement('button');
-    const orderDeleteBtn = document.createElement('button');
-    orderFixBtn.textContent = '주문 수정';
-    orderDeleteBtn.textContent = '주문 삭제';
-    orderFixBtn.classList.add('orderFixBtn');
-    orderDeleteBtn.classList.add('orderDeleteBtn');
+      const orderFixBtn = document.createElement('button');
+      const orderDeleteBtn = document.createElement('button');
+      orderFixBtn.textContent = '주문 수정';
+      orderDeleteBtn.textContent = '주문 삭제';
+      orderFixBtn.classList.add('orderFixBtn');
+      orderDeleteBtn.classList.add('orderDeleteBtn');
 
-    order.appendChild(orderInfo);
-    order.appendChild(productsInfo);
-    order.innerHTML += productsInfoHTML;
-    order.appendChild(orderFixBtn);
-    order.appendChild(orderDeleteBtn);
-    orderFixBtn.addEventListener('click', function () {
-      console.log('fix버튼 클릭!', orderInfoList._id);
-    });
-    orderDeleteBtn.addEventListener('click', function () {
-      console.log('delte버튼 클릭!', orderInfoList._id);
-    });
+      order.appendChild(orderInfo);
+      order.appendChild(productsInfo);
+      order.innerHTML += productsInfoHTML;
+      order.appendChild(orderFixBtn);
+      order.appendChild(orderDeleteBtn);
+      orderFixBtn.addEventListener('click', function () {
+        console.log('fix버튼 클릭!', orderInfoList._id);
+      });
+      orderDeleteBtn.addEventListener('click', async function () {
+        console.log('delte버튼 클릭!', orderInfoList._id);
+        axios
+          .delete(`${BASE_URL}/admin/orders`, {
+            headers: { order_id: orderInfoList._id },
+          })
+          .then((response) => {
+            // 성공적으로 업데이트되었을 때 처리
+            console.log('주문이 삭제되었습니다.', response.data);
+            alert('주문이 삭제되었습니다.');
+            location.reload();
+          });
+      });
 
-    container.appendChild(order);
+      container.appendChild(order);
+    }
   });
 }
