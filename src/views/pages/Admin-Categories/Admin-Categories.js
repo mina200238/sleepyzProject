@@ -1,6 +1,3 @@
-const tableBody = document.querySelector('.table-body');
-const addCategoryBtn = document.querySelector('.add-category-btn');
-
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 // pagination 관련
