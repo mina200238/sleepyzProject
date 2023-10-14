@@ -116,11 +116,11 @@ async function productFix(product_id) {
 async function productDelete(product_id) {
   console.log(product_id);
   const access = getCookie('accessToken');
-
+  const productID = product_id;
   try {
     const response = await axios.delete(`${BASE_URL}/admin/products`, {
       headers: {
-        product_id: product_id,
+        product_id: productID,
         authorization: access,
       },
     });
