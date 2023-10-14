@@ -24,11 +24,11 @@ function getCookie(name) {
   return '';
 }
 
-function login() {
+async function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  axios
+  await axios
     .post(`${BASE_URL}/users/login`, { email, password }, { withCredentials: true })
     .then((response) => {
       if (response.status === 200) {
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         authorization: access,
       },
     });
+    console.log(res);
     if (res.status === 200) {
       window.location.href = 'http://kdt-sw-6-team06.elicecoding.com/pages/Admin-Products';
     }
