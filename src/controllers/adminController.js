@@ -60,7 +60,7 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   try {
-    const { category_id } = req.headers;
+    const { category_id } = req.body;
 
     const adminService = new AdminService();
     const isObjectId = await adminService.checkObjectId(category_id);
