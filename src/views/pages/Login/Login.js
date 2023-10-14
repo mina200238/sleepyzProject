@@ -38,7 +38,11 @@ async function login() {
         setCookie('accessToken', response.data.accessToken, 1);
 
         // 로그인 후 필요한 동작 수행, 예를 들어 메인 페이지로 이동
-        window.location.href = '/pages';
+        if (response.data.is_admin) {
+          window.location.href = 'http://kdt-sw-6-team06.elicecoding.com/pages/Admin-Products';
+        } else {
+          window.location.href = '/pages';
+        }
       }
     })
     .catch((error) => {
@@ -58,18 +62,8 @@ async function login() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.querySelector('.login-btn');
-  btnLogin.addEventListener('click', async function (e) {
+  btnLogin.addEventListener('click', function (e) {
     e.preventDefault();
     login();
-    const access = getCookie('accessToken');
-    const res = await axios.get(`${BASE_URL}/admin/categories`, {
-      headers: {
-        authorization: access,
-      },
-    });
-    console.log(res);
-    if (res.status === 200) {
-      window.location.href = 'http://kdt-sw-6-team06.elicecoding.com/pages/Admin-Products';
-    }
   });
 });
