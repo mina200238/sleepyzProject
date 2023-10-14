@@ -12,8 +12,8 @@ function showProductsByPage(pageNumber, products) {
   productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/product/${product._id}`;
-    productLink.classList.add('product-link');
+    // productLink.href = `/product/${product._id}`;
+    // productLink.classList.add('product-link');
 
     productLink.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -22,8 +22,8 @@ function showProductsByPage(pageNumber, products) {
       window.location.href = `/pages/Product-Info?product_id=${clickedProductId}`;
 
       // 현재 페이지의 URL에서 "product_id" 매개변수 값을 추출
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get('product_id');
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const productId = urlParams.get('product_id');
 
       try {
         // 상세 정보를 가져올 때는 async/await를 사용합니다.

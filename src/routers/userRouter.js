@@ -14,7 +14,7 @@ const router = Router();
 
 router.post('/signup', signUp); // 회원 가입
 
-router.post('/signout', validateToken, signOut); // 회원 탈퇴
+router.delete('/signout', validateToken, signOut); // 회원 탈퇴
 
 router.post('/login', login); // 로그인
 

@@ -1,8 +1,3 @@
-/**
- * TODO:
- * 삭제 모달 JS 구현
- */
-
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
 // pagination 관련
@@ -10,6 +5,23 @@ const itemsPerPage = 10; // 페이지당 표시할 항목 수
 let currentPage = 1; // 현재 페이지 번호
 let data = [];
 const startsWithNumberRegex = /^\d/; // 숫자로 시작하는지를 확인하는 정규식
+
+/// 쿠키 가져오기
+function getCookie(name) {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1, cookie.length);
+    }
+  }
+  return '';
+}
+const access = getCookie('accessToken');
 
 // HTML 문서에서 요소들 선택
 const tableBody = document.querySelector('.table-body');
@@ -49,12 +61,17 @@ confirmAddCategoryBtn.addEventListener('click', () => {
 // 카테고리 추가
 const addCategory = async (newCategoryName) => {
   try {
-    const res = await axios.post(`${BASE_URL}/admin/categories`, {
-      headers: {
-        'Content-Type': 'application/json', // 요청 헤더에 JSON 형식으로 데이터를 보낸다고 명시,
+    const res = await axios.post(
+      `${BASE_URL}/admin/categories`,
+      {
+        category_name: newCategoryName,
       },
-      category_name: newCategoryName,
-    });
+      {
+        headers: {
+          authorization: access,
+        },
+      },
+    );
 
     const { category_name } = res.data.category_data;
     const markup = `
@@ -79,15 +96,23 @@ const addCategory = async (newCategoryName) => {
 // 카테고리 수정
 const editCategory = async (targetEl, originalCategoryName, newCategoryName) => {
   try {
-    const res = await axios.put(`${BASE_URL}/admin/categories`, {
-      headers: {
-        'Content-Type': 'application/json', // 요청 헤더에 JSON 형식으로 데이터를 보낸다고 명시,
+    const res = await axios.put(
+      `${BASE_URL}/admin/categories`,
+      {
+        headers: {
+          'Content-Type': 'application/json', // 요청 헤더에 JSON 형식으로 데이터를 보낸다고 명시,
+        },
+        data: {
+          original_category_name: originalCategoryName,
+          new_category_name: newCategoryName,
+        },
       },
-      data: {
-        original_category_name: originalCategoryName,
-        new_category_name: newCategoryName,
+      {
+        headers: {
+          authorization: access,
+        },
       },
-    });
+    );
 
     const { category_name } = await res.data.category_data;
 
@@ -103,9 +128,11 @@ const editCategory = async (targetEl, originalCategoryName, newCategoryName) => 
 const deleteCategory = async (categoryId) => {
   try {
     await axios.delete(`${BASE_URL}/admin/categories`, {
-      headers: {
-        'Content-Type': 'application/json', // 요청 헤더에 JSON 형식으로 데이터를 보낸다고 명시,
+      data: {
         category_id: categoryId,
+      },
+      headers: {
+        authorization: access,
       },
     });
 
@@ -237,7 +264,11 @@ const renderCategories = async () => {
 // 페이지 로드 시 카테고리 데이터를 백엔드로부터 가져와 테이블에 렌더링
 window.onload = async () => {
   try {
-    const res = await axios.get(`${BASE_URL}/admin/categories`);
+    const res = await axios.get(`${BASE_URL}/admin/categories`, {
+      headers: {
+        authorization: access,
+      },
+    });
     const categories = res.data.category_data;
     data = categories;
     renderCategories(); // 데이터를 받아온 후 렌더링

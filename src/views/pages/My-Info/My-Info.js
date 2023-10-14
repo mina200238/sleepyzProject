@@ -1,36 +1,6 @@
 const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
 
-document.addEventListener('DOMContentLoaded', function () {
-  const unregisterLink = document.querySelector('.unregister');
-
-  unregisterLink.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
-      return;
-    }
-
-    // DELETE 요청
-    const headers = {
-      authorization:
-        'jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-    };
-
-    axios
-      .delete(`${BASE_URL}/users/signout`, { headers: headers })
-      .then((response) => {
-        if (response.status === 204) {
-          alert('회원탈퇴가 완료되었습니다.');
-        } else {
-          console.error('회원탈퇴 실패:', response.data.message);
-        }
-      })
-      .catch((error) => {
-        alert('회원탈퇴 중 오류가 발생하였습니다.');
-        console.error(error);
-      });
-  });
-
+document.addEventListener('DOMContentLoaded', async function () {
   const modal = document.getElementById('passwordModal');
   const openModalButton = document.getElementById('change-password-button');
   const closeModalButton = document.getElementById('close-modal-button');
@@ -79,34 +49,89 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   const userInfoForm = document.querySelector('form');
   const usernameInput = document.getElementById('username');
-  const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
+  const addressInput = document.getElementById('address');
+
+  function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name + '=') === 0) {
+        return cookie.substring(name.length + 1, cookie.length);
+      }
+    }
+    return '';
+  }
+  const access = getCookie('accessToken');
+  console.log('2여기', access);
+  const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    headers: {
+      authorization: access,
+    },
+  });
+  const beforeData = myData.data.data;
+  usernameInput.value = beforeData.name;
+  phoneInput.value = beforeData.phone_number;
+  addressInput.value = beforeData.address;
 
   //회원정보 변경
-  userInfoForm.addEventListener('submit', function (e) {
+  userInfoForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const userData = {
+      email: beforeData.email,
       name: usernameInput.value,
-      email: emailInput.value,
       phone_number: phoneInput.value,
+      address: addressInput.value,
     };
-
-    const url = '/users/userInfo';
-    const headers = {
-      authorization: '토큰 자리',
-      'Content-Type': 'application/json',
-    };
-
-    axios
-      .put(url, userData, { headers: headers })
-      .then((response) => {
-        alert('수정이 완료되었습니다.');
-      })
-      .catch((error) => {
-        alert('회원정보 수정 중 오류가 발생하였습니다.');
-        console.error(error);
+    const access = getCookie('accessToken');
+    try {
+      const updatedUser = await axios.put(`${BASE_URL}/users/userInfo`, userData, {
+        headers: {
+          authorization: access,
+        },
       });
+      if (updatedUser.status === 200) {
+        alert('회원 정보가 수정되었습니다.');
+        location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  function deleteCookie(...cookieNames) {
+    cookieNames.forEach((cookieName) => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`;
+    });
+  }
+  // 회원 탈퇴
+  const unregisterLink = document.querySelector('.unregister');
+  unregisterLink.addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    if (!confirm('정말로 회원탈퇴를 하시겠습니까?')) {
+      return;
+    }
+    const access = getCookie('accessToken');
+    console.log('3여기', access);
+    try {
+      const requestDelete = await axios.delete(`${BASE_URL}/users/signOut`, {
+        headers: {
+          authorization: access,
+        },
+      });
+      if (requestDelete.status === 200) {
+        alert('회원 탈퇴가 되었습니다.');
+        deleteCookie('accessToken', 'refreshToken');
+        window.location.href = '/pages';
+      }
+    } catch (err) {
+      console.log(err);
+    }
   });
 });
 

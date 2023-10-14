@@ -1,7 +1,21 @@
-import updateBadge from '/public/utils/UpdateBadge.js';
+function updateBadge() {
+  const badgeElement = document.getElementById('cart-badge');
+
+  if (badgeElement) {
+    // 로컬 스토리지에서 key들을 모두 가져옴
+    const keys = Object.keys(localStorage);
+
+    // "product_"로 시작하는 key들만 필터링
+    const productKeys = keys.filter((key) => key.startsWith('product_'));
+
+    // "product_"로 시작하는 key들의 개수를 사용하여 뱃지 아이콘 업데이트
+    badgeElement.textContent = productKeys.length.toString();
+  }
+}
 
 async function fetchHeader() {
   try {
+    const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
     const response = await fetch('/public/Header/Header.html');
     const data = await response.text();
     document.getElementById('header').innerHTML = data;
@@ -30,21 +44,21 @@ async function fetchHeader() {
         </li>
         <li>
           <a href="/pages/Order-History">
-            <img class="order-history-icon" src="/public/assets/icon_order_history.svg" alt="Order History" /> 주문 내역
+            주문 내역
           </a>
         </li>
-        <li>
+        <li class="logout">
           <a href="#">로그아웃</a>
         </li>
       `;
-      const logoutButton = document.getElementById('logout');
+      const logoutButton = document.querySelector('.logout');
       console.log(logoutButton);
       if (logoutButton) {
+        console.log('확인');
         logoutButton.addEventListener('click', function (e) {
           console.log('클릭');
           e.preventDefault();
-          localStorage.removeItem('accessToken');
-          deleteCookie('refreshToken');
+          deleteCookie('accessToken', 'refreshToken');
           window.location.href = '/pages';
         });
       }
@@ -55,23 +69,15 @@ async function fetchHeader() {
           <a href="/pages/Login/">로그인</a>
         </li>
         <li>
-          <a href="/pages/Order-History">주문 내역</a>
+          <a href="/pages/SignUp/">회원가입</a>
+        </li>
+        <li>
+          <a href="/pages/Non-Member-Order-History">주문 내역</a>
         </li>
       `;
     }
   } catch (error) {
     console.error('헤더를 가져오는 중 오류가 발생했습니다:', error);
-  }
-  const logoutButton = document.getElementById('logout');
-  console.log(logoutButton);
-  if (logoutButton) {
-    logoutButton.addEventListener('click', function (e) {
-      console.log('클릭');
-      e.preventDefault();
-      localStorage.removeItem('accessToken');
-      deleteCookie('refreshToken');
-      window.location.href = '/pages';
-    });
   }
 }
 
@@ -116,6 +122,7 @@ function getAccessTokenFromCookie() {
   return null;
 }
 
+// 로그인 확인
 function checkUserLoginStatus() {
   const token = getAccessTokenFromCookie();
   if (!token) {
@@ -124,24 +131,9 @@ function checkUserLoginStatus() {
   return true;
 }
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const logoutButton = document.getElementById('logout');
-//   console.log(logoutButton);
-
-//   if (logoutButton) {
-//     logoutButton.addEventListener('click', function (e) {
-//       e.preventDefault();
-
-//       localStorage.removeItem('accessToken');
-
-//       deleteCookie('refreshToken');
-
-//       window.location.href = '/pages';
-//     });
-//   }
-
-//   // 쿠키 삭제 함수
-//   function deleteCookie(name) {
-//     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;';
-//   }
-// });
+// 쿠키 삭제 함수
+function deleteCookie(...cookieNames) {
+  cookieNames.forEach((cookieName) => {
+    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`;
+  });
+}

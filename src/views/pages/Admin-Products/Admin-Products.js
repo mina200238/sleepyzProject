@@ -115,10 +115,15 @@ async function productFix(product_id) {
 
 async function productDelete(product_id) {
   console.log(product_id);
+  const access = getCookie('accessToken');
+  const productID = product_id;
   try {
     const response = await axios.delete(`${BASE_URL}/admin/products`, {
+      data: {
+        product_id: productID,
+      },
       headers: {
-        product_id: product_id,
+        authorization: access,
       },
     });
     if (response.status === 200) {
@@ -214,6 +219,22 @@ _imageButton.addEventListener('click', (e) => {
   _uploadImage(e);
 });
 
+function getCookie(name) {
+  // 쿠키 가져오기
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1, cookie.length);
+    }
+  }
+  return '';
+}
+
 // 추가 제출
 document.querySelector('.modal-content form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent the form from submitting via the browser
@@ -229,9 +250,13 @@ document.querySelector('.modal-content form').addEventListener('submit', async f
   };
 
   console.log(product); // Log the product object to the console
-
+  const access = getCookie('accessToken');
   try {
-    const response = await axios.post(`${BASE_URL}/admin/products`, product);
+    const response = await axios.post(`${BASE_URL}/admin/products`, product, {
+      headers: {
+        authorization: access,
+      },
+    });
     if (response.status === 200) {
       // 업로드된 이미지를 화면에 표시
 
@@ -265,9 +290,13 @@ document.querySelector('._modal-content form').addEventListener('submit', async 
   };
 
   console.log(product); // Log the product object to the console
-
+  const access = getCookie('accessToken');
   try {
-    const response = await axios.put(`${BASE_URL}/admin/products`, product);
+    const response = await axios.put(`${BASE_URL}/admin/products`, product, {
+      headers: {
+        authorization: access,
+      },
+    });
     if (response.status === 200) {
       // 업로드된 이미지를 화면에 표시
 
