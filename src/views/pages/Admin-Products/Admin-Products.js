@@ -119,8 +119,10 @@ async function productDelete(product_id) {
   const productID = product_id;
   try {
     const response = await axios.delete(`${BASE_URL}/admin/products`, {
-      headers: {
+      data: {
         product_id: productID,
+      },
+      headers: {
         authorization: access,
       },
     });

@@ -110,7 +110,7 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   // 상품 삭제
   try {
-    const { product_id } = req.headers;
+    const { product_id } = req.body;
     if (!product_id) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
