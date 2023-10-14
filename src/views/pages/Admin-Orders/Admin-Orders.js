@@ -7,6 +7,23 @@ var dropdown;
 const ORDERS_PER_PAGE = 5; // 1. 한 페이지에 표시할 주문 수
 let currentPage = 1; // 2. 현재 페이지 변수 추가
 
+/// 쿠키 가져오기
+function getCookie(name) {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1, cookie.length);
+    }
+  }
+  return '';
+}
+const access = getCookie('accessToken');
+
 //4. 스크롤바 적용하고 .slice 랑 페이지 네이션 없애기
 
 //주문 내역 전부 불러오기
@@ -191,10 +208,20 @@ function updateSelectedStatus(selectedOption, Id) {
 
   // PUT 요청 보내기
   axios
-    .put(`${BASE_URL}/admin/orders`, {
-      order_id: Id,
-      delivery_status: selectedOption,
-    })
+    .put(
+      `${BASE_URL}/admin/orders`,
+      {
+        data: {
+          order_id: Id,
+          delivery_status: selectedOption,
+        },
+      },
+      {
+        headers: {
+          authorization: access,
+        },
+      },
+    )
     .then((response) => {
       // 성공적으로 업데이트되었을 때 처리
       console.log('사용자 정보가 업데이트되었습니다.', response.data);
@@ -208,7 +235,12 @@ function deleteOrder(Id) {
   // DELETE 요청 보내기
   axios
     .delete(`${BASE_URL}/admin/orders`, {
-      headers: { order_id: Id },
+      data: {
+        order_id: Id,
+      },
+      headers: {
+        authorization: access,
+      },
     })
     .then((response) => {
       // 성공적으로 업데이트되었을 때 처리
@@ -284,7 +316,11 @@ function addPagination(totalPages) {
 // 주문을 다시 표시하는 함수
 function refreshOrders() {
   axios
-    .get(`${BASE_URL}/admin/orders`)
+    .get(`${BASE_URL}/admin/orders`, {
+      headers: {
+        authorization: access,
+      },
+    })
     .then((response) => {
       const orders = response.data.data;
       productTable.innerHTML = `
@@ -307,7 +343,11 @@ function refreshOrders() {
 
 // 초기 주문 표시
 axios
-  .get(`${BASE_URL}/admin/orders`)
+  .get(`${BASE_URL}/admin/orders`, {
+    headers: {
+      authorization: access,
+    },
+  })
   .then((response) => {
     const orders = response.data.data;
     showOrders(orders);
