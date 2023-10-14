@@ -115,10 +115,13 @@ async function productFix(product_id) {
 
 async function productDelete(product_id) {
   console.log(product_id);
+  const access = getCookie('accessToken');
+
   try {
     const response = await axios.delete(`${BASE_URL}/admin/products`, {
       headers: {
         product_id: product_id,
+        authorization: access,
       },
     });
     if (response.status === 200) {
@@ -245,7 +248,7 @@ document.querySelector('.modal-content form').addEventListener('submit', async f
   };
 
   console.log(product); // Log the product object to the console
-  const access = getCookie(accessToken);
+  const access = getCookie('accessToken');
   try {
     const response = await axios.post(`${BASE_URL}/admin/products`, product, {
       headers: {
