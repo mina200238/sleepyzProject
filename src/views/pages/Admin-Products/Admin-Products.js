@@ -285,7 +285,7 @@ document.querySelector('._modal-content form').addEventListener('submit', async 
   };
 
   console.log(product); // Log the product object to the console
-  const access = getCookie(accessToken);
+  const access = getCookie('accessToken');
   try {
     const response = await axios.put(`${BASE_URL}/admin/products`, product, {
       headers: {
