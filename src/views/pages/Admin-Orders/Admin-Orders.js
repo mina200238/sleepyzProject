@@ -211,10 +211,8 @@ function updateSelectedStatus(selectedOption, Id) {
     .put(
       `${BASE_URL}/admin/orders`,
       {
-        data: {
-          order_id: Id,
-          delivery_status: selectedOption,
-        },
+        order_id: Id,
+        delivery_status: selectedOption,
       },
       {
         headers: {
