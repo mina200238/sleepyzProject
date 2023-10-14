@@ -172,7 +172,7 @@ const updateOrders = async (req, res, next) => {
         message: '배송 상태가 변경되었습니다.',
       });
     } else {
-      throw new NotFoundError('주문을 찾을 수 없습니다.');
+      throw new NotFoundError('3주문을 찾을 수 없습니다.');
     }
   } catch (err) {
     next(err);
