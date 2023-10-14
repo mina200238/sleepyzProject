@@ -58,8 +58,17 @@ function login() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.querySelector('.login-btn');
-  btnLogin.addEventListener('click', function (e) {
+  btnLogin.addEventListener('click', async function (e) {
     e.preventDefault();
     login();
+    const access = getCookie('accessToken');
+    const res = await axios.get(`${BASE_URL}/admin/categories`, {
+      headers: {
+        authorization: access,
+      },
+    });
+    if (res.status === 200) {
+      window.location.href = 'http://kdt-sw-6-team06.elicecoding.com/pages/Admin-Products';
+    }
   });
 });
