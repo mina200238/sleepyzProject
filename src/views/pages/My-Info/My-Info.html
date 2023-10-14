@@ -27,7 +27,6 @@
             id="username" 
             name="username" 
             placeholder="이름을 입력해주세요." 
-            pattern="[A-Za-z가-힣\s]+"
             autocomplete="off"
             />
           </div>
@@ -40,6 +39,15 @@
               autocomplete="off"
               placeholder="전화번호를 입력해 주세요"
               pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+              required />
+          </div>
+
+          <div class="input-group">
+            <label for="address">주소</label>
+            <input type="text"
+              id="address"
+              name="address"
+              placeholder="전화번호를 입력해 주세요"
               required />
           </div>
 

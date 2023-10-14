@@ -32,8 +32,8 @@ function showMainProducts(products) {
   productsToShow.forEach((product) => {
     // 새로운 상품 링크 요소를 생성
     const productLink = document.createElement('a');
-    productLink.href = `/product/${product._id}`;
-    productLink.classList.add('product-link');
+    // productLink.href = `/product/${product._id}`;
+    // productLink.classList.add('product-link');
 
     productLink.addEventListener('click', async (e) => {
       e.preventDefault();

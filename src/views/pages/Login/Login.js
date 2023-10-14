@@ -24,11 +24,11 @@ function getCookie(name) {
   return '';
 }
 
-function login() {
+async function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  axios
+  await axios
     .post(`${BASE_URL}/users/login`, { email, password }, { withCredentials: true })
     .then((response) => {
       if (response.status === 200) {
@@ -38,7 +38,11 @@ function login() {
         setCookie('accessToken', response.data.accessToken, 1);
 
         // 로그인 후 필요한 동작 수행, 예를 들어 메인 페이지로 이동
-        window.location.href = '/pages';
+        if (response.data.is_admin) {
+          window.location.href = 'http://kdt-sw-6-team06.elicecoding.com/pages/Admin-Products';
+        } else {
+          window.location.href = '/pages';
+        }
       }
     })
     .catch((error) => {

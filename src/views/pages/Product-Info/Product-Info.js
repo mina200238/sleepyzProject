@@ -8,6 +8,7 @@ const getProductInfo = async function () {
   // 실제 서버 데이터 가져오는 코드
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('product_id');
+  console.log(productId);
 
   try {
     const response = await axios.get(`${BASE_URL}/products/${productId}`);

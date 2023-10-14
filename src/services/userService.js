@@ -38,6 +38,7 @@ class UserService {
 
   // 로그인
   async login(email, password) {
+    let is_admin = false;
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       // access 토큰
@@ -65,8 +66,11 @@ class UserService {
         process.env.ACCESS_TOKEN_SECERT,
         { expiresIn: '1d' },
       );
+      if (user.admin_role !== 0) {
+        is_admin = true;
+      }
 
-      return [accessToken, refreshToken];
+      return [accessToken, refreshToken, is_admin];
     } else return false;
   }
 

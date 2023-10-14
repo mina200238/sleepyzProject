@@ -60,7 +60,7 @@ const updateCategory = async (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   try {
-    const { category_id } = req.headers;
+    const { category_id } = req.body;
 
     const adminService = new AdminService();
     const isObjectId = await adminService.checkObjectId(category_id);
@@ -110,7 +110,7 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   // 상품 삭제
   try {
-    const { product_id } = req.headers;
+    const { product_id } = req.body;
     if (!product_id) {
       throw new BadRequestError('잘못된 요청입니다.');
     }
@@ -172,7 +172,7 @@ const updateOrders = async (req, res, next) => {
         message: '배송 상태가 변경되었습니다.',
       });
     } else {
-      throw new NotFoundError('주문을 찾을 수 없습니다.');
+      throw new NotFoundError(`주문을 찾을 수 없습니다.`);
     }
   } catch (err) {
     next(err);
@@ -182,7 +182,7 @@ const updateOrders = async (req, res, next) => {
 // 해당 사용자의 주문 내역 삭제
 const deleteOrders = async (req, res, next) => {
   try {
-    const { order_id } = req.headers;
+    const { order_id } = req.body;
     const adminService = new AdminService();
     const updatedUserInfo = await adminService.deleteOrders(order_id);
     res.status(200).json({

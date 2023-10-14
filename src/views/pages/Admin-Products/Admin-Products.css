@@ -115,7 +115,7 @@
 .tableButton {
   display: flex;
   justify-content: left;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .addButton {

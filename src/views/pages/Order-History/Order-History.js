@@ -1,7 +1,31 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  const BASE_URL = 'http://kdt-sw-6-team06.elicecoding.com';
+  function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name + '=') === 0) {
+        return cookie.substring(name.length + 1, cookie.length);
+      }
+    }
+    return '';
+  }
+  const access = getCookie('accessToken');
+  console.log('2여기', access);
+  const myData = await axios.get(`${BASE_URL}/users/userInfo`, {
+    headers: {
+      authorization: access,
+    },
+  });
+  const beforeData = myData.data.data;
+  console.log('3여기', beforeData);
+
   // URL에서 이메일 파라미터 가져오기
-  const urlParams = new URLSearchParams(window.location.search);
-  const userEmail = urlParams.get('email');
+  const userEmail = beforeData.email;
 
   //주문내역 정보를 서버에서 가져오고 화면에 띄우는 과정
   if (userEmail) {
@@ -26,6 +50,7 @@ async function fetchOrderDetails(email) {
 
 //화면에 주문내역정보 띄우기
 function displayOrderDetails(orderDetails) {
+  console.log('1여기', orderDetails);
   const container = document.querySelector('.order-container');
 
   //주문내역이 없으면 화면에 '주문내역이 없습니다.'를 띄움
@@ -39,6 +64,8 @@ function displayOrderDetails(orderDetails) {
 
   //여러 주문내역에 대해 하나씩 화면에 띄움
   orderDetails.forEach((orderInfoList) => {
+    console.log('2여기', orderInfoList);
+
     //총 금액
     let tatalPrice = 0;
     for (let i = 0; i < orderInfoList.products.length; i++) {
